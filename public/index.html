@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Blake // Life OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #f0f0eb;
+  --red: #e8270a;
+  --g1: #111;
+  --g2: #1a1a1a;
+  --g3: #252525;
+  --g4: #333;
+  --g5: #555;
+  --g6: #888;
+  --g7: #bbb;
+  --green: #22c55e;
+  --gold: #f5a623;
+  --blue: #3b82f6;
+  --nav-h: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { height:100%; background:var(--black); color:var(--white); font-family:'DM Sans',sans-serif; overflow:hidden; }
+
+/* ── SHELL ── */
+.app { display:flex; flex-direction:column; height:100vh; height:100dvh; }
+.page-area { flex:1; overflow:hidden; position:relative; }
+.page { position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; display:none; -webkit-overflow-scrolling:touch; padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 16px); }
+.page.active { display:block; }
+
+/* ── BOTTOM NAV ── */
+.bot-nav {
+  height:calc(var(--nav-h) + var(--safe-bottom));
+  padding-bottom:var(--safe-bottom);
+  background:var(--g1);
+  border-top:1px solid var(--g3);
+  display:flex;
+  align-items:stretch;
+  position:relative;
+  z-index:100;
+  flex-shrink:0;
+}
+.nav-item {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  border:none;
+  background:none;
+  color:var(--g5);
+  transition:color 0.15s;
+  padding:8px 4px;
+  position:relative;
+}
+.nav-item.active { color:var(--white); }
+.nav-item.active::before {
+  content:'';
+  position:absolute;
+  top:0; left:20%; right:20%;
+  height:2px;
+  background:var(--red);
+  border-radius:0 0 2px 2px;
+}
+.nav-icon { font-size:1.3rem; line-height:1; }
+.nav-lbl { font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ── PAGE HEADER ── */
+.pg-hdr {
+  padding:20px 20px 16px;
+  border-bottom:1px solid var(--g3);
+  background:var(--black);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.pg-hdr-row { display:flex; justify-content:space-between; align-items:flex-end; }
+.pg-title { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.06em; line-height:1; }
+.pg-title em { color:var(--red); font-style:normal; }
+.pg-sub { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.15em; color:var(--g5); text-transform:uppercase; margin-top:4px; }
+.pg-tag { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g5); text-align:right; }
+
+/* ── TODAY PAGE ── */
+.today-hdr {
+  padding:20px 20px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+.today-day { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; letter-spacing:0.06em; line-height:1; }
+.today-meta { text-align:right; }
+.today-date { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:var(--g6); }
+.today-daynum { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; color:var(--g5); margin-top:2px; }
+
+/* NEW DAY BANNER */
+.new-day-bar {
+  margin:16px 20px 0;
+  background:#1a1000;
+  border:1px solid var(--gold);
+  border-radius:8px;
+  padding:12px 16px;
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.new-day-bar.show { display:flex; }
+.ndb-txt { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--gold); line-height:1.4; }
+.ndb-btn { background:var(--gold); border:none; border-radius:4px; padding:8px 14px; font-family:'Bebas Neue',sans-serif; font-size:0.9rem; letter-spacing:0.08em; color:var(--black); cursor:pointer; white-space:nowrap; flex-shrink:0; }
+
+/* PROGRESS RING CARD */
+.ring-card {
+  margin:16px 20px 0;
+  background:var(--g1);
+  border:1px solid var(--g3);
+  border-radius:12px;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.ring-wrap { position:relative; width:64px; height:64px; flex-shrink:0; }
+.ring-wrap svg { transform:rotate(-90deg); }
+.ring-wrap .ring-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.04em; }
+.ring-info { flex:1; }
+.ring-info h3 { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.08em; }
+.ring-info p { font-family:'DM Mono',monospace; font-size:0.56rem; letter-spacing:0.12em; color:var(--g6); margin-top:2px; text-transform:uppercase; }
+.ring-info .done-lbl { font-size:0.7rem; color:var(--g5); margin-top:6px; font-weight:300; }
+
+/* WINS */
+.wins-card {
+  margin:12px 20px 0;
+  background:var(--g1);
+  border:1px solid var(--g3);
+  border-radius:12px;
+  overflow:hidden;
+}
+.wins-card-hdr { padding:12px 16px 8px; border-bottom:1px solid var(--g3); display:flex; align-items:center; justify-content:space-between; }
+.wins-card-lbl { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.18em; color:var(--red); text-transform:uppercase; }
+.win-row { display:flex; align-items:center; gap:12px; padding:13px 16px; border-bottom:1px solid var(--g2); cursor:pointer; transition:background 0.1s; }
+.win-row:last-child { border-bottom:none; }
+.win-row:active { background:var(--g2); }
+.win-dot { width:8px; height:8px; border-radius:50%; background:var(--g4); flex-shrink:0; transition:all 0.2s; }
+.win-row.done .win-dot { background:var(--green); box-shadow:0 0 6px rgba(34,197,94,0.5); }
+.win-txt { font-size:0.82rem; color:var(--g7); font-weight:400; }
+.win-row.done .win-txt { text-decoration:line-through; color:var(--g5); }
+
+/* CHECKLIST BLOCKS */
+.cl-section { margin:12px 20px 0; }
+.cl-block { background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; margin-bottom:10px; }
+.cl-block-hdr {
+  display:flex; align-items:center; gap:10px; padding:14px 16px;
+  cursor:pointer; user-select:none; background:var(--g2);
+}
+.cl-block-hdr:active { background:var(--g3); }
+.cl-icon { font-size:1rem; }
+.cl-name { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; color:var(--g7); text-transform:uppercase; flex:1; }
+.cl-time { font-family:'DM Mono',monospace; font-size:0.52rem; color:var(--g5); }
+.cl-chevron { color:var(--g5); font-size:0.7rem; transition:transform 0.2s; }
+.cl-block.collapsed .cl-chevron { transform:rotate(-90deg); }
+.cl-items { padding:4px 0; }
+.cl-block.collapsed .cl-items { display:none; }
+.task-row { display:flex; align-items:center; gap:12px; padding:13px 16px; border-bottom:1px solid var(--g2); cursor:pointer; transition:background 0.1s; }
+.task-row:last-child { border-bottom:none; }
+.task-row:active { background:var(--g2); }
+.task-box { width:18px; height:18px; border:1.5px solid var(--g4); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+.task-row.done .task-box { background:var(--red); border-color:var(--red); }
+.task-row.done .task-box::after { content:'✓'; color:white; font-size:10px; font-weight:700; }
+.task-lbl { font-size:0.82rem; color:var(--g7); font-weight:400; }
+.task-row.done .task-lbl { text-decoration:line-through; color:var(--g5); }
+
+/* METRIC CARDS (horizontal scroll) */
+.metrics-scroll { display:flex; gap:10px; padding:12px 20px 0; overflow-x:auto; scrollbar-width:none; }
+.metrics-scroll::-webkit-scrollbar { display:none; }
+.m-card { background:var(--g1); border:1px solid var(--g3); border-radius:12px; padding:16px; min-width:160px; flex-shrink:0; }
+.m-card-lbl { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.15em; color:var(--g5); text-transform:uppercase; margin-bottom:8px; }
+.m-card-val { font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.04em; line-height:1; }
+.m-card-val .unit { font-size:0.9rem; color:var(--g6); }
+.m-card-sub { font-size:0.65rem; color:var(--g6); margin-top:5px; font-weight:300; }
+.m-card-sub .up { color:var(--green); font-weight:500; }
+.m-card-sub .tgt { color:var(--gold); }
+.m-bar { height:2px; background:var(--g3); border-radius:1px; margin-top:10px; }
+.m-bar-fill { height:100%; border-radius:1px; }
+.bar-r { background:var(--red); }
+.bar-g { background:var(--green); }
+.bar-gold { background:var(--gold); }
+
+/* QUOTE STRIP */
+.quote-strip { margin:16px 20px 0; padding:14px 16px; border-left:3px solid var(--red); }
+.q-txt { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; color:var(--g6); line-height:1.3; }
+.q-txt em { color:var(--red); font-style:normal; }
+
+/* ── LIFTING PAGE ── */
+.day-tabs-wrap { padding:16px 20px 0; display:flex; gap:8px; }
+.day-pill { flex:1; padding:10px 8px; background:var(--g2); border:1px solid var(--g3); border-radius:8px; text-align:center; cursor:pointer; font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g6); text-transform:uppercase; transition:all 0.15s; }
+.day-pill:active, .day-pill.active { background:var(--g3); border-color:var(--red); color:var(--white); }
+.workout-day { display:none; padding:12px 20px 0; }
+.workout-day.active { display:block; }
+.ex-card { background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; margin-bottom:10px; }
+.ex-card-hdr { padding:14px 16px; background:var(--g2); display:flex; align-items:center; justify-content:space-between; }
+.ex-card-name { font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.06em; }
+.ex-card-target { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.1em; color:var(--g5); margin-top:2px; }
+.ex-pr-btn { padding:5px 12px; background:#001a0a; border:1px solid var(--g4); border-radius:4px; font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g6); cursor:pointer; white-space:nowrap; transition:all 0.15s; }
+.ex-pr-btn.has-pr { border-color:var(--green); color:var(--green); background:#001a0a; }
+.set-rows { padding:8px 16px 12px; display:flex; flex-direction:column; gap:8px; }
+.set-row { display:flex; align-items:center; gap:8px; }
+.set-num { font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--g5); width:36px; flex-shrink:0; }
+.set-inp { background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--white); width:0; flex:1; text-align:center; -webkit-appearance:none; }
+.set-inp:focus { outline:none; border-color:var(--red); }
+.set-inp::placeholder { color:var(--g5); }
+.set-x { color:var(--g5); font-size:0.8rem; flex-shrink:0; }
+.set-check { width:36px; height:36px; background:var(--g3); border:1.5px solid var(--g4); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--g5); font-size:0.8rem; flex-shrink:0; transition:all 0.15s; }
+.set-check.done { background:var(--green); border-color:var(--green); color:var(--white); }
+.set-row.done .set-inp { opacity:0.4; }
+
+/* PR LIST */
+.pr-section { margin:0 20px 0; background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; }
+.pr-section-hdr { padding:12px 16px; background:var(--g2); border-bottom:1px solid var(--g3); }
+.pr-section-hdr h4 { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.08em; }
+.pr-section-hdr p { font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.12em; color:var(--g5); margin-top:2px; text-transform:uppercase; }
+.pr-row { display:flex; justify-content:space-between; align-items:center; padding:11px 16px; border-bottom:1px solid var(--g2); }
+.pr-row:last-child { border-bottom:none; }
+.pr-ex-name { font-size:0.75rem; color:var(--g7); }
+.pr-val { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); }
+.pr-empty { padding:20px 16px; text-align:center; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--g5); text-transform:uppercase; }
+
+/* ── TRACK PAGE ── */
+.track-section { margin:0 20px; }
+.track-card { background:var(--g1); border:1px solid var(--g3); border-radius:12px; padding:20px; margin-bottom:12px; }
+.tc-lbl { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.18em; color:var(--red); text-transform:uppercase; margin-bottom:14px; }
+.weight-input-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.w-big-inp { background:var(--g2); border:2px solid var(--g3); border-radius:10px; padding:14px; font-family:'Bebas Neue',sans-serif; font-size:2.4rem; letter-spacing:0.04em; color:var(--white); width:0; flex:1; text-align:center; -webkit-appearance:none; transition:border-color 0.2s; }
+.w-big-inp:focus { outline:none; border-color:var(--red); }
+.w-unit { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--g5); }
+.save-btn { width:100%; padding:14px; background:var(--red); border:none; border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.1em; color:var(--white); cursor:pointer; transition:opacity 0.2s; }
+.save-btn:active { opacity:0.8; }
+.save-btn.saved { background:var(--green); }
+.wstats-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.wstat { background:var(--g2); border-radius:8px; padding:12px; }
+.wstat-lbl { font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.12em; color:var(--g5); text-transform:uppercase; margin-bottom:4px; }
+.wstat-val { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.04em; }
+.wstat-val.grn { color:var(--green); }
+.wstat-val.gld { color:var(--gold); }
+
+.mini-chart { display:flex; align-items:flex-end; gap:4px; height:64px; margin-bottom:12px; }
+.mc-bar-w { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; height:100%; justify-content:flex-end; }
+.mc-bar { width:100%; background:var(--g3); border-radius:2px; min-height:3px; }
+.mc-bar.cur { background:var(--red); }
+.mc-lbl { font-family:'DM Mono',monospace; font-size:0.42rem; color:var(--g5); }
+
+.wlog-list { display:flex; flex-direction:column; gap:6px; }
+.wlog-row { display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; }
+.wlog-d { font-family:'DM Mono',monospace; font-size:0.58rem; color:var(--g5); }
+.wlog-v { font-family:'Bebas Neue',sans-serif; font-size:1rem; }
+.wlog-del { background:none; border:none; color:var(--g4); cursor:pointer; font-size:1rem; padding:4px; }
+.wlog-empty { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:var(--g5); text-align:center; padding:16px; text-transform:uppercase; }
+
+.notes-area { width:100%; background:var(--g2); border:1px solid var(--g3); border-radius:8px; padding:12px; font-family:'DM Sans',sans-serif; font-size:0.85rem; color:var(--white); resize:none; min-height:90px; transition:border-color 0.2s; }
+.notes-area:focus { outline:none; border-color:var(--red); }
+.notes-save { margin-top:10px; padding:10px 20px; background:var(--g3); border:1px solid var(--g4); border-radius:6px; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:var(--g6); cursor:pointer; text-transform:uppercase; transition:all 0.2s; }
+.notes-save:active { background:var(--g4); }
+.notes-save.saved { border-color:var(--green); color:var(--green); }
+
+/* ── GOALS PAGE ── */
+.goals-section { padding:0 20px; }
+.goal-cat { margin-bottom:16px; background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; }
+.goal-cat-hdr { padding:12px 16px; background:var(--g2); border-bottom:1px solid var(--g3); display:flex; align-items:center; gap:8px; }
+.goal-cat-icon { font-size:0.9rem; }
+.goal-cat-name { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; color:var(--g7); text-transform:uppercase; }
+.goal-item { display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--g2); cursor:pointer; transition:background 0.1s; }
+.goal-item:last-child { border-bottom:none; }
+.goal-item:active { background:var(--g2); }
+.goal-box { width:16px; height:16px; border:1.5px solid var(--g4); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+.goal-item.done .goal-box { background:var(--green); border-color:var(--green); }
+.goal-item.done .goal-box::after { content:'✓'; color:white; font-size:9px; font-weight:700; }
+.goal-txt { font-size:0.8rem; color:var(--g7); }
+.goal-item.done .goal-txt { text-decoration:line-through; color:var(--g5); }
+
+.decade-card { margin:0 20px 16px; background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; }
+.decade-hdr { padding:14px 16px; background:var(--g2); border-bottom:1px solid var(--g3); }
+.decade-hdr h3 { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.08em; }
+.decade-hdr h3 em { color:var(--gold); font-style:normal; }
+.decade-hdr p { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.12em; color:var(--g5); margin-top:3px; text-transform:uppercase; }
+.decade-item { display:flex; align-items:center; gap:12px; padding:11px 16px; border-bottom:1px solid var(--g2); cursor:pointer; }
+.decade-item:last-child { border-bottom:none; }
+.decade-item:active { background:var(--g2); }
+
+/* ── FAMILY PAGE ── */
+.fam-tabs { display:flex; padding:16px 20px 0; gap:8px; overflow-x:auto; scrollbar-width:none; }
+.fam-tabs::-webkit-scrollbar { display:none; }
+.fam-tab { padding:8px 16px; background:var(--g2); border:1px solid var(--g3); border-radius:20px; font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.12em; color:var(--g6); text-transform:uppercase; cursor:pointer; white-space:nowrap; transition:all 0.15s; }
+.fam-tab.active { background:var(--g3); border-color:var(--red); color:var(--white); }
+.fam-view { display:none; padding:12px 20px 0; }
+.fam-view.active { display:block; }
+
+.fam-card { background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; margin-bottom:12px; }
+.fam-card-hdr { padding:12px 16px; background:var(--g2); border-bottom:1px solid var(--g3); display:flex; align-items:center; gap:8px; }
+.fam-card-hdr .fc-name { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; flex:1; }
+.fam-card-hdr .fc-tag { font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g5); }
+
+/* 365 TRACKER */
+.tracker-wrap { padding:0 20px; }
+.t-stats-row { display:flex; gap:10px; margin-bottom:16px; }
+.t-stat { flex:1; background:var(--g1); border:1px solid var(--g3); border-radius:10px; padding:14px 12px; text-align:center; }
+.t-stat-val { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; }
+.t-stat-lbl { font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.1em; color:var(--g5); text-transform:uppercase; margin-top:2px; }
+.month-block { margin-bottom:16px; }
+.month-name { font-family:'Bebas Neue',sans-serif; font-size:0.9rem; letter-spacing:0.12em; color:var(--g5); margin-bottom:8px; }
+.days-row { display:flex; flex-wrap:wrap; gap:4px; }
+.day-box { width:calc((100% - 48px)/13); aspect-ratio:1; border:1.5px solid var(--g3); border-radius:3px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-family:'DM Mono',monospace; font-size:0.42rem; color:var(--g5); transition:all 0.15s; }
+.day-box:active { background:var(--g4); }
+.day-box.today { border-color:var(--gold); color:var(--gold); }
+.day-box.checked { background:var(--red); border-color:var(--red); color:var(--white); }
+.day-box.today.checked { background:var(--gold); border-color:var(--gold); color:var(--black); }
+
+/* ── MODAL ── */
+.modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:200; display:none; align-items:flex-end; }
+.modal-bg.show { display:flex; }
+.modal-sheet { width:100%; background:var(--g1); border-top:1px solid var(--g3); border-radius:16px 16px 0 0; padding:24px 20px calc(24px + var(--safe-bottom)); animation:slideUp 0.25s ease; }
+@keyframes slideUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+.modal-handle { width:40px; height:4px; background:var(--g4); border-radius:2px; margin:0 auto 20px; }
+.modal-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.06em; margin-bottom:4px; }
+.modal-sub { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--red); text-transform:uppercase; margin-bottom:20px; }
+.modal-field { margin-bottom:14px; }
+.modal-field label { display:block; font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g5); text-transform:uppercase; margin-bottom:6px; }
+.modal-field input { width:100%; background:var(--g2); border:1px solid var(--g3); border-radius:8px; padding:13px 16px; font-size:1rem; color:var(--white); -webkit-appearance:none; transition:border-color 0.2s; }
+.modal-field input:focus { outline:none; border-color:var(--red); }
+.modal-btns { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top:20px; }
+.modal-save { padding:14px; background:var(--red); border:none; border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.08em; color:var(--white); cursor:pointer; }
+.modal-cancel { padding:14px 18px; background:var(--g3); border:none; border-radius:8px; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--g6); cursor:pointer; }
+
+/* SECTION SPACING UTIL */
+.sec-gap { height:12px; }
+.pg-pad { padding:16px 20px 0; }
+
+/* ── HEADER BUTTONS ── */
+.hdr-btn {
+  display:flex; align-items:center; gap:6px;
+  padding:8px 14px;
+  background:var(--g2);
+  border:1px solid var(--g3);
+  border-radius:20px;
+  font-family:'DM Mono',monospace;
+  font-size:0.55rem;
+  letter-spacing:0.12em;
+  color:var(--g6);
+  cursor:pointer;
+  text-transform:uppercase;
+  transition:all 0.15s;
+  white-space:nowrap;
+}
+.hdr-btn:active { background:var(--g3); color:var(--white); }
+.hdr-btn.red { background:#1a0500; border-color:var(--red); color:var(--red); }
+.hdr-btn.red:active { background:#2a0800; }
+.hdr-btns { display:flex; gap:8px; align-items:center; }
+
+/* ── HISTORY SHEET ── */
+.hist-sheet {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.92);
+  z-index:200;
+  display:none;
+  align-items:flex-end;
+}
+.hist-sheet.show { display:flex; }
+.hist-inner {
+  width:100%;
+  background:var(--g1);
+  border-top:1px solid var(--g3);
+  border-radius:16px 16px 0 0;
+  padding:0 0 calc(24px + var(--safe-bottom));
+  max-height:80vh;
+  display:flex;
+  flex-direction:column;
+  animation:slideUp 0.25s ease;
+}
+.hist-hdr {
+  padding:20px 20px 16px;
+  border-bottom:1px solid var(--g3);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-shrink:0;
+}
+.hist-hdr h3 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.06em; }
+.hist-hdr p { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.12em; color:var(--g5); margin-top:3px; text-transform:uppercase; }
+.hist-close { background:var(--g3); border:none; border-radius:50%; width:32px; height:32px; color:var(--g6); cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.hist-scroll { overflow-y:auto; flex:1; padding:12px 20px; }
+.hist-day {
+  background:var(--g2);
+  border:1px solid var(--g3);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:8px;
+}
+.hist-day-row { display:flex; justify-content:space-between; align-items:center; }
+.hist-day-date { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; }
+.hist-day-pct { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; color:var(--red); }
+.hist-day-pct.full { color:var(--green); }
+.hist-day-bar { height:3px; background:var(--g3); border-radius:2px; margin-top:8px; }
+.hist-day-bar-fill { height:100%; background:var(--red); border-radius:2px; }
+.hist-day-bar-fill.full { background:var(--green); }
+.hist-day-tasks { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }
+.hist-task-chip { padding:3px 8px; background:var(--g3); border-radius:4px; font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.08em; color:var(--g6); }
+.hist-task-chip.done { background:#0a1f0a; color:var(--green); }
+.hist-empty { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; color:var(--g5); text-align:center; padding:32px 0; text-transform:uppercase; }
+
+/* CONFIRM MODAL */
+.confirm-bg {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.9);
+  z-index:300;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.confirm-bg.show { display:flex; }
+.confirm-box {
+  background:var(--g1);
+  border:1px solid var(--g3);
+  border-radius:16px;
+  padding:28px 24px;
+  width:100%;
+  max-width:340px;
+  animation:fadeUp 0.2s ease;
+}
+.confirm-box h3 { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.06em; margin-bottom:6px; }
+.confirm-box p { font-size:0.78rem; color:var(--g6); line-height:1.5; margin-bottom:20px; }
+.confirm-btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.confirm-yes { padding:13px; background:var(--red); border:none; border-radius:8px; font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; color:var(--white); cursor:pointer; }
+.confirm-no { padding:13px; background:var(--g3); border:none; border-radius:8px; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--g6); cursor:pointer; }
+.ph { font-size:1.3rem; line-height:1; }
+.nav-item .ph { font-size:1.4rem; }
+.cl-icon .ph { font-size:1rem; }
+.goal-cat-icon .ph { font-size:0.9rem; }
+.fc-icon .ph { font-size:0.9rem; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="page-area">
+
+    <!-- ═══════════ TODAY ═══════════ -->
+    <div id="pg-today" class="page active">
+      <div class="today-hdr">
+        <div>
+          <div class="today-day" id="todayDay">TUESDAY</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.12em;color:var(--g5);margin-top:3px;" id="todaySub">// Daily Execution Log</div>
+        </div>
+        <div class="hdr-btns">
+          <button class="hdr-btn" onclick="openHistory()"><i class="ph ph-clock-counter-clockwise"></i> History</button>
+          <button class="hdr-btn red" onclick="confirmNewDay()"><i class="ph ph-arrow-clockwise"></i> New Day</button>
+        </div>
+      </div>
+
+      <div class="new-day-bar" id="newDayBar">
+        <div class="ndb-txt">New day detected — reset your checklist?</div>
+        <button class="ndb-btn" onclick="confirmNewDay()">New Day</button>
+      </div>
+
+      <!-- Ring -->
+      <div class="ring-card">
+        <div class="ring-wrap">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="var(--g3)" stroke-width="4"/>
+            <circle id="ringFill" cx="32" cy="32" r="26" fill="none" stroke="var(--red)" stroke-width="4" stroke-linecap="round" stroke-dasharray="163" stroke-dashoffset="163" style="transition:stroke-dashoffset 0.5s ease"/>
+          </svg>
+          <div class="ring-num" id="ringPct">0%</div>
+        </div>
+        <div class="ring-info">
+          <h3>Today's Execution</h3>
+          <div class="done-lbl" id="doneLbl">0 of 0 tasks complete</div>
+          <p style="margin-top:6px">Tap tasks below to check off</p>
+        </div>
+      </div>
+
+      <!-- Metrics scroll -->
+      <div class="metrics-scroll">
+        <div class="m-card">
+          <div class="m-card-lbl">// Weight</div>
+          <div class="m-card-val" id="metricWeight">177 <span class="unit">lbs</span></div>
+          <div class="m-card-sub"><span class="up">↓8 lbs</span> · target <span class="tgt">163</span></div>
+          <div class="m-bar"><div class="m-bar-fill bar-r" style="width:35%"></div></div>
+        </div>
+        <div class="m-card">
+          <div class="m-card-lbl">// Body Fat</div>
+          <div class="m-card-val">~20 <span class="unit">%</span></div>
+          <div class="m-card-sub">target <span class="tgt">11–12%</span></div>
+          <div class="m-bar"><div class="m-bar-fill bar-g" style="width:0%"></div></div>
+        </div>
+        <div class="m-card">
+          <div class="m-card-lbl">// Pulse ARR</div>
+          <div class="m-card-val">1.17 <span class="unit">M</span></div>
+          <div class="m-card-sub">target <span class="tgt">$4–5M exit</span></div>
+          <div class="m-bar"><div class="m-bar-fill bar-gold" style="width:24%"></div></div>
+        </div>
+        <div class="m-card">
+          <div class="m-card-lbl">// Days in 2026</div>
+          <div class="m-card-val" id="metricDays">—</div>
+          <div class="m-card-sub">executing your system</div>
+          <div class="m-bar"><div class="m-bar-fill bar-r" id="dayBar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Win the day -->
+      <div style="padding:12px 20px 0">
+        <div class="wins-card">
+          <div class="wins-card-hdr">
+            <div class="wins-card-lbl">Win the Day — Hit All 4</div>
+          </div>
+          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">5am · out the door by 5:45</span></div>
+          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Swam + Lifted</span></div>
+          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Ate clean — ~1800 cal</span></div>
+          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Walk done — 1.75 miles</span></div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="cl-section">
+        <div class="cl-block" id="cl-morning">
+          <div class="cl-block-hdr" onclick="toggleBlock('cl-morning')">
+            <span class="cl-icon"><i class="ph ph-sun"></i></span><span class="cl-name">Sacred Morning</span><span class="cl-time">5:00–5:45</span><span class="cl-chevron">▾</span>
+          </div>
+          <div class="cl-items">
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · water · light lamp</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Prayer</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Scriptures</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Journaling / reflection</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Plan day · Calendar · Top 3</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Duolingo</span></div>
+          </div>
+        </div>
+        <div class="cl-block" id="cl-move">
+          <div class="cl-block-hdr" onclick="toggleBlock('cl-move')">
+            <span class="cl-icon"><i class="ph ph-waves"></i></span><span class="cl-name">Movement</span><span class="cl-time">6:00–7:30</span><span class="cl-chevron">▾</span>
+          </div>
+          <div class="cl-items">
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Drive to pool · spiritual podcast</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Swim 20–30 min</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lift 25–35 min</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Protein shake · Vitamins</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Make bed · Kids to school</span></div>
+          </div>
+        </div>
+        <div class="cl-block" id="cl-work">
+          <div class="cl-block-hdr" onclick="toggleBlock('cl-work')">
+            <span class="cl-icon"><i class="ph ph-briefcase"></i></span><span class="cl-name">Deep Work</span><span class="cl-time">9:30–4:30</span><span class="cl-chevron">▾</span>
+          </div>
+          <div class="cl-items">
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Morning deep work block</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Harvard study — 30 min</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Fairlife shake · 3pm</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Afternoon work block</span></div>
+          </div>
+        </div>
+        <div class="cl-block" id="cl-eve">
+          <div class="cl-block-hdr" onclick="toggleBlock('cl-eve')">
+            <span class="cl-icon"><i class="ph ph-house"></i></span><span class="cl-name">Family + Recovery</span><span class="cl-time">5:00–9:30</span><span class="cl-chevron">▾</span>
+          </div>
+          <div class="cl-items">
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner — protein + veggie</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family time</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk 1.75 miles</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime + prayers</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reflection + tomorrow prep</span></div>
+            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Jamie time · Sleep by 9:30</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-strip">
+        <div class="q-txt">It's not about time — it's about <em>how many days you execute.</em></div>
+      </div>
+      <div class="sec-gap"></div>
+    </div>
+
+    <!-- ═══════════ LIFTING ═══════════ -->
+    <div id="pg-lift" class="page">
+      <div class="pg-hdr">
+        <div class="pg-hdr-row">
+          <div><div class="pg-title">Lift <em>Hard.</em></div><div class="pg-sub">Weeks 3–6 · Full Body · 3x/week</div></div>
+        </div>
+      </div>
+      <div class="day-tabs-wrap">
+        <div class="day-pill active" onclick="showWorkout('push',this)">Push</div>
+        <div class="day-pill" onclick="showWorkout('pull',this)">Pull</div>
+        <div class="day-pill" onclick="showWorkout('legs',this)">Legs+Core</div>
+      </div>
+
+      <!-- PUSH -->
+      <div id="wd-push" class="workout-day active">
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Chest Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-DB Chest Press" onclick="openPR('DB Chest Press')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Shoulder Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-DB Shoulder Press" onclick="openPR('DB Shoulder Press')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Incline DB Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Incline DB Press" onclick="openPR('Incline DB Press')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Tricep Pushdown</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Tricep Pushdown" onclick="openPR('Tricep Pushdown')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Lateral Raises</div><div class="ex-card-target">3 × 15 reps</div></div><button class="ex-pr-btn" id="prb-Lateral Raises" onclick="openPR('Lateral Raises')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="sec-gap"></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListPush"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="sec-gap"></div>
+      </div>
+
+      <!-- PULL -->
+      <div id="wd-pull" class="workout-day">
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Lat Pulldown</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Lat Pulldown" onclick="openPR('Lat Pulldown')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Seated Cable Row</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Seated Cable Row" onclick="openPR('Seated Cable Row')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Row</div><div class="ex-card-target">3 × 10 reps/side</div></div><button class="ex-pr-btn" id="prb-DB Row" onclick="openPR('DB Row')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Bicep Curls</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Bicep Curls" onclick="openPR('Bicep Curls')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Face Pulls</div><div class="ex-card-target">3 × 15 reps</div></div><button class="ex-pr-btn" id="prb-Face Pulls" onclick="openPR('Face Pulls')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="sec-gap"></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListPull"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="sec-gap"></div>
+      </div>
+
+      <!-- LEGS+CORE -->
+      <div id="wd-legs" class="workout-day">
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Goblet Squat</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Goblet Squat" onclick="openPR('Goblet Squat')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Romanian Deadlift</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Romanian Deadlift" onclick="openPR('Romanian Deadlift')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Leg Press</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Leg Press" onclick="openPR('Leg Press')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Plank</div><div class="ex-card-target">3 × 60 sec</div></div><button class="ex-pr-btn" id="prb-Plank" onclick="openPR('Plank')">Log PR</button></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Dead Bugs</div><div class="ex-card-target">3 × 10 reps/side</div></div><div style="font-family:'DM Mono',monospace;font-size:0.5rem;color:var(--g5)">Bodyweight</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="sec-gap"></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListLegs"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="sec-gap"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ TRACK ═══════════ -->
+    <div id="pg-track" class="page">
+      <div class="pg-hdr">
+        <div class="pg-title">Body <em>Data.</em></div>
+        <div class="pg-sub">// Weight log · Progress · Notes</div>
+      </div>
+      <div style="padding:16px 20px 0">
+        <div class="track-card">
+          <div class="tc-lbl">// Log Today's Weight</div>
+          <div class="weight-input-row">
+            <input class="w-big-inp" id="weightInp" type="number" placeholder="177" step="0.1" inputmode="decimal">
+            <span class="w-unit">lbs</span>
+          </div>
+          <button class="save-btn" id="wSaveBtn" onclick="saveWeight()">Save Weight</button>
+          <div class="wstats-row">
+            <div class="wstat"><div class="wstat-lbl">Start</div><div class="wstat-val">185 lbs</div></div>
+            <div class="wstat"><div class="wstat-lbl">Goal</div><div class="wstat-val gld">163 lbs</div></div>
+            <div class="wstat"><div class="wstat-lbl">Lost</div><div class="wstat-val grn" id="statLost">—</div></div>
+            <div class="wstat"><div class="wstat-lbl">To Go</div><div class="wstat-val" id="statToGo">—</div></div>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Last 14 Days</div>
+          <div class="mini-chart" id="miniChart"><div style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--g5);align-self:center">No data yet</div></div>
+          <div class="wlog-list" id="wlogList"><div class="wlog-empty">No entries yet</div></div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Today's Notes</div>
+          <textarea class="notes-area" id="dayNotes" placeholder="Energy, what worked, what to adjust..."></textarea>
+          <button class="notes-save" id="notesSaveBtn" onclick="saveNotes()">Save Notes</button>
+        </div>
+      </div>
+      <div class="sec-gap"></div>
+    </div>
+
+    <!-- ═══════════ GOALS ═══════════ -->
+    <div id="pg-goals" class="page">
+      <div class="pg-hdr">
+        <div class="pg-title">My <em>Goals.</em></div>
+        <div class="pg-sub">// 2026 · Tap to mark complete</div>
+      </div>
+      <div style="height:12px"></div>
+      <div class="goals-section">
+        <div class="goal-cat">
+          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-barbell"></i></span><span class="goal-cat-name">Physical</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Back 100% healed</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Six pack — reach 163 lbs</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Basketball by July</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Swim 3x a week all year</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Run/walk 300 miles</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Lift 3x a week from Week 3</span></div>
+        </div>
+        <div class="goal-cat">
+          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-chart-line-up"></i></span><span class="goal-cat-name">Business — Pulse</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Grow ARR to $1.4M+</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Launch /behavioral-health page</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Speak at NatCon or MHCA</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">3x growth rate to $400–600K/yr</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Own BH niche at a 9/10</span></div>
+        </div>
+        <div class="goal-cat">
+          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-graduation-cap"></i></span><span class="goal-cat-name">Intellectual</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Harvard Masters — stay on track</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Nation of Startups — progress</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Shusaun — progress</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Duolingo — daily streak</span></div>
+        </div>
+        <div class="goal-cat">
+          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-star"></i></span><span class="goal-cat-name">Spiritual</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Daily scripture study</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Temple worker progress</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Daily prayer — morning + night</span></div>
+        </div>
+        <div class="goal-cat">
+          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-users-three"></i></span><span class="goal-cat-name">Family</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family states trip — new states</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Weekly date night with Jamie</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Bronson — mission prep</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Brisbane — her goals this year</span></div>
+        </div>
+      </div>
+
+      <!-- 10 YEAR -->
+      <div class="decade-card">
+        <div class="decade-hdr"><h3>10-Year Vision <em>2025–2035</em></h3><p>// The life you're building toward</p></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">$200K salary</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Harvard Masters Degree</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Pulse: $5M ARR · $50M valuation</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Sell Pulse · $10M net · $250K/yr</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">All 50 states as a family</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Visit 10 countries</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Olympics: 2028, 2032, 2034</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Nation of Startups published</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Shusaun published</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Temple worker</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Bronson on a mission</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Amazing house for Marc & Toni</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Raineys financial security</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Board seat / advisory role</span></div>
+        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Home remodel complete</span></div>
+      </div>
+      <div class="sec-gap"></div>
+    </div>
+
+    <!-- ═══════════ FAMILY ═══════════ -->
+    <div id="pg-family" class="page">
+      <div class="pg-hdr">
+        <div class="pg-title">Family <em>OS.</em></div>
+        <div class="pg-sub">// Kohler crew · 2026</div>
+      </div>
+      <div class="fam-tabs">
+        <div class="fam-tab active" onclick="showFam('fam-goals',this)">Family Goals</div>
+        <div class="fam-tab" onclick="showFam('fam-bronson',this)">Bronson</div>
+        <div class="fam-tab" onclick="showFam('fam-brisbane',this)">Brisbane</div>
+        <div class="fam-tab" onclick="showFam('fam-jamie',this)">Jamie's OS</div>
+        <div class="fam-tab" onclick="showFam('fam-365',this)">365 Tracker</div>
+      </div>
+
+      <!-- FAMILY GOALS -->
+      <div id="fam-goals" class="fam-view active">
+        <div class="fam-card">
+          <div class="fam-card-hdr"><span class="fc-name">Family Habits</span><span class="fc-tag">2026</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family scriptures daily</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family dinner together 5x/week</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family walk together weekly</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family prayer morning + night</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Monthly family fun day</span></div>
+        </div>
+        <div class="fam-card">
+          <div class="fam-card-hdr"><span class="fc-name">Big Goal — States Trip</span><span class="fc-tag">All 50</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Plan next trip destination</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Book at least 2 new states in 2026</span></div>
+          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Photo in each new state</span></div>
+        </div>
+      </div>
+
+      <!-- BRONSON -->
+      <div id="fam-bronson" class="fam-view">
+        <div class="fam-card">
+          <div class="fam-card-hdr"><span class="fc-name">Bronson's Day</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · breakfast</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Piano practice</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Typing practice</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Empty dishwasher</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower · brush teeth</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
+        </div>
+      </div>
+
+      <!-- BRISBANE -->
+      <div id="fam-brisbane" class="fam-view">
+        <div class="fam-card">
+          <div class="fam-card-hdr"><span class="fc-name">Brisbane's Day</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · breakfast</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Chore of the day</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise / activity</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower · brush teeth</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
+        </div>
+      </div>
+
+      <!-- JAMIE'S OS -->
+      <div id="fam-jamie" class="fam-view">
+        <div class="fam-card">
+          <div class="fam-card-hdr"><span class="fc-name">Jamie's Day</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · morning routine</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal scripture / prayer</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement / exercise</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal goal time</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Priority work / deep focus</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lunch — healthy + intentional</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement break</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Pick up kids · after-school</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner prep</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family dinner together</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk with Blake</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime routine</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading / journaling</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Gratitude + reflection</span></div>
+          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Blake connection · lights out 9:30</span></div>
+        </div>
+      </div>
+
+      <!-- 365 TRACKER -->
+      <div id="fam-365" class="fam-view">
+        <div class="tracker-wrap">
+          <div class="t-stats-row">
+            <div class="t-stat"><div class="t-stat-val" id="checkedCount">0</div><div class="t-stat-lbl">Days Checked</div></div>
+            <div class="t-stat"><div class="t-stat-val" id="streakCount">0</div><div class="t-stat-lbl">Current Streak</div></div>
+          </div>
+          <div id="monthsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end page-area -->
+
+  <!-- ── BOTTOM NAV ── -->
+  <nav class="bot-nav">
+    <button class="nav-item active" onclick="showPage('today',this)">
+      <i class="ph ph-lightning"></i>
+      <span class="nav-lbl">Today</span>
+    </button>
+    <button class="nav-item" onclick="showPage('lift',this)">
+      <i class="ph ph-barbell"></i>
+      <span class="nav-lbl">Lift</span>
+    </button>
+    <button class="nav-item" onclick="showPage('track',this)">
+      <i class="ph ph-chart-bar"></i>
+      <span class="nav-lbl">Track</span>
+    </button>
+    <button class="nav-item" onclick="showPage('goals',this)">
+      <i class="ph ph-target"></i>
+      <span class="nav-lbl">Goals</span>
+    </button>
+    <button class="nav-item" onclick="showPage('family',this)">
+      <i class="ph ph-users-three"></i>
+      <span class="nav-lbl">Family</span>
+    </button>
+  </nav>
+</div>
+
+<!-- HISTORY SHEET -->
+<div class="hist-sheet" id="histSheet" onclick="if(event.target===this)closeHistory()">
+  <div class="hist-inner">
+    <div class="hist-hdr">
+      <div>
+        <h3>Past Days</h3>
+        <p>// Tap a day to see what you completed</p>
+      </div>
+      <button class="hist-close" onclick="closeHistory()">✕</button>
+    </div>
+    <div class="hist-scroll" id="histScroll">
+      <div class="hist-empty">No history yet — complete today first.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM NEW DAY -->
+<div class="confirm-bg" id="confirmBg" onclick="if(event.target===this)closeConfirm()">
+  <div class="confirm-box">
+    <h3>Start New Day?</h3>
+    <p>Today's checklist will be saved to history and reset for a fresh start. Your streak and data are safe.</p>
+    <div class="confirm-btns">
+      <button class="confirm-yes" onclick="startNewDay()">Reset + Start</button>
+      <button class="confirm-no" onclick="closeConfirm()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- PR MODAL -->
+<div class="modal-bg" id="prModal" onclick="if(event.target===this)closePR()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Log PR</div>
+    <div class="modal-sub" id="prModalEx">Exercise</div>
+    <div class="modal-field"><label>Weight (lbs) or Duration (sec)</label><input type="number" id="prWt" placeholder="e.g. 45" inputmode="decimal"></div>
+    <div class="modal-field"><label>Reps</label><input type="number" id="prRp" placeholder="e.g. 10" inputmode="numeric"></div>
+    <div class="modal-btns">
+      <button class="modal-save" onclick="savePR()">Save PR</button>
+      <button class="modal-cancel" onclick="closePR()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── API HELPER ──
+const api = {
+  get: async (url) => { const r = await fetch(url); return r.json(); },
+  post: async (url, body) => { await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) }); },
+  del: async (url) => { await fetch(url, { method:'DELETE' }); }
+};
+// Minimal localStorage for UI-only state (new day detection)
+const ls = {
+  get:(k,d=null)=>{ try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d} },
+  set:(k,v)=>{ try{localStorage.setItem(k,JSON.stringify(v))}catch{} }
+};
+
+// ── CONSTANTS ──
+const now = new Date();
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const TODAY = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+// ── DATE DISPLAY ──
+document.getElementById('todayDay').textContent = DAYS[now.getDay()].toUpperCase();
+document.getElementById('todaySub').textContent = `// ${DAYS[now.getDay()].toUpperCase()} \u00b7 EXECUTION LOG`;
+const el_todayDate = document.getElementById('todayDate');
+if (el_todayDate) el_todayDate.textContent = `${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+const start = new Date(now.getFullYear(),0,0);
+const doy = Math.floor((now-start)/86400000);
+const el_todayDayNum = document.getElementById('todayDayNum');
+if (el_todayDayNum) el_todayDayNum.textContent = `Day ${doy} of ${now.getFullYear()}`;
+document.getElementById('metricDays').textContent = doy;
+document.getElementById('dayBar').style.width = (doy/365*100)+'%';
+
+// ── NAV (pure UI) ──
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pg-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function showFam(id, tab) {
+  document.querySelectorAll('.fam-view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.fam-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+function showWorkout(id, pill) {
+  document.querySelectorAll('.workout-day').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.day-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('wd-'+id).classList.add('active');
+  pill.classList.add('active');
+}
+function toggleBlock(id) { document.getElementById(id).classList.toggle('collapsed'); }
+function toggleGoal(el) { el.classList.toggle('done'); }
+function toggleSet(btn) { btn.classList.toggle('done'); btn.closest('.set-row').classList.toggle('done'); }
+function updateProgress() {
+  const all=document.querySelectorAll('#pg-today .task-row');
+  const done=document.querySelectorAll('#pg-today .task-row.done');
+  const pct=all.length?Math.round(done.length/all.length*100):0;
+  const circ=163;
+  document.getElementById('ringFill').style.strokeDashoffset=circ-(pct/100*circ);
+  document.getElementById('ringPct').textContent=pct+'%';
+  document.getElementById('doneLbl').textContent=`${done.length} of ${all.length} tasks complete`;
+}
+
+// ── CHECKLIST ──
+const TASK_LABELS = [
+  'Wake up \u00b7 water \u00b7 light lamp','Prayer','Scriptures','Journaling / reflection','Plan day \u00b7 Calendar \u00b7 Top 3','Duolingo',
+  'Drive to pool \u00b7 spiritual podcast','Swim 20\u201330 min','Lift 25\u201335 min','Protein shake \u00b7 Vitamins','Make bed \u00b7 Kids to school',
+  'Morning deep work block','Harvard study \u2014 30 min','Fairlife shake \u00b7 3pm','Afternoon work block',
+  'Dinner \u2014 protein + veggie','Family time','Walk 1.75 miles','Kids bedtime + prayers','Reflection + tomorrow prep','Jamie time \u00b7 Sleep by 9:30'
+];
+
+async function saveChecklist() {
+  const s={};
+  document.querySelectorAll('#pg-today .task-row').forEach((el,i)=>s[i]=el.classList.contains('done'));
+  await api.post('/api/checklist/'+TODAY, s);
+}
+async function restoreChecklist() {
+  const s = await api.get('/api/checklist/'+TODAY);
+  document.querySelectorAll('#pg-today .task-row').forEach((el,i)=>{ if(s[i])el.classList.add('done'); });
+  updateProgress();
+}
+function toggleTask(el) { el.classList.toggle('done'); updateProgress(); saveChecklist(); }
+
+// ── WINS (now persisted!) ──
+async function saveWins() {
+  const s={};
+  document.querySelectorAll('#pg-today .win-row').forEach((el,i)=>s[i]=el.classList.contains('done'));
+  await api.post('/api/wins/'+TODAY, s);
+}
+async function restoreWins() {
+  const s = await api.get('/api/wins/'+TODAY);
+  document.querySelectorAll('#pg-today .win-row').forEach((el,i)=>{ if(s[i])el.classList.add('done'); });
+}
+function toggleWin(el) { el.classList.toggle('done'); saveWins(); }
+
+// ── NEW DAY ──
+function checkNewDay() {
+  const last=ls.get('last_date',null);
+  if(last && last!==TODAY) document.getElementById('newDayBar').classList.add('show');
+  ls.set('last_date',TODAY);
+}
+function confirmNewDay() { document.getElementById('confirmBg').classList.add('show'); }
+function closeConfirm() { document.getElementById('confirmBg').classList.remove('show'); }
+async function startNewDay() {
+  await saveChecklist();
+  closeConfirm();
+  document.querySelectorAll('#pg-today .task-row').forEach(el=>el.classList.remove('done'));
+  document.querySelectorAll('#pg-today .win-row').forEach(el=>el.classList.remove('done'));
+  await api.post('/api/checklist/'+TODAY, {});
+  await api.post('/api/wins/'+TODAY, {});
+  document.getElementById('newDayBar').classList.remove('show');
+  updateProgress();
+}
+
+// ── HISTORY ──
+function openHistory() { renderHistory(); document.getElementById('histSheet').classList.add('show'); }
+function closeHistory() { document.getElementById('histSheet').classList.remove('show'); }
+async function renderHistory() {
+  const container = document.getElementById('histScroll');
+  container.innerHTML='<div class="hist-empty">Loading...</div>';
+  const grouped = await api.get('/api/checklist');
+  const days = Object.keys(grouped).filter(d=>d!==TODAY).sort((a,b)=>b.localeCompare(a));
+  if(days.length===0) {
+    container.innerHTML='<div class="hist-empty">No history yet \u2014 complete today first,<br>then start a new day.</div>';
+    return;
+  }
+  container.innerHTML = days.map(date => {
+    const state = grouped[date];
+    const total = TASK_LABELS.length;
+    const doneCount = Object.values(state).filter(Boolean).length;
+    const pct = total ? Math.round(doneCount/total*100) : 0;
+    const isFull = pct===100;
+    const d = new Date(date+'T12:00:00');
+    const dayName = DAYS[d.getDay()];
+    const dateStr = `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    const chips = TASK_LABELS.map((lbl,i) => {
+      const done = state[i];
+      const short = lbl.split('\u00b7')[0].trim().split(' ').slice(0,3).join(' ');
+      return `<span class="hist-task-chip${done?' done':''}">${short}</span>`;
+    }).join('');
+    return `<div class="hist-day">
+      <div class="hist-day-row">
+        <div><div class="hist-day-date">${dayName}, ${dateStr}</div></div>
+        <div class="hist-day-pct${isFull?' full':''}">${pct}%</div>
+      </div>
+      <div class="hist-day-bar"><div class="hist-day-bar-fill${isFull?' full':''}" style="width:${pct}%"></div></div>
+      <div class="hist-day-tasks">${chips}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── PR SYSTEM ──
+let curPR=null;
+function openPR(ex) {
+  curPR=ex;
+  document.getElementById('prModalEx').textContent='// '+ex;
+  document.getElementById('prWt').value='';
+  document.getElementById('prRp').value='';
+  document.getElementById('prModal').classList.add('show');
+  setTimeout(()=>document.getElementById('prWt').focus(),300);
+}
+function closePR() { document.getElementById('prModal').classList.remove('show'); curPR=null; }
+async function savePR() {
+  if(!curPR) return;
+  const wt=parseFloat(document.getElementById('prWt').value);
+  const rp=parseInt(document.getElementById('prRp').value)||null;
+  if(!wt) return;
+  await api.post('/api/prs', { exercise:curPR, weight:wt, reps:rp, date:TODAY });
+  await renderPRs();
+  closePR();
+}
+async function renderPRs() {
+  const prs = await api.get('/api/prs');
+  Object.entries(prs).forEach(([ex,{wt,rp}])=>{
+    const btn=document.getElementById('prb-'+ex);
+    if(btn){btn.textContent=rp?`PR: ${wt}\u00d7${rp}`:`PR: ${wt}s`;btn.classList.add('has-pr');}
+  });
+  const html=Object.keys(prs).length===0
+    ?'<div class="pr-empty">No PRs yet \u2014 crush a set.</div>'
+    :Object.entries(prs).map(([ex,{wt,rp,date}])=>`<div class="pr-row"><span class="pr-ex-name">${ex}</span><span class="pr-val">${wt}${rp?'\u00d7'+rp:'s'} <span style="font-size:0.5rem;color:var(--g5)">${date}</span></span></div>`).join('');
+  ['prListPush','prListPull','prListLegs'].forEach(id=>{ const el=document.getElementById(id); if(el)el.innerHTML=html; });
+}
+
+// ── WEIGHT ──
+async function saveWeight() {
+  const v=parseFloat(document.getElementById('weightInp').value);
+  if(!v||v<50||v>400) return;
+  await api.post('/api/weight', { date:TODAY, value:v });
+  const btn=document.getElementById('wSaveBtn');
+  btn.textContent='Saved \u2713'; btn.classList.add('saved');
+  setTimeout(()=>{btn.textContent='Save Weight';btn.classList.remove('saved');},2000);
+  document.getElementById('metricWeight').innerHTML=v+' <span class="unit">lbs</span>';
+  await renderWeight();
+}
+async function renderWeight() {
+  const log = await api.get('/api/weight');
+  const entries=Object.entries(log).sort((a,b)=>b[0].localeCompare(a[0]));
+  if(entries.length>0){
+    const latest=entries[0][1];
+    document.getElementById('statLost').textContent=`\u2193 ${(185-latest).toFixed(1)} lbs`;
+    document.getElementById('statToGo').textContent=latest>163?`${(latest-163).toFixed(1)} lbs`:'GOAL HIT';
+    if(!log[TODAY]) document.getElementById('weightInp').placeholder=latest;
+    else document.getElementById('weightInp').value=latest;
+    document.getElementById('metricWeight').innerHTML=latest+' <span class="unit">lbs</span>';
+  }
+  const last14=entries.slice(0,14).reverse();
+  const chart=document.getElementById('miniChart');
+  if(!last14.length){chart.innerHTML='<div style="font-family:\'DM Mono\',monospace;font-size:0.58rem;color:var(--g5);align-self:center">No data yet</div>';return;}
+  const vals=last14.map(e=>e[1]),mn=Math.min(...vals)-2,mx=Math.max(...vals)+2,rng=mx-mn||1;
+  chart.innerHTML=last14.map(([d,v])=>{
+    const pct=(v-mn)/rng*100,isTdy=d===TODAY;
+    const day=new Date(d+'T12:00:00');
+    return `<div class="mc-bar-w"><div class="mc-bar${isTdy?' cur':''}" style="height:${Math.max(pct,4)}%" title="${v} lbs"></div><div class="mc-lbl">${day.getDate()}</div></div>`;
+  }).join('');
+  const list=document.getElementById('wlogList');
+  list.innerHTML=entries.slice(0,15).map(([d,v])=>{
+    const day=new Date(d+'T12:00:00');
+    const lbl=`${DAYS[day.getDay()].slice(0,3)}, ${MONTHS[day.getMonth()]} ${day.getDate()}`;
+    return `<div class="wlog-row"><span class="wlog-d">${lbl}</span><span class="wlog-v">${v} lbs</span><button class="wlog-del" onclick="delWeight('${d}')">\u2715</button></div>`;
+  }).join('')||'<div class="wlog-empty">No entries yet</div>';
+}
+async function delWeight(d){ await api.del('/api/weight/'+d); await renderWeight(); }
+
+// ── NOTES ──
+async function saveNotes(){
+  await api.post('/api/notes/'+TODAY, { content: document.getElementById('dayNotes').value });
+  const btn=document.getElementById('notesSaveBtn');
+  btn.textContent='Saved \u2713';btn.classList.add('saved');
+  setTimeout(()=>{btn.textContent='Save Notes';btn.classList.remove('saved');},2000);
+}
+async function restoreNotes(){
+  const data = await api.get('/api/notes/'+TODAY);
+  document.getElementById('dayNotes').value = data.content || '';
+}
+
+// ── 365 TRACKER ──
+let trackerData = {};
+async function buildTracker() {
+  trackerData = await api.get('/api/tracker');
+  const grid=document.getElementById('monthsGrid');
+  grid.innerHTML = '';
+  const mdays=[31,28,31,30,31,30,31,31,30,31,30,31];
+  mdays.forEach((days,mi)=>{
+    const block=document.createElement('div'); block.className='month-block';
+    const name=document.createElement('div'); name.className='month-name';
+    name.textContent=MONTHS_LONG[mi].toUpperCase(); block.appendChild(name);
+    const row=document.createElement('div'); row.className='days-row';
+    for(let d=1;d<=days;d++){
+      const box=document.createElement('div'); box.className='day-box'; box.textContent=d;
+      const isToday=mi===now.getMonth()&&d===now.getDate()&&now.getFullYear()===2026;
+      if(isToday)box.classList.add('today');
+      const key=`${mi}_${d}`;
+      if(trackerData[key])box.classList.add('checked');
+      box.onclick=()=>{
+        box.classList.toggle('checked');
+        const checked = box.classList.contains('checked');
+        trackerData[key] = checked;
+        api.post('/api/tracker', { month:mi, day:d, checked });
+        updateTrackerStats();
+      };
+      row.appendChild(box);
+    }
+    block.appendChild(row); grid.appendChild(block);
+  });
+}
+function updateTrackerStats(){
+  const checked=document.querySelectorAll('.day-box.checked').length;
+  document.getElementById('checkedCount').textContent=checked;
+  const boxes=[...document.querySelectorAll('.day-box')];
+  const ti=boxes.findIndex(b=>b.classList.contains('today'));
+  let streak=0;
+  for(let i=ti;i>=0;i--){if(boxes[i].classList.contains('checked'))streak++;else break;}
+  document.getElementById('streakCount').textContent=streak;
+}
+
+// ── INIT ──
+(async function init() {
+  checkNewDay();
+  await Promise.all([
+    restoreChecklist(),
+    restoreWins(),
+    renderPRs(),
+    renderWeight(),
+    restoreNotes(),
+    buildTracker()
+  ]);
+  updateTrackerStats();
+})();
+</script>
+</body>
+</html>
