@@ -1,7 +1,8 @@
 name = "blake-os"
 compatibility_date = "2024-09-23"
+pages_build_output_dir = "public"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "blake-os-db"
-database_id = "PLACEHOLDER"
+database_id = "d091e21e-ab3d-444d-b570-2a1ba40f5793"
