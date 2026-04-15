@@ -6,3 +6,7 @@ pages_build_output_dir = "public"
 binding = "DB"
 database_name = "blake-os-db"
 database_id = "d091e21e-ab3d-444d-b570-2a1ba40f5793"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "blake-os-images"

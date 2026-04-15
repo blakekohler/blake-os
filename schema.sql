@@ -50,3 +50,48 @@ CREATE TABLE IF NOT EXISTS wins (
   done INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (date, win_index)
 );
+
+-- Lift sessions: dates when user lifted (for streak tracking)
+CREATE TABLE IF NOT EXISTS lift_sessions (
+  date TEXT PRIMARY KEY
+);
+
+-- Swim sessions
+CREATE TABLE IF NOT EXISTS swim_sessions (
+  date TEXT PRIMARY KEY,
+  summary TEXT,
+  image_keys TEXT DEFAULT '[]'
+);
+
+-- Meals
+CREATE TABLE IF NOT EXISTS meals (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT NOT NULL,
+  name TEXT NOT NULL,
+  calories INTEGER NOT NULL DEFAULT 0,
+  protein INTEGER NOT NULL DEFAULT 0,
+  carbs INTEGER NOT NULL DEFAULT 0,
+  fat INTEGER NOT NULL DEFAULT 0
+);
+
+-- Favorite meals
+CREATE TABLE IF NOT EXISTS favorite_meals (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  calories INTEGER NOT NULL DEFAULT 0,
+  protein INTEGER NOT NULL DEFAULT 0,
+  carbs INTEGER NOT NULL DEFAULT 0,
+  fat INTEGER NOT NULL DEFAULT 0
+);
+
+-- Fasts
+CREATE TABLE IF NOT EXISTS fasts (
+  date TEXT PRIMARY KEY
+);
+
+-- Fast intentions
+CREATE TABLE IF NOT EXISTS fast_intentions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT NOT NULL,
+  text TEXT NOT NULL
+);

@@ -88,6 +88,79 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .pg-title em { color:var(--red); font-style:normal; }
 .pg-sub { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.15em; color:var(--g5); text-transform:uppercase; margin-top:4px; }
 .pg-tag { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g5); text-align:right; }
+.streak-badge {
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:2px;
+}
+.streak-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  letter-spacing:0.04em;
+  line-height:1;
+  color:var(--gold);
+}
+.streak-lbl {
+  font-family:'DM Mono',monospace;
+  font-size:0.48rem;
+  letter-spacing:0.12em;
+  color:var(--g5);
+  text-transform:uppercase;
+}
+
+/* ── TRAIN TABS ── */
+.train-tabs { padding:16px 20px 0; display:flex; gap:8px; }
+.train-tab { flex:1; padding:10px 8px; background:var(--g2); border:1px solid var(--g3); border-radius:8px; text-align:center; cursor:pointer; font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g6); text-transform:uppercase; transition:all 0.15s; }
+.train-tab:active, .train-tab.active { background:var(--g3); border-color:var(--red); color:var(--white); }
+.train-view { display:none; }
+.train-view.active { display:block; }
+
+/* ── SWIM STYLES ── */
+.swim-summary { width:100%; background:var(--g2); border:1px solid var(--g3); border-radius:8px; padding:12px; font-family:'DM Sans',sans-serif; font-size:0.85rem; color:var(--white); resize:none; min-height:90px; transition:border-color 0.2s; }
+.swim-summary:focus { outline:none; border-color:var(--red); }
+.swim-img-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+.swim-img-item { position:relative; aspect-ratio:1; border-radius:8px; overflow:hidden; }
+.swim-img-item img { width:100%; height:100%; object-fit:cover; }
+.swim-img-del { position:absolute; top:4px; right:4px; background:rgba(0,0,0,.7); border:none; border-radius:4px; color:var(--white); cursor:pointer; padding:2px 6px; font-size:0.7rem; }
+
+/* ── TRACK SUB-TABS ── */
+.track-tabs { padding:16px 20px 0; display:flex; gap:8px; }
+.track-tab { flex:1; padding:10px 8px; background:var(--g2); border:1px solid var(--g3); border-radius:8px; text-align:center; cursor:pointer; font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g6); text-transform:uppercase; transition:all 0.15s; }
+.track-tab:active, .track-tab.active { background:var(--g3); border-color:var(--red); color:var(--white); }
+.track-view { display:none; }
+.track-view.active { display:block; }
+
+/* ── MEAL STYLES ── */
+.macro-bar { display:flex; gap:12px; background:var(--g2); border-radius:8px; padding:12px 16px; margin-bottom:12px; }
+.macro-item { flex:1; }
+.macro-lbl { font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.1em; color:var(--g5); text-transform:uppercase; }
+.macro-val { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; }
+.macro-val .goal { font-size:0.7rem; color:var(--g5); }
+.macro-fill { height:3px; background:var(--g3); border-radius:2px; margin-top:4px; }
+.macro-fill-bar { height:100%; border-radius:2px; background:var(--red); transition:width 0.3s; }
+.macro-fill-bar.good { background:var(--green); }
+.meal-form { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.meal-inputs { display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; }
+.meal-inp { background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--white); text-align:center; -webkit-appearance:none; }
+.meal-inp:focus { outline:none; border-color:var(--red); }
+.meal-inp::placeholder { color:var(--g5); }
+.meal-row { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; }
+.meal-name { flex:1; font-size:0.8rem; }
+.meal-macros { font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--g5); margin-right:8px; }
+.meal-del { background:none; border:none; color:var(--g4); cursor:pointer; font-size:1rem; padding:4px; }
+.fav-row { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; cursor:pointer; transition:background 0.1s; }
+.fav-row:active { background:var(--g3); }
+
+/* ── FASTING STYLES ── */
+.intention-row { display:flex; gap:8px; margin-bottom:8px; }
+.intention-inp { flex:1; background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--white); -webkit-appearance:none; }
+.intention-inp:focus { outline:none; border-color:var(--red); }
+.intention-inp::placeholder { color:var(--g5); }
+.intention-item { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; }
+.intention-txt { flex:1; font-size:0.85rem; color:var(--g7); }
+.intention-del { background:none; border:none; color:var(--g4); cursor:pointer; font-size:1rem; padding:4px; }
 
 /* ── TODAY PAGE ── */
 .today-hdr {
@@ -209,7 +282,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .ex-card-hdr { padding:14px 16px; background:var(--g2); display:flex; align-items:center; justify-content:space-between; }
 .ex-card-name { font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:0.06em; }
 .ex-card-target { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.1em; color:var(--g5); margin-top:2px; }
-.ex-pr-btn { padding:5px 12px; background:#001a0a; border:1px solid var(--g4); border-radius:4px; font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g6); cursor:pointer; white-space:nowrap; transition:all 0.15s; }
+.ex-pr-btn { padding:5px 12px; background:#001a0a; border:1px solid var(--g4); border-radius:4px; font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g6); cursor:default; white-space:nowrap; transition:all 0.15s; }
 .ex-pr-btn.has-pr { border-color:var(--green); color:var(--green); background:#001a0a; }
 .set-rows { padding:8px 16px 12px; display:flex; flex-direction:column; gap:8px; }
 .set-row { display:flex; align-items:center; gap:8px; }
@@ -221,6 +294,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .set-check { width:36px; height:36px; background:var(--g3); border:1.5px solid var(--g4); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--g5); font-size:0.8rem; flex-shrink:0; transition:all 0.15s; }
 .set-check.done { background:var(--green); border-color:var(--green); color:var(--white); }
 .set-row.done .set-inp { opacity:0.4; }
+.pt-label { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; padding:12px 0 4px; }
 
 /* PR LIST */
 .pr-section { margin:0 20px 0; background:var(--g1); border:1px solid var(--g3); border-radius:12px; overflow:hidden; }
@@ -444,6 +518,75 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .cl-icon .ph { font-size:1rem; }
 .goal-cat-icon .ph { font-size:0.9rem; }
 .fc-icon .ph { font-size:0.9rem; }
+
+/* ── FAB ── */
+.fab {
+  position:fixed;
+  bottom:calc(var(--nav-h) + var(--safe-bottom) + 16px);
+  right:20px;
+  width:52px; height:52px;
+  border-radius:50%;
+  background:var(--red);
+  border:none;
+  color:var(--white);
+  font-size:1.5rem;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  z-index:99;
+  box-shadow:0 4px 16px rgba(232,39,10,0.4);
+  transition:transform 0.25s ease, box-shadow 0.2s;
+}
+.fab:active { transform:scale(0.92); }
+.fab.open { transform:rotate(45deg); box-shadow:0 4px 16px rgba(232,39,10,0.2); }
+.fab .ph { font-size:1.5rem; }
+
+/* ── QUICK-ADD SHEET ── */
+.qa-bg {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.9);
+  z-index:200;
+  display:none;
+  align-items:flex-end;
+}
+.qa-bg.show { display:flex; }
+.qa-sheet {
+  width:100%;
+  background:var(--g1);
+  border-top:1px solid var(--g3);
+  border-radius:16px 16px 0 0;
+  padding:24px 20px calc(24px + var(--safe-bottom));
+  max-height:85vh;
+  overflow-y:auto;
+  animation:slideUp 0.25s ease;
+}
+.qa-handle { width:40px; height:4px; background:var(--g4); border-radius:2px; margin:0 auto 16px; }
+.qa-hdr { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.qa-back { background:none; border:none; color:var(--g6); cursor:pointer; font-size:1.2rem; padding:4px; display:flex; align-items:center; }
+.qa-title { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.06em; flex:1; }
+.qa-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.qa-action {
+  background:var(--g2);
+  border:1px solid var(--g3);
+  border-radius:12px;
+  padding:20px 16px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.qa-action:active { background:var(--g3); border-color:var(--g4); }
+.qa-action-icon { font-size:1.5rem; margin-bottom:8px; }
+.qa-action-lbl { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:var(--g7); text-transform:uppercase; }
+.qa-mode { display:none; }
+.qa-mode.active { display:block; }
+.qa-field { margin-bottom:12px; }
+.qa-field label { display:block; font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.12em; color:var(--g5); text-transform:uppercase; margin-bottom:6px; }
+.qa-field input, .qa-field textarea {
+  width:100%; background:var(--g2); border:1px solid var(--g3); border-radius:8px;
+  padding:12px; font-size:0.9rem; color:var(--white); -webkit-appearance:none; transition:border-color 0.2s;
+}
+.qa-field input:focus, .qa-field textarea:focus { outline:none; border-color:var(--red); }
+.qa-field textarea { font-family:'DM Sans',sans-serif; resize:none; min-height:80px; }
+.qa-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
 </style>
 </head>
 <body>
@@ -486,6 +629,18 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 
       <!-- Metrics scroll -->
       <div class="metrics-scroll">
+        <div class="m-card">
+          <div class="m-card-lbl">// Lift Streak</div>
+          <div class="m-card-val" id="metricLiftStreak">— <span class="unit">days</span></div>
+          <div class="m-card-sub">weekdays only</div>
+          <div class="m-bar"><div class="m-bar-fill bar-gold" id="liftStreakBar" style="width:0%"></div></div>
+        </div>
+        <div class="m-card">
+          <div class="m-card-lbl">// Swim Streak</div>
+          <div class="m-card-val" id="metricSwimStreak">— <span class="unit">days</span></div>
+          <div class="m-card-sub">weekdays only</div>
+          <div class="m-bar"><div class="m-bar-fill bar-gold" id="swimStreakBar" style="width:0%"></div></div>
+        </div>
         <div class="m-card">
           <div class="m-card-lbl">// Weight</div>
           <div class="m-card-val" id="metricWeight">177 <span class="unit">lbs</span></div>
@@ -584,11 +739,23 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
       <div class="sec-gap"></div>
     </div>
 
-    <!-- ═══════════ LIFTING ═══════════ -->
+    <!-- ═══════════ TRAIN ═══════════ -->
     <div id="pg-lift" class="page">
       <div class="pg-hdr">
         <div class="pg-hdr-row">
-          <div><div class="pg-title">Lift <em>Hard.</em></div><div class="pg-sub">Weeks 3–6 · Full Body · 3x/week</div></div>
+          <div><div class="pg-title">Train <em>Hard.</em></div><div class="pg-sub">Swim + Lift · 5x/week</div></div>
+        </div>
+      </div>
+      <div class="train-tabs">
+        <div class="train-tab active" onclick="showTrainMode('train-lift',this)">Lift</div>
+        <div class="train-tab" onclick="showTrainMode('train-swim',this)">Swim</div>
+      </div>
+
+      <div id="train-lift" class="train-view active">
+      <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-top:12px">
+        <div class="streak-badge">
+          <div class="streak-num" id="liftStreakNum">—</div>
+          <div class="streak-lbl">day streak</div>
         </div>
       </div>
       <div class="day-tabs-wrap">
@@ -599,152 +766,198 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 
       <!-- PUSH -->
       <div id="wd-push" class="workout-day active">
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Chest Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-DB Chest Press" onclick="openPR('DB Chest Press')">Log PR</button></div>
+        <div class="ex-card" data-exercise="DB Flat Bench Press" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Flat Bench Press</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-DB Flat Bench Press">—</div></div>
           <div class="set-rows">
             <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Shoulder Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-DB Shoulder Press" onclick="openPR('DB Shoulder Press')">Log PR</button></div>
+        <div class="ex-card" data-exercise="DB Shoulder Press" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Shoulder Press</div><div class="ex-card-target">2–3×10</div></div><div class="ex-pr-btn" id="prb-DB Shoulder Press">—</div></div>
           <div class="set-rows">
             <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Incline DB Press</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Incline DB Press" onclick="openPR('Incline DB Press')">Log PR</button></div>
+        <div class="ex-card" data-exercise="Pushups" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Pushups</div><div class="ex-card-target">2 sets · 8–15 reps</div></div><div class="ex-pr-btn" id="prb-Pushups">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="Lateral Raises" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Lateral Raises</div><div class="ex-card-target">2–3×12–15</div></div><div class="ex-pr-btn" id="prb-Lateral Raises">—</div></div>
           <div class="set-rows">
             <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Tricep Pushdown</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Tricep Pushdown" onclick="openPR('Tricep Pushdown')">Log PR</button></div>
+        <div class="ex-card" data-exercise="Tricep Pushdowns" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Tricep Pushdowns</div><div class="ex-card-target">2–3×12</div></div><div class="ex-pr-btn" id="prb-Tricep Pushdowns">—</div></div>
           <div class="set-rows">
             <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Lateral Raises</div><div class="ex-card-target">3 × 15 reps</div></div><button class="ex-pr-btn" id="prb-Lateral Raises" onclick="openPR('Lateral Raises')">Log PR</button></div>
+        <div class="pt-label">PT Work</div>
+        <div class="ex-card" data-exercise="Prone Press Ups" data-pr-type="none">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Prone Press Ups</div><div class="ex-card-target">10 reps</div></div><div class="set-check" onclick="toggleSet(this)" style="flex-shrink:0">✓</div></div>
+        </div>
+        <div class="ex-card" data-exercise="Anti-Rotation Press" data-pr-type="time">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Anti-Rotation Press</div><div class="ex-card-target">30–60 sec hold</div></div><div class="ex-pr-btn" id="prb-Anti-Rotation Press">—</div></div>
           <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
         <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListPush"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListPush"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
         <div class="sec-gap"></div>
       </div>
 
       <!-- PULL -->
       <div id="wd-pull" class="workout-day">
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Lat Pulldown</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Lat Pulldown" onclick="openPR('Lat Pulldown')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Seated Cable Row</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Seated Cable Row" onclick="openPR('Seated Cable Row')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Row</div><div class="ex-card-target">3 × 10 reps/side</div></div><button class="ex-pr-btn" id="prb-DB Row" onclick="openPR('DB Row')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Bicep Curls</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Bicep Curls" onclick="openPR('Bicep Curls')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Face Pulls</div><div class="ex-card-target">3 × 15 reps</div></div><button class="ex-pr-btn" id="prb-Face Pulls" onclick="openPR('Face Pulls')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListPull"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
-        <div class="sec-gap"></div>
-      </div>
-
-      <!-- LEGS+CORE -->
-      <div id="wd-legs" class="workout-day">
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Goblet Squat</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Goblet Squat" onclick="openPR('Goblet Squat')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Romanian Deadlift</div><div class="ex-card-target">3 × 10 reps</div></div><button class="ex-pr-btn" id="prb-Romanian Deadlift" onclick="openPR('Romanian Deadlift')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Leg Press</div><div class="ex-card-target">3 × 12 reps</div></div><button class="ex-pr-btn" id="prb-Leg Press" onclick="openPR('Leg Press')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Plank</div><div class="ex-card-target">3 × 60 sec</div></div><button class="ex-pr-btn" id="prb-Plank" onclick="openPR('Plank')">Log PR</button></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Dead Bugs</div><div class="ex-card-target">3 × 10 reps/side</div></div><div style="font-family:'DM Mono',monospace;font-size:0.5rem;color:var(--g5)">Bodyweight</div></div>
+        <div class="ex-card" data-exercise="Pull-ups" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Pull-ups</div><div class="ex-card-target">3 sets · max reps</div></div><div class="ex-pr-btn" id="prb-Pull-ups">—</div></div>
           <div class="set-rows">
             <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
             <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
           </div>
         </div>
+        <div class="ex-card" data-exercise="DB Rows" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Rows</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-DB Rows">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="DB Curls" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Curls</div><div class="ex-card-target">2–3×10–12</div></div><div class="ex-pr-btn" id="prb-DB Curls">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="Band Pull-Aparts" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Band Pull-Aparts</div><div class="ex-card-target">2×15</div></div><div class="ex-pr-btn" id="prb-Band Pull-Aparts">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="pt-label">PT Work</div>
+        <div class="ex-card" data-exercise="Dead Bugs" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Dead Bugs</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Dead Bugs">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="Side Plank Clams" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Side Plank Clams</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Side Plank Clams">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
         <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Tap "Log PR" on any exercise</p></div><div id="prListLegs"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListPull"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
         <div class="sec-gap"></div>
       </div>
+
+      <!-- LEGS+CORE -->
+      <div id="wd-legs" class="workout-day">
+        <div class="ex-card" data-exercise="KB Goblet Squat" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Goblet Squat</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-KB Goblet Squat">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="KB Romanian Deadlift" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Romanian Deadlift</div><div class="ex-card-target">2–3×10</div></div><div class="ex-pr-btn" id="prb-KB Romanian Deadlift">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="Single Leg Bridge" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Single Leg Bridge</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Single Leg Bridge">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="Plank w/ Hip Extension" data-pr-type="reps">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">Plank w/ Hip Extension</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Plank w/ Hip Extension">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="ex-card" data-exercise="KB Farmer Carry" data-pr-type="weight">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Farmer Carry</div><div class="ex-card-target">OPTIONAL · 30–60 sec × 2</div></div><div class="ex-pr-btn" id="prb-KB Farmer Carry">—</div></div>
+          <div class="set-rows">
+            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="sec"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="sec"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
+          </div>
+        </div>
+        <div class="sec-gap"></div>
+        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListLegs"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
+        <div class="sec-gap"></div>
+      </div>
+      </div><!-- end train-lift -->
+
+      <div id="train-swim" class="train-view">
+        <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-top:12px">
+          <div class="streak-badge">
+            <div class="streak-num" id="swimStreakNum">—</div>
+            <div class="streak-lbl">day streak</div>
+          </div>
+        </div>
+        <div style="padding:12px 20px 0">
+          <div class="track-card">
+            <div class="tc-lbl">// Today's Swim</div>
+            <textarea class="swim-summary" id="swimSummary" placeholder="Paste AI summary or write notes about your swim..."></textarea>
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <input type="file" id="swimImgInput" accept="image/*" multiple style="display:none">
+              <button class="notes-save" onclick="document.getElementById('swimImgInput').click()" style="margin-top:0">Add Photos</button>
+            </div>
+            <div class="swim-img-grid" id="swimImgPreview"></div>
+            <button class="save-btn" style="margin-top:12px" onclick="saveSwimSession()">Save Swim</button>
+          </div>
+          <div class="track-card">
+            <div class="tc-lbl">// Recent Sessions</div>
+            <div id="swimHistory"><div class="wlog-empty">No swim sessions yet</div></div>
+          </div>
+        </div>
+        <div class="sec-gap"></div>
+      </div><!-- end train-swim -->
     </div>
 
     <!-- ═══════════ TRACK ═══════════ -->
     <div id="pg-track" class="page">
       <div class="pg-hdr">
         <div class="pg-title">Body <em>Data.</em></div>
-        <div class="pg-sub">// Weight log · Progress · Notes</div>
+        <div class="pg-sub">// Weight · Meals · Fasting</div>
       </div>
+      <div class="track-tabs">
+        <div class="track-tab active" onclick="showTrackMode('track-weight',this)">Weight</div>
+        <div class="track-tab" onclick="showTrackMode('track-meals',this)">Meals</div>
+        <div class="track-tab" onclick="showTrackMode('track-fasting',this)">Fasting</div>
+      </div>
+
+      <div id="track-weight" class="track-view active">
       <div style="padding:16px 20px 0">
         <div class="track-card">
           <div class="tc-lbl">// Log Today's Weight</div>
@@ -772,6 +985,78 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
         </div>
       </div>
       <div class="sec-gap"></div>
+      </div><!-- end track-weight -->
+
+      <div id="track-meals" class="track-view">
+      <div style="padding:16px 20px 0">
+        <div class="track-card">
+          <div class="tc-lbl">// Today's Macros</div>
+          <div class="macro-bar">
+            <div class="macro-item">
+              <div class="macro-lbl">Calories</div>
+              <div class="macro-val" id="macroCal">0 <span class="goal">/ 1800</span></div>
+              <div class="macro-fill"><div class="macro-fill-bar" id="macroCalBar" style="width:0%"></div></div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-lbl">Protein</div>
+              <div class="macro-val" id="macroProt">0<span class="goal">g / 150g</span></div>
+              <div class="macro-fill"><div class="macro-fill-bar" id="macroProtBar" style="width:0%"></div></div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-lbl">Carbs</div>
+              <div class="macro-val" id="macroCarbs">0<span class="goal">g</span></div>
+            </div>
+            <div class="macro-item">
+              <div class="macro-lbl">Fat</div>
+              <div class="macro-val" id="macroFat">0<span class="goal">g</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Add Meal</div>
+          <div class="meal-form">
+            <input class="meal-inp" id="mealName" type="text" placeholder="Meal name" style="text-align:left">
+            <div class="meal-inputs">
+              <input class="meal-inp" id="mealCal" type="number" placeholder="Cal" inputmode="numeric">
+              <input class="meal-inp" id="mealProt" type="number" placeholder="Prot" inputmode="numeric">
+              <input class="meal-inp" id="mealCarbs" type="number" placeholder="Carbs" inputmode="numeric">
+            </div>
+            <div class="meal-inputs" style="grid-template-columns:1fr 1fr 1fr">
+              <input class="meal-inp" id="mealFat" type="number" placeholder="Fat" inputmode="numeric">
+              <button class="save-btn" style="font-size:0.9rem;padding:10px" onclick="addMeal()">Add</button>
+              <button class="notes-save" style="margin-top:0" onclick="saveFav()">★ Fav</button>
+            </div>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Today's Meals</div>
+          <div id="mealList"><div class="wlog-empty">No meals logged yet</div></div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Favorites — Tap to Add</div>
+          <div id="favList"><div class="wlog-empty">No favorites yet</div></div>
+        </div>
+      </div>
+      <div class="sec-gap"></div>
+      </div><!-- end track-meals -->
+
+      <div id="track-fasting" class="track-view">
+      <div style="padding:16px 20px 0">
+        <div class="track-card">
+          <div class="tc-lbl">// Today's Fast</div>
+          <div class="intention-row">
+            <input class="intention-inp" id="intentionInp" type="text" placeholder="Why are you fasting today?">
+            <button class="save-btn" style="width:auto;padding:10px 16px;font-size:0.9rem" onclick="addIntention()">Add</button>
+          </div>
+          <div id="todayIntentions"><div class="wlog-empty">No intentions yet</div></div>
+        </div>
+        <div class="track-card">
+          <div class="tc-lbl">// Past Fasts</div>
+          <div id="fastHistory"><div class="wlog-empty">No fasts logged yet</div></div>
+        </div>
+      </div>
+      <div class="sec-gap"></div>
+      </div><!-- end track-fasting -->
     </div>
 
     <!-- ═══════════ GOALS ═══════════ -->
@@ -955,7 +1240,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
     </button>
     <button class="nav-item" onclick="showPage('lift',this)">
       <i class="ph ph-barbell"></i>
-      <span class="nav-lbl">Lift</span>
+      <span class="nav-lbl">Train</span>
     </button>
     <button class="nav-item" onclick="showPage('track',this)">
       <i class="ph ph-chart-bar"></i>
@@ -1000,18 +1285,69 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
   </div>
 </div>
 
-<!-- PR MODAL -->
-<div class="modal-bg" id="prModal" onclick="if(event.target===this)closePR()">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div class="modal-title">Log PR</div>
-    <div class="modal-sub" id="prModalEx">Exercise</div>
-    <div class="modal-field"><label>Weight (lbs) or Duration (sec)</label><input type="number" id="prWt" placeholder="e.g. 45" inputmode="decimal"></div>
-    <div class="modal-field"><label>Reps</label><input type="number" id="prRp" placeholder="e.g. 10" inputmode="numeric"></div>
-    <div class="modal-btns">
-      <button class="modal-save" onclick="savePR()">Save PR</button>
-      <button class="modal-cancel" onclick="closePR()">Cancel</button>
+<!-- FAB -->
+<button class="fab" id="fabBtn" onclick="toggleQuickAdd()"><i class="ph ph-plus"></i></button>
+
+<!-- QUICK-ADD SHEET -->
+<div class="qa-bg" id="qaBg" onclick="if(event.target===this)closeQuickAdd()">
+  <div class="qa-sheet">
+    <div class="qa-handle"></div>
+
+    <!-- Menu -->
+    <div class="qa-mode active" id="qa-menu">
+      <div class="qa-title" style="margin-bottom:16px">Quick Add</div>
+      <div class="qa-grid">
+        <div class="qa-action" onclick="showQAMode('qa-weight')"><div class="qa-action-icon"><i class="ph ph-scales"></i></div><div class="qa-action-lbl">Weight</div></div>
+        <div class="qa-action" onclick="showQAMode('qa-meal')"><div class="qa-action-icon"><i class="ph ph-fork-knife"></i></div><div class="qa-action-lbl">Meal</div></div>
+        <div class="qa-action" onclick="showQAMode('qa-swim')"><div class="qa-action-icon"><i class="ph ph-waves"></i></div><div class="qa-action-lbl">Swim Note</div></div>
+        <div class="qa-action" onclick="showQAMode('qa-fasting')"><div class="qa-action-icon"><i class="ph ph-timer"></i></div><div class="qa-action-lbl">Fasting</div></div>
+      </div>
     </div>
+
+    <!-- Weight -->
+    <div class="qa-mode" id="qa-weight">
+      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Log Weight</div></div>
+      <div class="qa-field"><label>Weight (lbs)</label><input id="qaWeightInp" type="number" placeholder="177" step="0.1" inputmode="decimal"></div>
+      <button class="save-btn" onclick="qaSaveWeight()">Save Weight</button>
+    </div>
+
+    <!-- Meal -->
+    <div class="qa-mode" id="qa-meal">
+      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Add Meal</div></div>
+      <div class="qa-field"><label>Meal Name</label><input id="qaMealName" type="text" placeholder="Protein shake"></div>
+      <div class="qa-row" style="margin-bottom:12px">
+        <div class="qa-field"><label>Cal</label><input id="qaMealCal" type="number" inputmode="numeric" placeholder="0"></div>
+        <div class="qa-field"><label>Protein</label><input id="qaMealProt" type="number" inputmode="numeric" placeholder="0"></div>
+        <div class="qa-field"><label>Carbs</label><input id="qaMealCarbs" type="number" inputmode="numeric" placeholder="0"></div>
+      </div>
+      <div class="qa-row" style="margin-bottom:12px;grid-template-columns:1fr 1fr">
+        <div class="qa-field"><label>Fat</label><input id="qaMealFat" type="number" inputmode="numeric" placeholder="0"></div>
+        <div></div>
+      </div>
+      <button class="save-btn" onclick="qaAddMeal()">Add Meal</button>
+      <div style="margin-top:16px">
+        <div style="font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.12em;color:var(--g5);text-transform:uppercase;margin-bottom:8px">Favorites — Tap to Add</div>
+        <div id="qaFavList"></div>
+      </div>
+    </div>
+
+    <!-- Swim -->
+    <div class="qa-mode" id="qa-swim">
+      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Swim Note</div></div>
+      <div class="qa-field"><label>Summary</label><textarea id="qaSwimSummary" placeholder="How was today's swim?"></textarea></div>
+      <button class="save-btn" onclick="qaSaveSwim()">Save Swim</button>
+    </div>
+
+    <!-- Fasting -->
+    <div class="qa-mode" id="qa-fasting">
+      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Fasting</div></div>
+      <div class="qa-field" style="display:flex;gap:8px">
+        <input id="qaIntentionInp" type="text" placeholder="Why are you fasting today?" style="flex:1;background:var(--g2);border:1px solid var(--g3);border-radius:8px;padding:12px;font-size:0.9rem;color:var(--white);-webkit-appearance:none">
+        <button class="save-btn" style="width:auto;padding:12px 18px;font-size:0.9rem;flex-shrink:0" onclick="qaAddIntention()">Add</button>
+      </div>
+      <div id="qaIntentionList"></div>
+    </div>
+
   </div>
 </div>
 
@@ -1068,7 +1404,61 @@ function showWorkout(id, pill) {
 }
 function toggleBlock(id) { document.getElementById(id).classList.toggle('collapsed'); }
 function toggleGoal(el) { el.classList.toggle('done'); }
-function toggleSet(btn) { btn.classList.toggle('done'); btn.closest('.set-row').classList.toggle('done'); }
+function toggleSet(btn) {
+  btn.classList.toggle('done');
+  const row = btn.closest('.set-row');
+  if (row) row.classList.toggle('done');
+  // Log lift session for streak tracking
+  if (btn.classList.contains('done') && !liftSessionLogged) {
+    liftSessionLogged = true;
+    liftSessions.add(TODAY);
+    updateStreakDisplay();
+    api.post('/api/lift-sessions', { date: TODAY });
+  }
+  // Auto-PR detection when marking done
+  if (btn.classList.contains('done')) {
+    const card = btn.closest('.ex-card');
+    if (!card) return;
+    const prType = card.dataset.prType;
+    if (!prType || prType === 'none') return;
+    const exercise = card.dataset.exercise;
+    if (!exercise || !row) return;
+    const inputs = row.querySelectorAll('.set-inp');
+    let newWt = 0, newRp = null;
+    if (prType === 'weight') {
+      newWt = parseFloat(inputs[0]?.value) || 0;
+      newRp = parseInt(inputs[1]?.value) || null;
+      if (!newWt) return;
+    } else if (prType === 'reps') {
+      newRp = parseInt(inputs[0]?.value) || 0;
+      if (!newRp) return;
+    } else if (prType === 'time') {
+      newWt = parseFloat(inputs[0]?.value) || 0;
+      if (!newWt) return;
+    }
+    const cur = prCache[exercise];
+    let isNewPR = false;
+    if (!cur) { isNewPR = true; }
+    else if (prType === 'weight' && newWt > cur.wt) { isNewPR = true; }
+    else if (prType === 'reps' && newRp > (cur.rp||0)) { isNewPR = true; }
+    else if (prType === 'time' && newWt > (cur.wt||0)) { isNewPR = true; }
+    if (isNewPR) {
+      prCache[exercise] = { wt: newWt, rp: newRp, date: TODAY };
+      api.post('/api/prs', { exercise, weight: newWt, reps: newRp, date: TODAY });
+      const badge = document.getElementById('prb-' + exercise);
+      if (badge) {
+        if (prType === 'weight') badge.textContent = 'PR: ' + newWt + '\u00d7' + (newRp||'');
+        else if (prType === 'reps') badge.textContent = 'PR: ' + newRp;
+        else if (prType === 'time') badge.textContent = 'PR: ' + newWt + 's';
+        badge.classList.add('has-pr');
+        badge.style.background = '#0a3a1a';
+        badge.style.borderColor = 'var(--green)';
+        setTimeout(() => { badge.style.background = ''; }, 1500);
+      }
+      renderPRLists();
+    }
+  }
+}
 function updateProgress() {
   const all=document.querySelectorAll('#pg-today .task-row');
   const done=document.querySelectorAll('#pg-today .task-row.done');
@@ -1167,35 +1557,75 @@ async function renderHistory() {
   }).join('');
 }
 
+// ── LIFT STREAK ──
+let liftSessions = new Set();
+let liftSessionLogged = false;
+
+function calcStreakWeekdays(sessions) {
+  if (!sessions.size) return 0;
+  let streak = 0;
+  let d = new Date(TODAY + 'T12:00:00');
+  if (!sessions.has(TODAY)) d.setDate(d.getDate() - 1);
+  while (true) {
+    const dow = d.getDay();
+    if (dow === 0 || dow === 6) { d.setDate(d.getDate() - 1); continue; }
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    if (sessions.has(key)) { streak++; d.setDate(d.getDate() - 1); }
+    else break;
+  }
+  return streak;
+}
+
+function updateStreakDisplay() {
+  const ls = calcStreakWeekdays(liftSessions);
+  document.getElementById('liftStreakNum').textContent = ls || '\u2014';
+  document.getElementById('metricLiftStreak').innerHTML = (ls||'\u2014') + ' <span class="unit">days</span>';
+  document.getElementById('liftStreakBar').style.width = Math.min(ls/5*100,100)+'%';
+  const ss = calcStreakWeekdays(swimSessions);
+  document.getElementById('swimStreakNum').textContent = ss || '\u2014';
+  document.getElementById('metricSwimStreak').innerHTML = (ss||'\u2014') + ' <span class="unit">days</span>';
+  document.getElementById('swimStreakBar').style.width = Math.min(ss/5*100,100)+'%';
+}
+
+async function loadLiftStreak() {
+  const dates = await api.get('/api/lift-sessions');
+  liftSessions = new Set(dates);
+  liftSessionLogged = liftSessions.has(TODAY);
+  updateStreakDisplay();
+}
+
 // ── PR SYSTEM ──
-let curPR=null;
-function openPR(ex) {
-  curPR=ex;
-  document.getElementById('prModalEx').textContent='// '+ex;
-  document.getElementById('prWt').value='';
-  document.getElementById('prRp').value='';
-  document.getElementById('prModal').classList.add('show');
-  setTimeout(()=>document.getElementById('prWt').focus(),300);
-}
-function closePR() { document.getElementById('prModal').classList.remove('show'); curPR=null; }
-async function savePR() {
-  if(!curPR) return;
-  const wt=parseFloat(document.getElementById('prWt').value);
-  const rp=parseInt(document.getElementById('prRp').value)||null;
-  if(!wt) return;
-  await api.post('/api/prs', { exercise:curPR, weight:wt, reps:rp, date:TODAY });
-  await renderPRs();
-  closePR();
-}
+let prCache={};
 async function renderPRs() {
   const prs = await api.get('/api/prs');
-  Object.entries(prs).forEach(([ex,{wt,rp}])=>{
-    const btn=document.getElementById('prb-'+ex);
-    if(btn){btn.textContent=rp?`PR: ${wt}\u00d7${rp}`:`PR: ${wt}s`;btn.classList.add('has-pr');}
+  prCache = {};
+  Object.entries(prs).forEach(([ex,{wt,rp,date}])=>{
+    prCache[ex] = { wt, rp, date };
+    const badge=document.getElementById('prb-'+ex);
+    if(badge){
+      const card=badge.closest('.ex-card');
+      const prType=card?card.dataset.prType:'weight';
+      if(prType==='reps') badge.textContent='PR: '+rp;
+      else if(prType==='time') badge.textContent='PR: '+wt+'s';
+      else badge.textContent=rp?'PR: '+wt+'\u00d7'+rp:'PR: '+wt+'s';
+      badge.classList.add('has-pr');
+    }
   });
-  const html=Object.keys(prs).length===0
+  renderPRLists();
+}
+function renderPRLists() {
+  const entries=Object.entries(prCache);
+  const html=entries.length===0
     ?'<div class="pr-empty">No PRs yet \u2014 crush a set.</div>'
-    :Object.entries(prs).map(([ex,{wt,rp,date}])=>`<div class="pr-row"><span class="pr-ex-name">${ex}</span><span class="pr-val">${wt}${rp?'\u00d7'+rp:'s'} <span style="font-size:0.5rem;color:var(--g5)">${date}</span></span></div>`).join('');
+    :entries.map(([ex,{wt,rp,date}])=>{
+      const card=document.querySelector(`[data-exercise="${ex}"]`);
+      const prType=card?card.dataset.prType:'weight';
+      let val;
+      if(prType==='reps') val=rp;
+      else if(prType==='time') val=wt+'s';
+      else val=wt+(rp?'\u00d7'+rp:'s');
+      return `<div class="pr-row"><span class="pr-ex-name">${ex}</span><span class="pr-val">${val} <span style="font-size:0.5rem;color:var(--g5)">${date}</span></span></div>`;
+    }).join('');
   ['prListPush','prListPull','prListLegs'].forEach(id=>{ const el=document.getElementById(id); if(el)el.innerHTML=html; });
 }
 
@@ -1291,6 +1721,355 @@ function updateTrackerStats(){
   document.getElementById('streakCount').textContent=streak;
 }
 
+// ── TRAIN/TRACK TABS ──
+function showTrainMode(id, tab) {
+  document.querySelectorAll('.train-view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.train-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+function showTrackMode(id, tab) {
+  document.querySelectorAll('.track-view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.track-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+
+// ── SWIM SESSIONS ──
+let swimSessions = new Set();
+let swimSessionLogged = false;
+let swimImageKeys = [];
+
+async function loadSwimStreak() {
+  const sessions = await api.get('/api/swim-sessions');
+  swimSessions = new Set(sessions.map(s => s.date));
+  swimSessionLogged = swimSessions.has(TODAY);
+  updateStreakDisplay();
+}
+
+async function loadSwimSession() {
+  const session = await api.get('/api/swim-sessions/' + TODAY);
+  if (session && session.date) {
+    document.getElementById('swimSummary').value = session.summary || '';
+    swimImageKeys = JSON.parse(session.image_keys || '[]');
+    renderSwimImages();
+  }
+}
+
+function renderSwimImages() {
+  const grid = document.getElementById('swimImgPreview');
+  if (!swimImageKeys.length) { grid.innerHTML = ''; return; }
+  grid.innerHTML = swimImageKeys.map(key =>
+    `<div class="swim-img-item"><img src="/api/images/${key}" loading="lazy"><button class="swim-img-del" onclick="deleteSwimImage('${key}')">\u2715</button></div>`
+  ).join('');
+}
+
+async function deleteSwimImage(key) {
+  await api.del('/api/images/' + key);
+  swimImageKeys = swimImageKeys.filter(k => k !== key);
+  renderSwimImages();
+}
+
+document.getElementById('swimImgInput').addEventListener('change', async function(e) {
+  const files = e.target.files;
+  for (const file of files) {
+    const fd = new FormData();
+    fd.append('image', file);
+    const res = await fetch('/api/images', { method: 'POST', body: fd });
+    const { key } = await res.json();
+    swimImageKeys.push(key);
+  }
+  renderSwimImages();
+  e.target.value = '';
+});
+
+async function saveSwimSession() {
+  const summary = document.getElementById('swimSummary').value;
+  await api.post('/api/swim-sessions', { date: TODAY, summary, image_keys: swimImageKeys });
+  if (!swimSessionLogged) {
+    swimSessionLogged = true;
+    swimSessions.add(TODAY);
+    updateStreakDisplay();
+  }
+  const btn = document.querySelector('#train-swim .save-btn');
+  btn.textContent = 'Saved \u2713'; btn.classList.add('saved');
+  setTimeout(() => { btn.textContent = 'Save Swim'; btn.classList.remove('saved'); }, 2000);
+  renderSwimHistory();
+}
+
+async function renderSwimHistory() {
+  const sessions = await api.get('/api/swim-sessions');
+  const el = document.getElementById('swimHistory');
+  if (!sessions.length) { el.innerHTML = '<div class="wlog-empty">No swim sessions yet</div>'; return; }
+  el.innerHTML = sessions.slice(0, 15).map(s => {
+    const d = new Date(s.date + 'T12:00:00');
+    const lbl = `${DAYS[d.getDay()].slice(0,3)}, ${MONTHS[d.getMonth()]} ${d.getDate()}`;
+    const imgs = JSON.parse(s.image_keys || '[]');
+    const imgCount = imgs.length ? ` \u00b7 ${imgs.length} photo${imgs.length>1?'s':''}` : '';
+    const summ = s.summary ? s.summary.substring(0, 60) + (s.summary.length > 60 ? '...' : '') : 'No summary';
+    return `<div class="wlog-row" style="flex-direction:column;align-items:flex-start;gap:4px"><div style="display:flex;justify-content:space-between;width:100%"><span class="wlog-d">${lbl}${imgCount}</span></div><div style="font-size:0.75rem;color:var(--g6)">${summ}</div></div>`;
+  }).join('');
+}
+
+// ── MEALS ──
+let todaysMeals = [];
+let favMeals = [];
+
+async function loadMeals() {
+  todaysMeals = await api.get('/api/meals?date=' + TODAY);
+  renderMealList();
+  updateMealTotals();
+}
+
+function renderMealList() {
+  const el = document.getElementById('mealList');
+  if (!todaysMeals.length) { el.innerHTML = '<div class="wlog-empty">No meals logged yet</div>'; return; }
+  el.innerHTML = todaysMeals.map(m =>
+    `<div class="meal-row"><span class="meal-name">${m.name}</span><span class="meal-macros">${m.calories}cal \u00b7 ${m.protein}p \u00b7 ${m.carbs}c \u00b7 ${m.fat}f</span><button class="meal-del" onclick="deleteMeal(${m.id})">\u2715</button></div>`
+  ).join('');
+}
+
+function updateMealTotals() {
+  const totals = todaysMeals.reduce((acc, m) => {
+    acc.cal += m.calories; acc.prot += m.protein; acc.carbs += m.carbs; acc.fat += m.fat;
+    return acc;
+  }, { cal:0, prot:0, carbs:0, fat:0 });
+  document.getElementById('macroCal').innerHTML = `${totals.cal} <span class="goal">/ 1800</span>`;
+  document.getElementById('macroProt').innerHTML = `${totals.prot}<span class="goal">g / 150g</span>`;
+  document.getElementById('macroCarbs').innerHTML = `${totals.carbs}<span class="goal">g</span>`;
+  document.getElementById('macroFat').innerHTML = `${totals.fat}<span class="goal">g</span>`;
+  const calPct = Math.min(totals.cal / 1800 * 100, 100);
+  const protPct = Math.min(totals.prot / 150 * 100, 100);
+  const calBar = document.getElementById('macroCalBar');
+  const protBar = document.getElementById('macroProtBar');
+  calBar.style.width = calPct + '%';
+  calBar.className = 'macro-fill-bar' + (calPct >= 90 ? ' good' : '');
+  protBar.style.width = protPct + '%';
+  protBar.className = 'macro-fill-bar' + (protPct >= 90 ? ' good' : '');
+}
+
+async function addMeal() {
+  const name = document.getElementById('mealName').value.trim();
+  if (!name) return;
+  const cal = parseInt(document.getElementById('mealCal').value) || 0;
+  const prot = parseInt(document.getElementById('mealProt').value) || 0;
+  const carbs = parseInt(document.getElementById('mealCarbs').value) || 0;
+  const fat = parseInt(document.getElementById('mealFat').value) || 0;
+  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name, calories:cal, protein:prot, carbs, fat }) });
+  const { id } = await res.json();
+  todaysMeals.push({ id, date:TODAY, name, calories:cal, protein:prot, carbs, fat });
+  renderMealList();
+  updateMealTotals();
+  document.getElementById('mealName').value = '';
+  document.getElementById('mealCal').value = '';
+  document.getElementById('mealProt').value = '';
+  document.getElementById('mealCarbs').value = '';
+  document.getElementById('mealFat').value = '';
+}
+
+async function deleteMeal(id) {
+  await api.del('/api/meals/' + id);
+  todaysMeals = todaysMeals.filter(m => m.id !== id);
+  renderMealList();
+  updateMealTotals();
+}
+
+async function loadFavMeals() {
+  favMeals = await api.get('/api/favorite-meals');
+  renderFavList();
+}
+
+function renderFavList() {
+  const el = document.getElementById('favList');
+  if (!favMeals.length) { el.innerHTML = '<div class="wlog-empty">No favorites yet</div>'; return; }
+  el.innerHTML = favMeals.map(f =>
+    `<div class="fav-row" onclick="quickAddFav(${f.id})"><span class="meal-name">${f.name}</span><span class="meal-macros">${f.calories}cal \u00b7 ${f.protein}p \u00b7 ${f.carbs}c \u00b7 ${f.fat}f</span><button class="meal-del" onclick="event.stopPropagation();deleteFav(${f.id})">\u2715</button></div>`
+  ).join('');
+}
+
+async function quickAddFav(id) {
+  const f = favMeals.find(m => m.id === id);
+  if (!f) return;
+  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat }) });
+  const { id: newId } = await res.json();
+  todaysMeals.push({ id:newId, date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat });
+  renderMealList();
+  updateMealTotals();
+}
+
+async function saveFav() {
+  const name = document.getElementById('mealName').value.trim();
+  if (!name) return;
+  const cal = parseInt(document.getElementById('mealCal').value) || 0;
+  const prot = parseInt(document.getElementById('mealProt').value) || 0;
+  const carbs = parseInt(document.getElementById('mealCarbs').value) || 0;
+  const fat = parseInt(document.getElementById('mealFat').value) || 0;
+  const res = await fetch('/api/favorite-meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name, calories:cal, protein:prot, carbs, fat }) });
+  const { id } = await res.json();
+  favMeals.push({ id, name, calories:cal, protein:prot, carbs, fat });
+  renderFavList();
+}
+
+async function deleteFav(id) {
+  await api.del('/api/favorite-meals/' + id);
+  favMeals = favMeals.filter(f => f.id !== id);
+  renderFavList();
+}
+
+// ── FASTING ──
+let todayIntentions = [];
+
+async function loadTodayFast() {
+  const data = await api.get('/api/fasts/' + TODAY);
+  todayIntentions = data.intentions || [];
+  renderIntentions();
+}
+
+function renderIntentions() {
+  const el = document.getElementById('todayIntentions');
+  if (!todayIntentions.length) { el.innerHTML = '<div class="wlog-empty">No intentions yet</div>'; return; }
+  el.innerHTML = todayIntentions.map(i =>
+    `<div class="intention-item"><span class="intention-txt">${i.text}</span><button class="intention-del" onclick="deleteIntention(${i.id})">\u2715</button></div>`
+  ).join('');
+}
+
+async function addIntention() {
+  const inp = document.getElementById('intentionInp');
+  const text = inp.value.trim();
+  if (!text) return;
+  const res = await fetch('/api/fasts/' + TODAY, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ text }) });
+  const { id } = await res.json();
+  todayIntentions.push({ id, text });
+  renderIntentions();
+  inp.value = '';
+}
+
+async function deleteIntention(id) {
+  await api.del('/api/fasts/intentions/' + id);
+  todayIntentions = todayIntentions.filter(i => i.id !== id);
+  renderIntentions();
+}
+
+async function loadFastHistory() {
+  const fasts = await api.get('/api/fasts');
+  const el = document.getElementById('fastHistory');
+  const past = fasts.filter(f => f.date !== TODAY);
+  if (!past.length) { el.innerHTML = '<div class="wlog-empty">No fasts logged yet</div>'; return; }
+  el.innerHTML = past.slice(0, 20).map(f => {
+    const d = new Date(f.date + 'T12:00:00');
+    const lbl = `${DAYS[d.getDay()].slice(0,3)}, ${MONTHS[d.getMonth()]} ${d.getDate()}`;
+    const intents = f.intentions.map(i => i.text).join(' \u00b7 ') || 'No intentions';
+    return `<div class="wlog-row" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="wlog-d">${lbl}</span><div style="font-size:0.75rem;color:var(--g6)">${intents}</div></div>`;
+  }).join('');
+}
+
+// ── QUICK ADD ──
+function toggleQuickAdd() {
+  const bg = document.getElementById('qaBg');
+  const fab = document.getElementById('fabBtn');
+  if (bg.classList.contains('show')) { closeQuickAdd(); }
+  else { bg.classList.add('show'); fab.classList.add('open'); renderQAFavs(); renderQAIntentions(); }
+}
+function closeQuickAdd() {
+  document.getElementById('qaBg').classList.remove('show');
+  document.getElementById('fabBtn').classList.remove('open');
+  // Reset to menu
+  document.querySelectorAll('.qa-mode').forEach(m => m.classList.remove('active'));
+  document.getElementById('qa-menu').classList.add('active');
+}
+function showQAMode(mode) {
+  document.querySelectorAll('.qa-mode').forEach(m => m.classList.remove('active'));
+  document.getElementById(mode).classList.add('active');
+}
+function qaBackToMenu() {
+  document.querySelectorAll('.qa-mode').forEach(m => m.classList.remove('active'));
+  document.getElementById('qa-menu').classList.add('active');
+}
+
+async function qaSaveWeight() {
+  const v = parseFloat(document.getElementById('qaWeightInp').value);
+  if (!v || v < 50 || v > 400) return;
+  await api.post('/api/weight', { date: TODAY, value: v });
+  document.getElementById('metricWeight').innerHTML = v + ' <span class="unit">lbs</span>';
+  document.getElementById('qaWeightInp').value = '';
+  await renderWeight();
+  closeQuickAdd();
+}
+
+async function qaAddMeal() {
+  const name = document.getElementById('qaMealName').value.trim();
+  if (!name) return;
+  const cal = parseInt(document.getElementById('qaMealCal').value) || 0;
+  const prot = parseInt(document.getElementById('qaMealProt').value) || 0;
+  const carbs = parseInt(document.getElementById('qaMealCarbs').value) || 0;
+  const fat = parseInt(document.getElementById('qaMealFat').value) || 0;
+  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name, calories:cal, protein:prot, carbs, fat }) });
+  const { id } = await res.json();
+  todaysMeals.push({ id, date:TODAY, name, calories:cal, protein:prot, carbs, fat });
+  renderMealList();
+  updateMealTotals();
+  document.getElementById('qaMealName').value = '';
+  document.getElementById('qaMealCal').value = '';
+  document.getElementById('qaMealProt').value = '';
+  document.getElementById('qaMealCarbs').value = '';
+  document.getElementById('qaMealFat').value = '';
+  closeQuickAdd();
+}
+
+async function qaQuickAddFav(id) {
+  const f = favMeals.find(m => m.id === id);
+  if (!f) return;
+  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat }) });
+  const { id: newId } = await res.json();
+  todaysMeals.push({ id:newId, date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat });
+  renderMealList();
+  updateMealTotals();
+  closeQuickAdd();
+}
+
+function renderQAFavs() {
+  const el = document.getElementById('qaFavList');
+  if (!favMeals.length) { el.innerHTML = '<div class="wlog-empty">No favorites yet</div>'; return; }
+  el.innerHTML = favMeals.map(f =>
+    `<div class="fav-row" onclick="qaQuickAddFav(${f.id})"><span class="meal-name">${f.name}</span><span class="meal-macros">${f.calories}cal \u00b7 ${f.protein}p \u00b7 ${f.carbs}c \u00b7 ${f.fat}f</span></div>`
+  ).join('');
+}
+
+async function qaSaveSwim() {
+  const summary = document.getElementById('qaSwimSummary').value;
+  if (!summary.trim()) return;
+  await api.post('/api/swim-sessions', { date: TODAY, summary, image_keys: swimImageKeys });
+  document.getElementById('swimSummary').value = summary;
+  if (!swimSessionLogged) {
+    swimSessionLogged = true;
+    swimSessions.add(TODAY);
+    updateStreakDisplay();
+  }
+  document.getElementById('qaSwimSummary').value = '';
+  renderSwimHistory();
+  closeQuickAdd();
+}
+
+async function qaAddIntention() {
+  const inp = document.getElementById('qaIntentionInp');
+  const text = inp.value.trim();
+  if (!text) return;
+  const res = await fetch('/api/fasts/' + TODAY, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ text }) });
+  const { id } = await res.json();
+  todayIntentions.push({ id, text });
+  renderIntentions();
+  inp.value = '';
+  renderQAIntentions();
+}
+
+function renderQAIntentions() {
+  const el = document.getElementById('qaIntentionList');
+  if (!todayIntentions.length) { el.innerHTML = '<div class="wlog-empty" style="padding:12px 0">No intentions yet</div>'; return; }
+  el.innerHTML = todayIntentions.map(i =>
+    `<div class="intention-item"><span class="intention-txt">${i.text}</span></div>`
+  ).join('');
+}
+
 // ── INIT ──
 (async function init() {
   checkNewDay();
@@ -1300,7 +2079,15 @@ function updateTrackerStats(){
     renderPRs(),
     renderWeight(),
     restoreNotes(),
-    buildTracker()
+    buildTracker(),
+    loadLiftStreak(),
+    loadSwimStreak(),
+    loadSwimSession(),
+    renderSwimHistory(),
+    loadMeals(),
+    loadFavMeals(),
+    loadTodayFast(),
+    loadFastHistory()
   ]);
   updateTrackerStats();
 })();
