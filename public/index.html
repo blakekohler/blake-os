@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Blake // Life OS</title>
+<title>Life OS</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <style>
@@ -125,43 +125,6 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .swim-img-item img { width:100%; height:100%; object-fit:cover; }
 .swim-img-del { position:absolute; top:4px; right:4px; background:rgba(0,0,0,.7); border:none; border-radius:4px; color:var(--white); cursor:pointer; padding:2px 6px; font-size:0.7rem; }
 
-/* ── TRACK SUB-TABS ── */
-.track-tabs { padding:16px 20px 0; display:flex; gap:8px; }
-.track-tab { flex:1; padding:10px 8px; background:var(--g2); border:1px solid var(--g3); border-radius:8px; text-align:center; cursor:pointer; font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; color:var(--g6); text-transform:uppercase; transition:all 0.15s; }
-.track-tab:active, .track-tab.active { background:var(--g3); border-color:var(--red); color:var(--white); }
-.track-view { display:none; }
-.track-view.active { display:block; }
-
-/* ── MEAL STYLES ── */
-.macro-bar { display:flex; gap:12px; background:var(--g2); border-radius:8px; padding:12px 16px; margin-bottom:12px; }
-.macro-item { flex:1; }
-.macro-lbl { font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.1em; color:var(--g5); text-transform:uppercase; }
-.macro-val { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; }
-.macro-val .goal { font-size:0.7rem; color:var(--g5); }
-.macro-fill { height:3px; background:var(--g3); border-radius:2px; margin-top:4px; }
-.macro-fill-bar { height:100%; border-radius:2px; background:var(--red); transition:width 0.3s; }
-.macro-fill-bar.good { background:var(--green); }
-.meal-form { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
-.meal-inputs { display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; }
-.meal-inp { background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--white); text-align:center; -webkit-appearance:none; }
-.meal-inp:focus { outline:none; border-color:var(--red); }
-.meal-inp::placeholder { color:var(--g5); }
-.meal-row { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; }
-.meal-name { flex:1; font-size:0.8rem; }
-.meal-macros { font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--g5); margin-right:8px; }
-.meal-del { background:none; border:none; color:var(--g4); cursor:pointer; font-size:1rem; padding:4px; }
-.fav-row { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; cursor:pointer; transition:background 0.1s; }
-.fav-row:active { background:var(--g3); }
-
-/* ── FASTING STYLES ── */
-.intention-row { display:flex; gap:8px; margin-bottom:8px; }
-.intention-inp { flex:1; background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--white); -webkit-appearance:none; }
-.intention-inp:focus { outline:none; border-color:var(--red); }
-.intention-inp::placeholder { color:var(--g5); }
-.intention-item { display:flex; align-items:center; padding:10px 12px; background:var(--g2); border-radius:8px; margin-bottom:6px; }
-.intention-txt { flex:1; font-size:0.85rem; color:var(--g7); }
-.intention-del { background:none; border:none; color:var(--g4); cursor:pointer; font-size:1rem; padding:4px; }
-
 /* ── TODAY PAGE ── */
 .today-hdr {
   padding:20px 20px 0;
@@ -247,7 +210,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .task-row:active { background:var(--g2); }
 .task-box { width:18px; height:18px; border:1.5px solid var(--g4); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
 .task-row.done .task-box { background:var(--red); border-color:var(--red); }
-.task-row.done .task-box::after { content:'✓'; color:white; font-size:10px; font-weight:700; }
+.task-row.done .task-box::after { content:'\2713'; color:white; font-size:10px; font-weight:700; }
 .task-lbl { font-size:0.82rem; color:var(--g7); font-weight:400; }
 .task-row.done .task-lbl { text-decoration:line-through; color:var(--g5); }
 
@@ -355,7 +318,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .goal-item:active { background:var(--g2); }
 .goal-box { width:16px; height:16px; border:1.5px solid var(--g4); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
 .goal-item.done .goal-box { background:var(--green); border-color:var(--green); }
-.goal-item.done .goal-box::after { content:'✓'; color:white; font-size:9px; font-weight:700; }
+.goal-item.done .goal-box::after { content:'\2713'; color:white; font-size:9px; font-weight:700; }
 .goal-txt { font-size:0.8rem; color:var(--g7); }
 .goal-item.done .goal-txt { text-decoration:line-through; color:var(--g5); }
 
@@ -593,7 +556,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 <div class="app">
   <div class="page-area">
 
-    <!-- ═══════════ TODAY ═══════════ -->
+    <!-- TODAY -->
     <div id="pg-today" class="page active">
       <div class="today-hdr">
         <div>
@@ -628,300 +591,43 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
       </div>
 
       <!-- Metrics scroll -->
-      <div class="metrics-scroll">
-        <div class="m-card">
-          <div class="m-card-lbl">// Lift Streak</div>
-          <div class="m-card-val" id="metricLiftStreak">— <span class="unit">days</span></div>
-          <div class="m-card-sub">weekdays only</div>
-          <div class="m-bar"><div class="m-bar-fill bar-gold" id="liftStreakBar" style="width:0%"></div></div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-lbl">// Swim Streak</div>
-          <div class="m-card-val" id="metricSwimStreak">— <span class="unit">days</span></div>
-          <div class="m-card-sub">weekdays only</div>
-          <div class="m-bar"><div class="m-bar-fill bar-gold" id="swimStreakBar" style="width:0%"></div></div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-lbl">// Weight</div>
-          <div class="m-card-val" id="metricWeight">177 <span class="unit">lbs</span></div>
-          <div class="m-card-sub"><span class="up">↓8 lbs</span> · target <span class="tgt">163</span></div>
-          <div class="m-bar"><div class="m-bar-fill bar-r" style="width:35%"></div></div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-lbl">// Body Fat</div>
-          <div class="m-card-val">~20 <span class="unit">%</span></div>
-          <div class="m-card-sub">target <span class="tgt">11–12%</span></div>
-          <div class="m-bar"><div class="m-bar-fill bar-g" style="width:0%"></div></div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-lbl">// Pulse ARR</div>
-          <div class="m-card-val">1.17 <span class="unit">M</span></div>
-          <div class="m-card-sub">target <span class="tgt">$4–5M exit</span></div>
-          <div class="m-bar"><div class="m-bar-fill bar-gold" style="width:24%"></div></div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-lbl">// Days in 2026</div>
-          <div class="m-card-val" id="metricDays">—</div>
-          <div class="m-card-sub">executing your system</div>
-          <div class="m-bar"><div class="m-bar-fill bar-r" id="dayBar" style="width:0%"></div></div>
-        </div>
-      </div>
+      <div class="metrics-scroll" id="metricsMount"></div>
 
-      <!-- Win the day -->
-      <div style="padding:12px 20px 0">
-        <div class="wins-card">
-          <div class="wins-card-hdr">
-            <div class="wins-card-lbl">Win the Day — Hit All 4</div>
-          </div>
-          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">5am · out the door by 5:45</span></div>
-          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Swam + Lifted</span></div>
-          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Ate clean — ~1800 cal</span></div>
-          <div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">Walk done — 1.75 miles</span></div>
-        </div>
-      </div>
+      <!-- Wins -->
+      <div id="winsMount"></div>
 
       <!-- Checklist -->
-      <div class="cl-section">
-        <div class="cl-block" id="cl-morning">
-          <div class="cl-block-hdr" onclick="toggleBlock('cl-morning')">
-            <span class="cl-icon"><i class="ph ph-sun"></i></span><span class="cl-name">Sacred Morning</span><span class="cl-time">5:00–5:45</span><span class="cl-chevron">▾</span>
-          </div>
-          <div class="cl-items">
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · water · light lamp</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Prayer</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Scriptures</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Journaling / reflection</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Plan day · Calendar · Top 3</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Duolingo</span></div>
-          </div>
-        </div>
-        <div class="cl-block" id="cl-move">
-          <div class="cl-block-hdr" onclick="toggleBlock('cl-move')">
-            <span class="cl-icon"><i class="ph ph-waves"></i></span><span class="cl-name">Movement</span><span class="cl-time">6:00–7:30</span><span class="cl-chevron">▾</span>
-          </div>
-          <div class="cl-items">
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Drive to pool · spiritual podcast</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Swim 20–30 min</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lift 25–35 min</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Protein shake · Vitamins</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Make bed · Kids to school</span></div>
-          </div>
-        </div>
-        <div class="cl-block" id="cl-work">
-          <div class="cl-block-hdr" onclick="toggleBlock('cl-work')">
-            <span class="cl-icon"><i class="ph ph-briefcase"></i></span><span class="cl-name">Deep Work</span><span class="cl-time">9:30–4:30</span><span class="cl-chevron">▾</span>
-          </div>
-          <div class="cl-items">
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Morning deep work block</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Harvard study — 30 min</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Fairlife shake · 3pm</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Afternoon work block</span></div>
-          </div>
-        </div>
-        <div class="cl-block" id="cl-eve">
-          <div class="cl-block-hdr" onclick="toggleBlock('cl-eve')">
-            <span class="cl-icon"><i class="ph ph-house"></i></span><span class="cl-name">Family + Recovery</span><span class="cl-time">5:00–9:30</span><span class="cl-chevron">▾</span>
-          </div>
-          <div class="cl-items">
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner — protein + veggie</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family time</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk 1.75 miles</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime + prayers</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reflection + tomorrow prep</span></div>
-            <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Jamie time · Sleep by 9:30</span></div>
-          </div>
-        </div>
-      </div>
+      <div class="cl-section" id="checklistMount"></div>
 
-      <div class="quote-strip">
-        <div class="q-txt">It's not about time — it's about <em>how many days you execute.</em></div>
-      </div>
+      <div class="quote-strip" id="quoteMount"></div>
       <div class="sec-gap"></div>
     </div>
 
-    <!-- ═══════════ TRAIN ═══════════ -->
+    <!-- TRAIN -->
     <div id="pg-lift" class="page">
       <div class="pg-hdr">
         <div class="pg-hdr-row">
-          <div><div class="pg-title">Train <em>Hard.</em></div><div class="pg-sub">Swim + Lift · 5x/week</div></div>
+          <div><div class="pg-title" id="trainTitle"></div><div class="pg-sub" id="trainSub"></div></div>
         </div>
       </div>
-      <div class="train-tabs">
-        <div class="train-tab active" onclick="showTrainMode('train-lift',this)">Lift</div>
-        <div class="train-tab" onclick="showTrainMode('train-swim',this)">Swim</div>
-      </div>
+      <div class="train-tabs" id="trainTabsMount"></div>
 
       <div id="train-lift" class="train-view active">
-      <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-top:12px">
-        <div class="streak-badge">
-          <div class="streak-num" id="liftStreakNum">—</div>
-          <div class="streak-lbl">day streak</div>
-        </div>
-      </div>
-      <div class="day-tabs-wrap">
-        <div class="day-pill active" onclick="showWorkout('push',this)">Push</div>
-        <div class="day-pill" onclick="showWorkout('pull',this)">Pull</div>
-        <div class="day-pill" onclick="showWorkout('legs',this)">Legs+Core</div>
-      </div>
-
-      <!-- PUSH -->
-      <div id="wd-push" class="workout-day active">
-        <div class="ex-card" data-exercise="DB Flat Bench Press" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Flat Bench Press</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-DB Flat Bench Press">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="DB Shoulder Press" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Shoulder Press</div><div class="ex-card-target">2–3×10</div></div><div class="ex-pr-btn" id="prb-DB Shoulder Press">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Pushups" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Pushups</div><div class="ex-card-target">2 sets · 8–15 reps</div></div><div class="ex-pr-btn" id="prb-Pushups">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Lateral Raises" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Lateral Raises</div><div class="ex-card-target">2–3×12–15</div></div><div class="ex-pr-btn" id="prb-Lateral Raises">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Tricep Pushdowns" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Tricep Pushdowns</div><div class="ex-card-target">2–3×12</div></div><div class="ex-pr-btn" id="prb-Tricep Pushdowns">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="pt-label">PT Work</div>
-        <div class="ex-card" data-exercise="Prone Press Ups" data-pr-type="none">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Prone Press Ups</div><div class="ex-card-target">10 reps</div></div><div class="set-check" onclick="toggleSet(this)" style="flex-shrink:0">✓</div></div>
-        </div>
-        <div class="ex-card" data-exercise="Anti-Rotation Press" data-pr-type="time">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Anti-Rotation Press</div><div class="ex-card-target">30–60 sec hold</div></div><div class="ex-pr-btn" id="prb-Anti-Rotation Press">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListPush"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
-        <div class="sec-gap"></div>
-      </div>
-
-      <!-- PULL -->
-      <div id="wd-pull" class="workout-day">
-        <div class="ex-card" data-exercise="Pull-ups" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Pull-ups</div><div class="ex-card-target">3 sets · max reps</div></div><div class="ex-pr-btn" id="prb-Pull-ups">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="DB Rows" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Rows</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-DB Rows">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="DB Curls" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">DB Curls</div><div class="ex-card-target">2–3×10–12</div></div><div class="ex-pr-btn" id="prb-DB Curls">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Band Pull-Aparts" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Band Pull-Aparts</div><div class="ex-card-target">2×15</div></div><div class="ex-pr-btn" id="prb-Band Pull-Aparts">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="pt-label">PT Work</div>
-        <div class="ex-card" data-exercise="Dead Bugs" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Dead Bugs</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Dead Bugs">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Side Plank Clams" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Side Plank Clams</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Side Plank Clams">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListPull"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
-        <div class="sec-gap"></div>
-      </div>
-
-      <!-- LEGS+CORE -->
-      <div id="wd-legs" class="workout-day">
-        <div class="ex-card" data-exercise="KB Goblet Squat" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Goblet Squat</div><div class="ex-card-target">3×10</div></div><div class="ex-pr-btn" id="prb-KB Goblet Squat">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="KB Romanian Deadlift" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Romanian Deadlift</div><div class="ex-card-target">2–3×10</div></div><div class="ex-pr-btn" id="prb-KB Romanian Deadlift">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 3</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="reps"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Single Leg Bridge" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Single Leg Bridge</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Single Leg Bridge">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="Plank w/ Hip Extension" data-pr-type="reps">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">Plank w/ Hip Extension</div><div class="ex-card-target">2×10</div></div><div class="ex-pr-btn" id="prb-Plank w/ Hip Extension">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="ex-card" data-exercise="KB Farmer Carry" data-pr-type="weight">
-          <div class="ex-card-hdr"><div><div class="ex-card-name">KB Farmer Carry</div><div class="ex-card-target">OPTIONAL · 30–60 sec × 2</div></div><div class="ex-pr-btn" id="prb-KB Farmer Carry">—</div></div>
-          <div class="set-rows">
-            <div class="set-row"><span class="set-num">SET 1</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="sec"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-            <div class="set-row"><span class="set-num">SET 2</span><input class="set-inp" type="number" placeholder="lbs"><span class="set-x">×</span><input class="set-inp" type="number" placeholder="sec"><div class="set-check" onclick="toggleSet(this)">✓</div></div>
-          </div>
-        </div>
-        <div class="sec-gap"></div>
-        <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="prListLegs"><div class="pr-empty">No PRs yet — crush a set.</div></div></div>
-        <div class="sec-gap"></div>
-      </div>
-      </div><!-- end train-lift -->
-
-      <div id="train-swim" class="train-view">
         <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-top:12px">
           <div class="streak-badge">
-            <div class="streak-num" id="swimStreakNum">—</div>
+            <div class="streak-num" id="liftStreakNum">&mdash;</div>
+            <div class="streak-lbl">day streak</div>
+          </div>
+        </div>
+        <div class="day-tabs-wrap" id="dayPillsMount"></div>
+        <div id="workoutDayHint" style="padding:4px 20px 0;font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;color:var(--g5);text-transform:uppercase"></div>
+        <div id="liftMount"></div>
+      </div>
+
+      <div id="train-swim" class="train-view" style="display:none">
+        <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-top:12px">
+          <div class="streak-badge">
+            <div class="streak-num" id="swimStreakNum">&mdash;</div>
             <div class="streak-lbl">day streak</div>
           </div>
         </div>
@@ -942,22 +648,16 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
           </div>
         </div>
         <div class="sec-gap"></div>
-      </div><!-- end train-swim -->
+      </div>
     </div>
 
-    <!-- ═══════════ TRACK ═══════════ -->
+    <!-- TRACK -->
     <div id="pg-track" class="page">
       <div class="pg-hdr">
-        <div class="pg-title">Body <em>Data.</em></div>
-        <div class="pg-sub">// Weight · Meals · Fasting</div>
-      </div>
-      <div class="track-tabs">
-        <div class="track-tab active" onclick="showTrackMode('track-weight',this)">Weight</div>
-        <div class="track-tab" onclick="showTrackMode('track-meals',this)">Meals</div>
-        <div class="track-tab" onclick="showTrackMode('track-fasting',this)">Fasting</div>
+        <div class="pg-title" id="trackTitle"></div>
+        <div class="pg-sub" id="trackSub"></div>
       </div>
 
-      <div id="track-weight" class="track-view active">
       <div style="padding:16px 20px 0">
         <div class="track-card">
           <div class="tc-lbl">// Log Today's Weight</div>
@@ -966,12 +666,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
             <span class="w-unit">lbs</span>
           </div>
           <button class="save-btn" id="wSaveBtn" onclick="saveWeight()">Save Weight</button>
-          <div class="wstats-row">
-            <div class="wstat"><div class="wstat-lbl">Start</div><div class="wstat-val">185 lbs</div></div>
-            <div class="wstat"><div class="wstat-lbl">Goal</div><div class="wstat-val gld">163 lbs</div></div>
-            <div class="wstat"><div class="wstat-lbl">Lost</div><div class="wstat-val grn" id="statLost">—</div></div>
-            <div class="wstat"><div class="wstat-lbl">To Go</div><div class="wstat-val" id="statToGo">—</div></div>
-          </div>
+          <div class="wstats-row" id="wstatsMount"></div>
         </div>
         <div class="track-card">
           <div class="tc-lbl">// Last 14 Days</div>
@@ -985,276 +680,27 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
         </div>
       </div>
       <div class="sec-gap"></div>
-      </div><!-- end track-weight -->
-
-      <div id="track-meals" class="track-view">
-      <div style="padding:16px 20px 0">
-        <div class="track-card">
-          <div class="tc-lbl">// Today's Macros</div>
-          <div class="macro-bar">
-            <div class="macro-item">
-              <div class="macro-lbl">Calories</div>
-              <div class="macro-val" id="macroCal">0 <span class="goal">/ 1800</span></div>
-              <div class="macro-fill"><div class="macro-fill-bar" id="macroCalBar" style="width:0%"></div></div>
-            </div>
-            <div class="macro-item">
-              <div class="macro-lbl">Protein</div>
-              <div class="macro-val" id="macroProt">0<span class="goal">g / 150g</span></div>
-              <div class="macro-fill"><div class="macro-fill-bar" id="macroProtBar" style="width:0%"></div></div>
-            </div>
-            <div class="macro-item">
-              <div class="macro-lbl">Carbs</div>
-              <div class="macro-val" id="macroCarbs">0<span class="goal">g</span></div>
-            </div>
-            <div class="macro-item">
-              <div class="macro-lbl">Fat</div>
-              <div class="macro-val" id="macroFat">0<span class="goal">g</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="track-card">
-          <div class="tc-lbl">// Add Meal</div>
-          <div class="meal-form">
-            <input class="meal-inp" id="mealName" type="text" placeholder="Meal name" style="text-align:left">
-            <div class="meal-inputs">
-              <input class="meal-inp" id="mealCal" type="number" placeholder="Cal" inputmode="numeric">
-              <input class="meal-inp" id="mealProt" type="number" placeholder="Prot" inputmode="numeric">
-              <input class="meal-inp" id="mealCarbs" type="number" placeholder="Carbs" inputmode="numeric">
-            </div>
-            <div class="meal-inputs" style="grid-template-columns:1fr 1fr 1fr">
-              <input class="meal-inp" id="mealFat" type="number" placeholder="Fat" inputmode="numeric">
-              <button class="save-btn" style="font-size:0.9rem;padding:10px" onclick="addMeal()">Add</button>
-              <button class="notes-save" style="margin-top:0" onclick="saveFav()">★ Fav</button>
-            </div>
-          </div>
-        </div>
-        <div class="track-card">
-          <div class="tc-lbl">// Today's Meals</div>
-          <div id="mealList"><div class="wlog-empty">No meals logged yet</div></div>
-        </div>
-        <div class="track-card">
-          <div class="tc-lbl">// Favorites — Tap to Add</div>
-          <div id="favList"><div class="wlog-empty">No favorites yet</div></div>
-        </div>
-      </div>
-      <div class="sec-gap"></div>
-      </div><!-- end track-meals -->
-
-      <div id="track-fasting" class="track-view">
-      <div style="padding:16px 20px 0">
-        <div class="track-card">
-          <div class="tc-lbl">// Today's Fast</div>
-          <div class="intention-row">
-            <input class="intention-inp" id="intentionInp" type="text" placeholder="Why are you fasting today?">
-            <button class="save-btn" style="width:auto;padding:10px 16px;font-size:0.9rem" onclick="addIntention()">Add</button>
-          </div>
-          <div id="todayIntentions"><div class="wlog-empty">No intentions yet</div></div>
-        </div>
-        <div class="track-card">
-          <div class="tc-lbl">// Past Fasts</div>
-          <div id="fastHistory"><div class="wlog-empty">No fasts logged yet</div></div>
-        </div>
-      </div>
-      <div class="sec-gap"></div>
-      </div><!-- end track-fasting -->
     </div>
 
-    <!-- ═══════════ GOALS ═══════════ -->
+    <!-- GOALS -->
     <div id="pg-goals" class="page">
       <div class="pg-hdr">
-        <div class="pg-title">My <em>Goals.</em></div>
-        <div class="pg-sub">// 2026 · Tap to mark complete</div>
+        <div class="pg-title" id="goalsTitle"></div>
+        <div class="pg-sub" id="goalsSub"></div>
       </div>
       <div style="height:12px"></div>
-      <div class="goals-section">
-        <div class="goal-cat">
-          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-barbell"></i></span><span class="goal-cat-name">Physical</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Back 100% healed</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Six pack — reach 163 lbs</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Basketball by July</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Swim 3x a week all year</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Run/walk 300 miles</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Lift 3x a week from Week 3</span></div>
-        </div>
-        <div class="goal-cat">
-          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-chart-line-up"></i></span><span class="goal-cat-name">Business — Pulse</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Grow ARR to $1.4M+</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Launch /behavioral-health page</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Speak at NatCon or MHCA</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">3x growth rate to $400–600K/yr</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Own BH niche at a 9/10</span></div>
-        </div>
-        <div class="goal-cat">
-          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-graduation-cap"></i></span><span class="goal-cat-name">Intellectual</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Harvard Masters — stay on track</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Nation of Startups — progress</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Shusaun — progress</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Duolingo — daily streak</span></div>
-        </div>
-        <div class="goal-cat">
-          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-star"></i></span><span class="goal-cat-name">Spiritual</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Daily scripture study</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Temple worker progress</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Daily prayer — morning + night</span></div>
-        </div>
-        <div class="goal-cat">
-          <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ph-users-three"></i></span><span class="goal-cat-name">Family</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family states trip — new states</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Weekly date night with Jamie</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Bronson — mission prep</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Brisbane — her goals this year</span></div>
-        </div>
-      </div>
-
-      <!-- 10 YEAR -->
-      <div class="decade-card">
-        <div class="decade-hdr"><h3>10-Year Vision <em>2025–2035</em></h3><p>// The life you're building toward</p></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">$200K salary</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Harvard Masters Degree</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Pulse: $5M ARR · $50M valuation</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Sell Pulse · $10M net · $250K/yr</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">All 50 states as a family</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Visit 10 countries</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Olympics: 2028, 2032, 2034</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Nation of Startups published</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Shusaun published</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Temple worker</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Bronson on a mission</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Amazing house for Marc & Toni</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Raineys financial security</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Board seat / advisory role</span></div>
-        <div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">Home remodel complete</span></div>
-      </div>
+      <div class="goals-section" id="goalsMount"></div>
+      <div id="decadeMount"></div>
       <div class="sec-gap"></div>
     </div>
 
-    <!-- ═══════════ FAMILY ═══════════ -->
-    <div id="pg-family" class="page">
-      <div class="pg-hdr">
-        <div class="pg-title">Family <em>OS.</em></div>
-        <div class="pg-sub">// Kohler crew · 2026</div>
-      </div>
-      <div class="fam-tabs">
-        <div class="fam-tab active" onclick="showFam('fam-goals',this)">Family Goals</div>
-        <div class="fam-tab" onclick="showFam('fam-bronson',this)">Bronson</div>
-        <div class="fam-tab" onclick="showFam('fam-brisbane',this)">Brisbane</div>
-        <div class="fam-tab" onclick="showFam('fam-jamie',this)">Jamie's OS</div>
-        <div class="fam-tab" onclick="showFam('fam-365',this)">365 Tracker</div>
-      </div>
-
-      <!-- FAMILY GOALS -->
-      <div id="fam-goals" class="fam-view active">
-        <div class="fam-card">
-          <div class="fam-card-hdr"><span class="fc-name">Family Habits</span><span class="fc-tag">2026</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family scriptures daily</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family dinner together 5x/week</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family walk together weekly</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family prayer morning + night</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Monthly family fun day</span></div>
-        </div>
-        <div class="fam-card">
-          <div class="fam-card-hdr"><span class="fc-name">Big Goal — States Trip</span><span class="fc-tag">All 50</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Plan next trip destination</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Book at least 2 new states in 2026</span></div>
-          <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Photo in each new state</span></div>
-        </div>
-      </div>
-
-      <!-- BRONSON -->
-      <div id="fam-bronson" class="fam-view">
-        <div class="fam-card">
-          <div class="fam-card-hdr"><span class="fc-name">Bronson's Day</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · breakfast</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Piano practice</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Typing practice</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Empty dishwasher</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower · brush teeth</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
-        </div>
-      </div>
-
-      <!-- BRISBANE -->
-      <div id="fam-brisbane" class="fam-view">
-        <div class="fam-card">
-          <div class="fam-card-hdr"><span class="fc-name">Brisbane's Day</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · breakfast</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Chore of the day</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise / activity</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower · brush teeth</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
-        </div>
-      </div>
-
-      <!-- JAMIE'S OS -->
-      <div id="fam-jamie" class="fam-view">
-        <div class="fam-card">
-          <div class="fam-card-hdr"><span class="fc-name">Jamie's Day</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up · morning routine</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal scripture / prayer</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement / exercise</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal goal time</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Priority work / deep focus</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lunch — healthy + intentional</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement break</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Pick up kids · after-school</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner prep</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family dinner together</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk with Blake</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime routine</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading / journaling</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Gratitude + reflection</span></div>
-          <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Blake connection · lights out 9:30</span></div>
-        </div>
-      </div>
-
-      <!-- 365 TRACKER -->
-      <div id="fam-365" class="fam-view">
-        <div class="tracker-wrap">
-          <div class="t-stats-row">
-            <div class="t-stat"><div class="t-stat-val" id="checkedCount">0</div><div class="t-stat-lbl">Days Checked</div></div>
-            <div class="t-stat"><div class="t-stat-val" id="streakCount">0</div><div class="t-stat-lbl">Current Streak</div></div>
-          </div>
-          <div id="monthsGrid"></div>
-        </div>
-      </div>
-    </div>
+    <!-- FAMILY (Blake only) -->
+    <div id="pg-family" class="page" style="display:none"></div>
 
   </div><!-- end page-area -->
 
-  <!-- ── BOTTOM NAV ── -->
-  <nav class="bot-nav">
-    <button class="nav-item active" onclick="showPage('today',this)">
-      <i class="ph ph-lightning"></i>
-      <span class="nav-lbl">Today</span>
-    </button>
-    <button class="nav-item" onclick="showPage('lift',this)">
-      <i class="ph ph-barbell"></i>
-      <span class="nav-lbl">Train</span>
-    </button>
-    <button class="nav-item" onclick="showPage('track',this)">
-      <i class="ph ph-chart-bar"></i>
-      <span class="nav-lbl">Track</span>
-    </button>
-    <button class="nav-item" onclick="showPage('goals',this)">
-      <i class="ph ph-target"></i>
-      <span class="nav-lbl">Goals</span>
-    </button>
-    <button class="nav-item" onclick="showPage('family',this)">
-      <i class="ph ph-users-three"></i>
-      <span class="nav-lbl">Family</span>
-    </button>
-  </nav>
+  <!-- BOTTOM NAV -->
+  <nav class="bot-nav" id="navMount"></nav>
 </div>
 
 <!-- HISTORY SHEET -->
@@ -1265,7 +711,7 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
         <h3>Past Days</h3>
         <p>// Tap a day to see what you completed</p>
       </div>
-      <button class="hist-close" onclick="closeHistory()">✕</button>
+      <button class="hist-close" onclick="closeHistory()">&#10005;</button>
     </div>
     <div class="hist-scroll" id="histScroll">
       <div class="hist-empty">No history yet — complete today first.</div>
@@ -1285,83 +731,49 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
   </div>
 </div>
 
-<!-- FAB -->
-<button class="fab" id="fabBtn" onclick="toggleQuickAdd()"><i class="ph ph-plus"></i></button>
+<!-- FAB (conditionally shown) -->
+<button class="fab" id="fabBtn" onclick="toggleQuickAdd()" style="display:none"><i class="ph ph-plus"></i></button>
 
 <!-- QUICK-ADD SHEET -->
 <div class="qa-bg" id="qaBg" onclick="if(event.target===this)closeQuickAdd()">
   <div class="qa-sheet">
     <div class="qa-handle"></div>
-
-    <!-- Menu -->
     <div class="qa-mode active" id="qa-menu">
       <div class="qa-title" style="margin-bottom:16px">Quick Add</div>
-      <div class="qa-grid">
-        <div class="qa-action" onclick="showQAMode('qa-weight')"><div class="qa-action-icon"><i class="ph ph-scales"></i></div><div class="qa-action-lbl">Weight</div></div>
-        <div class="qa-action" onclick="showQAMode('qa-meal')"><div class="qa-action-icon"><i class="ph ph-fork-knife"></i></div><div class="qa-action-lbl">Meal</div></div>
-        <div class="qa-action" onclick="showQAMode('qa-swim')"><div class="qa-action-icon"><i class="ph ph-waves"></i></div><div class="qa-action-lbl">Swim Note</div></div>
-        <div class="qa-action" onclick="showQAMode('qa-fasting')"><div class="qa-action-icon"><i class="ph ph-timer"></i></div><div class="qa-action-lbl">Fasting</div></div>
-      </div>
+      <div class="qa-grid" id="qaGridMount"></div>
     </div>
-
-    <!-- Weight -->
     <div class="qa-mode" id="qa-weight">
       <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Log Weight</div></div>
       <div class="qa-field"><label>Weight (lbs)</label><input id="qaWeightInp" type="number" placeholder="177" step="0.1" inputmode="decimal"></div>
       <button class="save-btn" onclick="qaSaveWeight()">Save Weight</button>
     </div>
-
-    <!-- Meal -->
-    <div class="qa-mode" id="qa-meal">
-      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Add Meal</div></div>
-      <div class="qa-field"><label>Meal Name</label><input id="qaMealName" type="text" placeholder="Protein shake"></div>
-      <div class="qa-row" style="margin-bottom:12px">
-        <div class="qa-field"><label>Cal</label><input id="qaMealCal" type="number" inputmode="numeric" placeholder="0"></div>
-        <div class="qa-field"><label>Protein</label><input id="qaMealProt" type="number" inputmode="numeric" placeholder="0"></div>
-        <div class="qa-field"><label>Carbs</label><input id="qaMealCarbs" type="number" inputmode="numeric" placeholder="0"></div>
-      </div>
-      <div class="qa-row" style="margin-bottom:12px;grid-template-columns:1fr 1fr">
-        <div class="qa-field"><label>Fat</label><input id="qaMealFat" type="number" inputmode="numeric" placeholder="0"></div>
-        <div></div>
-      </div>
-      <button class="save-btn" onclick="qaAddMeal()">Add Meal</button>
-      <div style="margin-top:16px">
-        <div style="font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.12em;color:var(--g5);text-transform:uppercase;margin-bottom:8px">Favorites — Tap to Add</div>
-        <div id="qaFavList"></div>
-      </div>
-    </div>
-
-    <!-- Swim -->
-    <div class="qa-mode" id="qa-swim">
+    <div class="qa-mode" id="qa-swim" style="display:none">
       <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Swim Note</div></div>
       <div class="qa-field"><label>Summary</label><textarea id="qaSwimSummary" placeholder="How was today's swim?"></textarea></div>
       <button class="save-btn" onclick="qaSaveSwim()">Save Swim</button>
     </div>
-
-    <!-- Fasting -->
-    <div class="qa-mode" id="qa-fasting">
-      <div class="qa-hdr"><button class="qa-back" onclick="qaBackToMenu()"><i class="ph ph-arrow-left"></i></button><div class="qa-title">Fasting</div></div>
-      <div class="qa-field" style="display:flex;gap:8px">
-        <input id="qaIntentionInp" type="text" placeholder="Why are you fasting today?" style="flex:1;background:var(--g2);border:1px solid var(--g3);border-radius:8px;padding:12px;font-size:0.9rem;color:var(--white);-webkit-appearance:none">
-        <button class="save-btn" style="width:auto;padding:12px 18px;font-size:0.9rem;flex-shrink:0" onclick="qaAddIntention()">Add</button>
-      </div>
-      <div id="qaIntentionList"></div>
-    </div>
-
   </div>
 </div>
 
+<script src="/user-configs.js"></script>
 <script>
-// ── API HELPER ──
+// ── USER + CONFIG ──
+const CURRENT_USER = window.location.pathname.split('/').filter(Boolean)[0] || 'blake';
+const CONFIG = USER_CONFIGS[CURRENT_USER];
+document.title = CONFIG.title;
+
+// ── API HELPER (user-scoped via header) ──
+const USER_HEADERS = { 'X-User': CURRENT_USER };
 const api = {
-  get: async (url) => { const r = await fetch(url); return r.json(); },
-  post: async (url, body) => { await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) }); },
-  del: async (url) => { await fetch(url, { method:'DELETE' }); }
+  get: async (url) => { const r = await fetch(url, { headers: USER_HEADERS }); return r.json(); },
+  post: async (url, body) => { await fetch(url, { method:'POST', headers:{...USER_HEADERS, 'Content-Type':'application/json'}, body:JSON.stringify(body) }); },
+  del: async (url) => { await fetch(url, { method:'DELETE', headers: USER_HEADERS }); }
 };
-// Minimal localStorage for UI-only state (new day detection)
+
+// localStorage with user prefix
 const ls = {
-  get:(k,d=null)=>{ try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d} },
-  set:(k,v)=>{ try{localStorage.setItem(k,JSON.stringify(v))}catch{} }
+  get:(k,d=null)=>{ try{const v=localStorage.getItem(CURRENT_USER+'_'+k);return v?JSON.parse(v):d}catch{return d} },
+  set:(k,v)=>{ try{localStorage.setItem(CURRENT_USER+'_'+k,JSON.stringify(v))}catch{} }
 };
 
 // ── CONSTANTS ──
@@ -1371,17 +783,326 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 const MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const TODAY = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
+// Dynamic TASK_LABELS from config
+const TASK_LABELS = CONFIG.checklist.flatMap(block => block.tasks);
+
+// Weight config
+const WEIGHT_START = CONFIG.weight ? CONFIG.weight.start : 0;
+const WEIGHT_GOAL = CONFIG.weight ? CONFIG.weight.goal : 0;
+
+// ── RENDER CONFIG-DRIVEN SECTIONS ──
+
+function renderMetrics() {
+  const el = document.getElementById('metricsMount');
+  el.innerHTML = CONFIG.metrics.map(m =>
+    `<div class="m-card">
+      <div class="m-card-lbl">${m.label}</div>
+      <div class="m-card-val" id="${m.id}">${m.defaultVal}</div>
+      <div class="m-card-sub">${m.sub || ''}</div>
+      ${m.bar ? `<div class="m-bar"><div class="m-bar-fill bar-gold" id="${m.barId}" style="width:0%"></div></div>` : ''}
+    </div>`
+  ).join('');
+}
+
+function renderWins() {
+  const mount = document.getElementById('winsMount');
+  mount.innerHTML = `<div style="padding:12px 20px 0"><div class="wins-card">
+    <div class="wins-card-hdr"><div class="wins-card-lbl">Win the Day \u2014 Hit All ${CONFIG.wins.length}</div></div>
+    ${CONFIG.wins.map(w => `<div class="win-row" onclick="toggleWin(this)"><div class="win-dot"></div><span class="win-txt">${w}</span></div>`).join('')}
+  </div></div>`;
+}
+
+function renderChecklist() {
+  const mount = document.getElementById('checklistMount');
+  mount.innerHTML = CONFIG.checklist.map(block =>
+    `<div class="cl-block" id="${block.id}">
+      <div class="cl-block-hdr" onclick="toggleBlock('${block.id}')">
+        <span class="cl-icon"><i class="ph ${block.icon}"></i></span>
+        <span class="cl-name">${block.name}</span>
+        <span class="cl-time" ${block.id==='cl-move'?'id="moveBlockTime"':''}>${block.time}</span>
+        <span class="cl-chevron">\u25be</span>
+      </div>
+      <div class="cl-items">
+        ${block.tasks.map(t => `<div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">${t}</span></div>`).join('')}
+      </div>
+    </div>`
+  ).join('');
+}
+
+function renderQuote() {
+  document.getElementById('quoteMount').innerHTML = `<div class="q-txt">${CONFIG.quote}</div>`;
+}
+
+function renderWorkouts() {
+  // Render day pills
+  const pillsMount = document.getElementById('dayPillsMount');
+  pillsMount.innerHTML = CONFIG.workoutCycle.map((key, i) => {
+    const day = CONFIG.workoutDays[key];
+    return `<div class="day-pill${i===0?' active':''}" onclick="showWorkout('${key}',this)">${day.name}</div>`;
+  }).join('');
+
+  // Render workout days with exercises
+  const liftMount = document.getElementById('liftMount');
+  let html = '';
+  CONFIG.workoutCycle.forEach((key, idx) => {
+    const day = CONFIG.workoutDays[key];
+    html += `<div id="wd-${key}" class="workout-day${idx===0?' active':''}">`;
+    let inPT = false;
+    day.exercises.forEach(ex => {
+      // PT label
+      if (ex.label && !inPT) {
+        html += `<div class="pt-label">${ex.label}</div>`;
+        inPT = true;
+      }
+      if (ex.inputs === 'none') {
+        // Simple toggle card (no sets)
+        html += `<div class="ex-card" data-exercise="${ex.name}" data-pr-type="${ex.prType}">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">${ex.name}</div><div class="ex-card-target">${ex.target}</div></div><div class="set-check" onclick="toggleSet(this)" style="flex-shrink:0">\u2713</div></div>
+        </div>`;
+      } else {
+        // Card with sets
+        const hasPR = ex.prType !== 'none';
+        html += `<div class="ex-card" data-exercise="${ex.name}" data-pr-type="${ex.prType}">
+          <div class="ex-card-hdr"><div><div class="ex-card-name">${ex.name}</div><div class="ex-card-target">${ex.target}</div></div>`;
+        if (hasPR) {
+          html += `<div class="ex-pr-btn" id="prb-${ex.name}">\u2014</div>`;
+        }
+        html += `</div><div class="set-rows">`;
+        for (let s = 1; s <= ex.sets; s++) {
+          html += `<div class="set-row"><span class="set-num">SET ${s}</span>`;
+          if (ex.inputs === 'weight') {
+            html += `<input class="set-inp" type="number" placeholder="lbs"><span class="set-x">\u00d7</span><input class="set-inp" type="number" placeholder="reps">`;
+          } else if (ex.inputs === 'reps') {
+            html += `<input class="set-inp" type="number" placeholder="reps"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number">`;
+          } else if (ex.inputs === 'time') {
+            html += `<input class="set-inp" type="number" placeholder="sec"><span class="set-x"></span><input class="set-inp" style="opacity:0;pointer-events:none" type="number">`;
+          }
+          html += `<div class="set-check" onclick="toggleSet(this)">\u2713</div></div>`;
+        }
+        html += `</div></div>`;
+      }
+    });
+    // PR section per workout day
+    const prListId = 'prList' + key.charAt(0).toUpperCase() + key.slice(1);
+    html += `<div class="sec-gap"></div>
+      <div class="pr-section"><div class="pr-section-hdr"><h4>Personal Records</h4><p>// Auto-tracked from your sets</p></div><div id="${prListId}"><div class="pr-empty">No PRs yet \u2014 crush a set.</div></div></div>
+      <div class="sec-gap"></div>
+    </div>`;
+  });
+  liftMount.innerHTML = html;
+}
+
+function renderGoals() {
+  const mount = document.getElementById('goalsMount');
+  mount.innerHTML = CONFIG.goals.map(cat =>
+    `<div class="goal-cat">
+      <div class="goal-cat-hdr"><span class="goal-cat-icon"><i class="ph ${cat.icon}"></i></span><span class="goal-cat-name">${cat.name}</span></div>
+      ${cat.items.map(item => `<div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">${item}</span></div>`).join('')}
+    </div>`
+  ).join('');
+
+  // 10-year vision
+  const decadeMount = document.getElementById('decadeMount');
+  if (CONFIG.tenYearVision) {
+    decadeMount.innerHTML = `<div class="decade-card">
+      <div class="decade-hdr"><h3>10-Year Vision <em>2025\u20132035</em></h3><p>// The life you're building toward</p></div>
+      ${CONFIG.tenYearVision.map(item => `<div class="decade-item" onclick="this.classList.toggle('done')"><div class="goal-box"></div><span class="goal-txt">${item}</span></div>`).join('')}
+    </div>`;
+  } else {
+    decadeMount.innerHTML = '';
+  }
+}
+
+function renderNav() {
+  const mount = document.getElementById('navMount');
+  mount.innerHTML = CONFIG.navTabs.map((tab, i) =>
+    `<button class="nav-item${i===0?' active':''}" onclick="showPage('${tab.page}',this)">
+      <i class="ph ph-${tab.icon}"></i>
+      <span class="nav-lbl">${tab.label}</span>
+    </button>`
+  ).join('');
+}
+
+function renderTrainTabs() {
+  const mount = document.getElementById('trainTabsMount');
+  let html = `<div class="train-tab active" onclick="showTrainMode('train-lift',this)">Lift</div>`;
+  if (CONFIG.showSwim) {
+    html += `<div class="train-tab" onclick="showTrainMode('train-swim',this)">Swim</div>`;
+    document.getElementById('train-swim').style.display = '';
+  }
+  mount.innerHTML = html;
+}
+
+function renderTrackPage() {
+  if (!CONFIG.weight) {
+    document.getElementById('pg-track').style.display = 'none';
+    return;
+  }
+  document.getElementById('trackTitle').innerHTML = CONFIG.trackTitle;
+  document.getElementById('trackSub').textContent = CONFIG.trackSub;
+  document.getElementById('weightInp').placeholder = CONFIG.weight.placeholder;
+  document.getElementById('qaWeightInp').placeholder = CONFIG.weight.placeholder;
+
+  document.getElementById('wstatsMount').innerHTML = `
+    <div class="wstat"><div class="wstat-lbl">Start</div><div class="wstat-val">${WEIGHT_START} lbs</div></div>
+    <div class="wstat"><div class="wstat-lbl">Goal</div><div class="wstat-val gld">${WEIGHT_GOAL} lbs</div></div>
+    <div class="wstat"><div class="wstat-lbl">Lost</div><div class="wstat-val grn" id="statLost">\u2014</div></div>
+    <div class="wstat"><div class="wstat-lbl">To Go</div><div class="wstat-val" id="statToGo">\u2014</div></div>
+  `;
+}
+
+function renderFamilyPage() {
+  if (!CONFIG.showFamily) {
+    document.getElementById('pg-family').style.display = 'none';
+    return;
+  }
+  const pg = document.getElementById('pg-family');
+  pg.style.display = '';
+  pg.innerHTML = `
+    <div class="pg-hdr">
+      <div class="pg-title">Family <em>OS.</em></div>
+      <div class="pg-sub">// Kohler crew \u00b7 2026</div>
+    </div>
+    <div class="fam-tabs">
+      <div class="fam-tab active" onclick="showFam('fam-goals',this)">Family Goals</div>
+      <div class="fam-tab" onclick="showFam('fam-bronson',this)">Bronson</div>
+      <div class="fam-tab" onclick="showFam('fam-brisbane',this)">Brisbane</div>
+      <div class="fam-tab" onclick="showFam('fam-jamie',this)">Jamie's OS</div>
+      <div class="fam-tab" onclick="showFam('fam-365',this)">365 Tracker</div>
+    </div>
+
+    <div id="fam-goals" class="fam-view active">
+      <div class="fam-card">
+        <div class="fam-card-hdr"><span class="fc-name">Family Habits</span><span class="fc-tag">2026</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family scriptures daily</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family dinner together 5x/week</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family walk together weekly</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Family prayer morning + night</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Monthly family fun day</span></div>
+      </div>
+      <div class="fam-card">
+        <div class="fam-card-hdr"><span class="fc-name">Big Goal \u2014 States Trip</span><span class="fc-tag">All 50</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Plan next trip destination</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Book at least 2 new states in 2026</span></div>
+        <div class="goal-item" onclick="toggleGoal(this)"><div class="goal-box"></div><span class="goal-txt">Photo in each new state</span></div>
+      </div>
+    </div>
+
+    <div id="fam-bronson" class="fam-view">
+      <div class="fam-card">
+        <div class="fam-card-hdr"><span class="fc-name">Bronson's Day</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 breakfast</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Piano practice</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Typing practice</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Empty dishwasher</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower \u00b7 brush teeth</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
+      </div>
+    </div>
+
+    <div id="fam-brisbane" class="fam-view">
+      <div class="fam-card">
+        <div class="fam-card-hdr"><span class="fc-name">Brisbane's Day</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 breakfast</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Chore of the day</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise / activity</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower \u00b7 brush teeth</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
+      </div>
+    </div>
+
+    <div id="fam-jamie" class="fam-view">
+      <div class="fam-card">
+        <div class="fam-card-hdr"><span class="fc-name">Jamie's Day</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 morning routine</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal scripture / prayer</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement / exercise</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal goal time</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Priority work / deep focus</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lunch \u2014 healthy + intentional</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement break</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Pick up kids \u00b7 after-school</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner prep</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family dinner together</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk with Blake</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime routine</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading / journaling</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Gratitude + reflection</span></div>
+        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Blake connection \u00b7 lights out 9:30</span></div>
+      </div>
+    </div>
+
+    <div id="fam-365" class="fam-view">
+      <div class="tracker-wrap">
+        <div class="t-stats-row">
+          <div class="t-stat"><div class="t-stat-val" id="checkedCount">0</div><div class="t-stat-lbl">Days Checked</div></div>
+          <div class="t-stat"><div class="t-stat-val" id="streakCount">0</div><div class="t-stat-lbl">Current Streak</div></div>
+        </div>
+        <div id="monthsGrid"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuickAdd() {
+  if (CONFIG.quickAddActions.length === 0) {
+    document.getElementById('fabBtn').style.display = 'none';
+    return;
+  }
+  document.getElementById('fabBtn').style.display = 'flex';
+
+  // Render grid
+  document.getElementById('qaGridMount').innerHTML = CONFIG.quickAddActions.map(a =>
+    `<div class="qa-action" onclick="showQAMode('${a.mode}')"><div class="qa-action-icon"><i class="ph ${a.icon}"></i></div><div class="qa-action-lbl">${a.label}</div></div>`
+  ).join('');
+
+  // Show/hide swim QA mode
+  if (CONFIG.showSwim) {
+    document.getElementById('qa-swim').style.display = '';
+  }
+}
+
 // ── DATE DISPLAY ──
 document.getElementById('todayDay').textContent = DAYS[now.getDay()].toUpperCase();
 document.getElementById('todaySub').textContent = `// ${DAYS[now.getDay()].toUpperCase()} \u00b7 EXECUTION LOG`;
-const el_todayDate = document.getElementById('todayDate');
-if (el_todayDate) el_todayDate.textContent = `${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
 const start = new Date(now.getFullYear(),0,0);
 const doy = Math.floor((now-start)/86400000);
-const el_todayDayNum = document.getElementById('todayDayNum');
-if (el_todayDayNum) el_todayDayNum.textContent = `Day ${doy} of ${now.getFullYear()}`;
-document.getElementById('metricDays').textContent = doy;
-document.getElementById('dayBar').style.width = (doy/365*100)+'%';
+
+// ── RENDER ALL CONFIG-DRIVEN SECTIONS ──
+renderMetrics();
+renderWins();
+renderChecklist();
+renderQuote();
+renderWorkouts();
+renderGoals();
+renderNav();
+renderTrainTabs();
+renderTrackPage();
+renderFamilyPage();
+renderQuickAdd();
+
+// Set train page header
+document.getElementById('trainTitle').innerHTML = CONFIG.trainTitle;
+document.getElementById('trainSub').textContent = CONFIG.trainSub;
+document.getElementById('goalsTitle').innerHTML = CONFIG.goalsTitle;
+document.getElementById('goalsSub').textContent = CONFIG.goalsSub;
+
+// Set days metric after render
+const metricDaysEl = document.getElementById('metricDays');
+if (metricDaysEl) metricDaysEl.textContent = doy;
+const daysBarEl = document.getElementById('daysBar');
+if (daysBarEl) daysBarEl.style.width = (doy/365*100)+'%';
 
 // ── NAV (pure UI) ──
 function showPage(id, btn) {
@@ -1439,15 +1160,15 @@ function toggleSet(btn) {
     const cur = prCache[exercise];
     let isNewPR = false;
     if (!cur) { isNewPR = true; }
-    else if (prType === 'weight' && newWt > cur.wt) { isNewPR = true; }
+    else if (prType === 'weight' && (newWt > cur.wt || (newWt === cur.wt && (newRp||0) > (cur.rp||0)))) { isNewPR = true; }
     else if (prType === 'reps' && newRp > (cur.rp||0)) { isNewPR = true; }
     else if (prType === 'time' && newWt > (cur.wt||0)) { isNewPR = true; }
     if (isNewPR) {
       prCache[exercise] = { wt: newWt, rp: newRp, date: TODAY };
-      api.post('/api/prs', { exercise, weight: newWt, reps: newRp, date: TODAY });
+      api.post('/api/prs', { exercise, weight: newWt, reps: newRp, date: TODAY, pr_type: prType });
       const badge = document.getElementById('prb-' + exercise);
       if (badge) {
-        if (prType === 'weight') badge.textContent = 'PR: ' + newWt + '\u00d7' + (newRp||'');
+        if (prType === 'weight') badge.textContent = 'PR: ' + newWt + (newRp?'\u00d7'+newRp:'') + 'lbs';
         else if (prType === 'reps') badge.textContent = 'PR: ' + newRp;
         else if (prType === 'time') badge.textContent = 'PR: ' + newWt + 's';
         badge.classList.add('has-pr');
@@ -1470,13 +1191,6 @@ function updateProgress() {
 }
 
 // ── CHECKLIST ──
-const TASK_LABELS = [
-  'Wake up \u00b7 water \u00b7 light lamp','Prayer','Scriptures','Journaling / reflection','Plan day \u00b7 Calendar \u00b7 Top 3','Duolingo',
-  'Drive to pool \u00b7 spiritual podcast','Swim 20\u201330 min','Lift 25\u201335 min','Protein shake \u00b7 Vitamins','Make bed \u00b7 Kids to school',
-  'Morning deep work block','Harvard study \u2014 30 min','Fairlife shake \u00b7 3pm','Afternoon work block',
-  'Dinner \u2014 protein + veggie','Family time','Walk 1.75 miles','Kids bedtime + prayers','Reflection + tomorrow prep','Jamie time \u00b7 Sleep by 9:30'
-];
-
 async function saveChecklist() {
   const s={};
   document.querySelectorAll('#pg-today .task-row').forEach((el,i)=>s[i]=el.classList.contains('done'));
@@ -1489,7 +1203,7 @@ async function restoreChecklist() {
 }
 function toggleTask(el) { el.classList.toggle('done'); updateProgress(); saveChecklist(); }
 
-// ── WINS (now persisted!) ──
+// ── WINS ──
 async function saveWins() {
   const s={};
   document.querySelectorAll('#pg-today .win-row').forEach((el,i)=>s[i]=el.classList.contains('done'));
@@ -1577,21 +1291,90 @@ function calcStreakWeekdays(sessions) {
 }
 
 function updateStreakDisplay() {
-  const ls = calcStreakWeekdays(liftSessions);
-  document.getElementById('liftStreakNum').textContent = ls || '\u2014';
-  document.getElementById('metricLiftStreak').innerHTML = (ls||'\u2014') + ' <span class="unit">days</span>';
-  document.getElementById('liftStreakBar').style.width = Math.min(ls/5*100,100)+'%';
-  const ss = calcStreakWeekdays(swimSessions);
-  document.getElementById('swimStreakNum').textContent = ss || '\u2014';
-  document.getElementById('metricSwimStreak').innerHTML = (ss||'\u2014') + ' <span class="unit">days</span>';
-  document.getElementById('swimStreakBar').style.width = Math.min(ss/5*100,100)+'%';
+  const lsStreak = calcStreakWeekdays(liftSessions);
+  const liftStreakNumEl = document.getElementById('liftStreakNum');
+  if (liftStreakNumEl) liftStreakNumEl.textContent = lsStreak || '\u2014';
+  const metricLiftStreakEl = document.getElementById('metricLiftStreak');
+  if (metricLiftStreakEl) metricLiftStreakEl.innerHTML = (lsStreak||'\u2014') + ' <span class="unit">days</span>';
+  const liftStreakBarEl = document.getElementById('liftStreakBar');
+  if (liftStreakBarEl) liftStreakBarEl.style.width = Math.min(lsStreak/5*100,100)+'%';
+
+  if (CONFIG.showSwim) {
+    const ssStreak = calcStreakWeekdays(swimSessions);
+    const swimStreakNumEl = document.getElementById('swimStreakNum');
+    if (swimStreakNumEl) swimStreakNumEl.textContent = ssStreak || '\u2014';
+    const metricSwimStreakEl = document.getElementById('metricSwimStreak');
+    if (metricSwimStreakEl) metricSwimStreakEl.innerHTML = (ssStreak||'\u2014') + ' <span class="unit">days</span>';
+    const swimStreakBarEl = document.getElementById('swimStreakBar');
+    if (swimStreakBarEl) swimStreakBarEl.style.width = Math.min(ssStreak/5*100,100)+'%';
+  }
 }
+
+const WORKOUT_CYCLE = CONFIG.workoutCycle;
+const WORKOUT_NAMES = {};
+Object.keys(CONFIG.workoutDays).forEach(key => { WORKOUT_NAMES[key] = CONFIG.workoutDays[key].name; });
 
 async function loadLiftStreak() {
   const dates = await api.get('/api/lift-sessions');
   liftSessions = new Set(dates);
   liftSessionLogged = liftSessions.has(TODAY);
   updateStreakDisplay();
+  autoSelectWorkoutDay(dates);
+}
+
+function autoSelectWorkoutDay(dates) {
+  let dayId, dayName;
+  const dow = new Date(TODAY + 'T12:00:00').getDay();
+
+  if (CONFIG.workoutSchedule) {
+    const scheduleType = CONFIG.workoutSchedule[dow];
+    if (scheduleType === 'rest') {
+      dayId = null;
+      dayName = 'Rest Day';
+    } else if (scheduleType === 'weights') {
+      const sorted = [...dates].sort();
+      const completedCount = liftSessionLogged ? sorted.length - 1 : sorted.length;
+      const cycleIndex = completedCount % WORKOUT_CYCLE.length;
+      dayId = WORKOUT_CYCLE[cycleIndex];
+      dayName = WORKOUT_NAMES[dayId];
+    } else {
+      dayId = scheduleType;
+      dayName = WORKOUT_NAMES[dayId] || scheduleType;
+    }
+  } else {
+    const sorted = [...dates].sort();
+    const completedCount = liftSessionLogged ? sorted.length - 1 : sorted.length;
+    const cycleIndex = completedCount % WORKOUT_CYCLE.length;
+    dayId = WORKOUT_CYCLE[cycleIndex];
+    dayName = WORKOUT_NAMES[dayId];
+  }
+
+  document.querySelectorAll('.workout-day').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.day-pill').forEach(p=>p.classList.remove('active'));
+  if (dayId) {
+    const wdEl = document.getElementById('wd-'+dayId);
+    if (wdEl) wdEl.classList.add('active');
+    const allKeys = Object.keys(CONFIG.workoutDays);
+    const pillIdx = allKeys.indexOf(dayId);
+    const pills = document.querySelectorAll('.day-pill');
+    if (pillIdx >= 0 && pills[pillIdx]) pills[pillIdx].classList.add('active');
+  }
+
+  const hint = document.getElementById('workoutDayHint');
+  if (dayId === null) {
+    hint.textContent = '// Today: Rest Day';
+  } else if (liftSessionLogged) {
+    hint.textContent = '// Today: ' + dayName + ' (done \u2713)';
+  } else {
+    hint.textContent = '// Today\u2019s workout: ' + dayName;
+  }
+
+  const moveTime = document.getElementById('moveBlockTime');
+  if (moveTime) {
+    // Find the original time from config
+    const moveBlock = CONFIG.checklist.find(b => b.id === 'cl-move');
+    if (moveBlock) moveTime.textContent = moveBlock.time + ' \u00b7 ' + dayName;
+  }
 }
 
 // ── PR SYSTEM ──
@@ -1607,7 +1390,7 @@ async function renderPRs() {
       const prType=card?card.dataset.prType:'weight';
       if(prType==='reps') badge.textContent='PR: '+rp;
       else if(prType==='time') badge.textContent='PR: '+wt+'s';
-      else badge.textContent=rp?'PR: '+wt+'\u00d7'+rp:'PR: '+wt+'s';
+      else badge.textContent='PR: '+wt+(rp?'\u00d7'+rp:'')+'lbs';
       badge.classList.add('has-pr');
     }
   });
@@ -1621,35 +1404,46 @@ function renderPRLists() {
       const card=document.querySelector(`[data-exercise="${ex}"]`);
       const prType=card?card.dataset.prType:'weight';
       let val;
-      if(prType==='reps') val=rp;
+      if(prType==='reps') val=rp+' reps';
       else if(prType==='time') val=wt+'s';
-      else val=wt+(rp?'\u00d7'+rp:'s');
+      else val=wt+(rp?'\u00d7'+rp:'')+'lbs';
       return `<div class="pr-row"><span class="pr-ex-name">${ex}</span><span class="pr-val">${val} <span style="font-size:0.5rem;color:var(--g5)">${date}</span></span></div>`;
     }).join('');
-  ['prListPush','prListPull','prListLegs'].forEach(id=>{ const el=document.getElementById(id); if(el)el.innerHTML=html; });
+  // Update all PR list containers for each workout day
+  CONFIG.workoutCycle.forEach(key => {
+    const id = 'prList' + key.charAt(0).toUpperCase() + key.slice(1);
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
 }
 
 // ── WEIGHT ──
 async function saveWeight() {
+  if (!CONFIG.weight) return;
   const v=parseFloat(document.getElementById('weightInp').value);
   if(!v||v<50||v>400) return;
   await api.post('/api/weight', { date:TODAY, value:v });
   const btn=document.getElementById('wSaveBtn');
   btn.textContent='Saved \u2713'; btn.classList.add('saved');
   setTimeout(()=>{btn.textContent='Save Weight';btn.classList.remove('saved');},2000);
-  document.getElementById('metricWeight').innerHTML=v+' <span class="unit">lbs</span>';
+  const metricWeightEl = document.getElementById('metricWeight');
+  if (metricWeightEl) metricWeightEl.innerHTML=v+' <span class="unit">lbs</span>';
   await renderWeight();
 }
 async function renderWeight() {
+  if (!CONFIG.weight) return;
   const log = await api.get('/api/weight');
   const entries=Object.entries(log).sort((a,b)=>b[0].localeCompare(a[0]));
   if(entries.length>0){
     const latest=entries[0][1];
-    document.getElementById('statLost').textContent=`\u2193 ${(185-latest).toFixed(1)} lbs`;
-    document.getElementById('statToGo').textContent=latest>163?`${(latest-163).toFixed(1)} lbs`:'GOAL HIT';
+    const statLostEl = document.getElementById('statLost');
+    const statToGoEl = document.getElementById('statToGo');
+    if (statLostEl) statLostEl.textContent=`\u2193 ${(WEIGHT_START-latest).toFixed(1)} lbs`;
+    if (statToGoEl) statToGoEl.textContent=latest>WEIGHT_GOAL?`${(latest-WEIGHT_GOAL).toFixed(1)} lbs`:'GOAL HIT';
     if(!log[TODAY]) document.getElementById('weightInp').placeholder=latest;
     else document.getElementById('weightInp').value=latest;
-    document.getElementById('metricWeight').innerHTML=latest+' <span class="unit">lbs</span>';
+    const metricWeightEl = document.getElementById('metricWeight');
+    if (metricWeightEl) metricWeightEl.innerHTML=latest+' <span class="unit">lbs</span>';
   }
   const last14=entries.slice(0,14).reverse();
   const chart=document.getElementById('miniChart');
@@ -1684,8 +1478,10 @@ async function restoreNotes(){
 // ── 365 TRACKER ──
 let trackerData = {};
 async function buildTracker() {
+  if (!CONFIG.showFamily) return;
   trackerData = await api.get('/api/tracker');
   const grid=document.getElementById('monthsGrid');
+  if (!grid) return;
   grid.innerHTML = '';
   const mdays=[31,28,31,30,31,30,31,31,30,31,30,31];
   mdays.forEach((days,mi)=>{
@@ -1712,8 +1508,10 @@ async function buildTracker() {
   });
 }
 function updateTrackerStats(){
+  const checkedCountEl = document.getElementById('checkedCount');
+  if (!checkedCountEl) return;
   const checked=document.querySelectorAll('.day-box.checked').length;
-  document.getElementById('checkedCount').textContent=checked;
+  checkedCountEl.textContent=checked;
   const boxes=[...document.querySelectorAll('.day-box')];
   const ti=boxes.findIndex(b=>b.classList.contains('today'));
   let streak=0;
@@ -1728,12 +1526,6 @@ function showTrainMode(id, tab) {
   document.getElementById(id).classList.add('active');
   tab.classList.add('active');
 }
-function showTrackMode(id, tab) {
-  document.querySelectorAll('.track-view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.track-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  tab.classList.add('active');
-}
 
 // ── SWIM SESSIONS ──
 let swimSessions = new Set();
@@ -1741,6 +1533,7 @@ let swimSessionLogged = false;
 let swimImageKeys = [];
 
 async function loadSwimStreak() {
+  if (!CONFIG.showSwim) return;
   const sessions = await api.get('/api/swim-sessions');
   swimSessions = new Set(sessions.map(s => s.date));
   swimSessionLogged = swimSessions.has(TODAY);
@@ -1748,6 +1541,7 @@ async function loadSwimStreak() {
 }
 
 async function loadSwimSession() {
+  if (!CONFIG.showSwim) return;
   const session = await api.get('/api/swim-sessions/' + TODAY);
   if (session && session.date) {
     document.getElementById('swimSummary').value = session.summary || '';
@@ -1758,6 +1552,7 @@ async function loadSwimSession() {
 
 function renderSwimImages() {
   const grid = document.getElementById('swimImgPreview');
+  if (!grid) return;
   if (!swimImageKeys.length) { grid.innerHTML = ''; return; }
   grid.innerHTML = swimImageKeys.map(key =>
     `<div class="swim-img-item"><img src="/api/images/${key}" loading="lazy"><button class="swim-img-del" onclick="deleteSwimImage('${key}')">\u2715</button></div>`
@@ -1770,18 +1565,21 @@ async function deleteSwimImage(key) {
   renderSwimImages();
 }
 
-document.getElementById('swimImgInput').addEventListener('change', async function(e) {
-  const files = e.target.files;
-  for (const file of files) {
-    const fd = new FormData();
-    fd.append('image', file);
-    const res = await fetch('/api/images', { method: 'POST', body: fd });
-    const { key } = await res.json();
-    swimImageKeys.push(key);
-  }
-  renderSwimImages();
-  e.target.value = '';
-});
+// Set up swim image input listener
+if (CONFIG.showSwim) {
+  document.getElementById('swimImgInput').addEventListener('change', async function(e) {
+    const files = e.target.files;
+    for (const file of files) {
+      const fd = new FormData();
+      fd.append('image', file);
+      const res = await fetch('/api/images', { method: 'POST', headers: USER_HEADERS, body: fd });
+      const { key } = await res.json();
+      swimImageKeys.push(key);
+    }
+    renderSwimImages();
+    e.target.value = '';
+  });
+}
 
 async function saveSwimSession() {
   const summary = document.getElementById('swimSummary').value;
@@ -1798,8 +1596,10 @@ async function saveSwimSession() {
 }
 
 async function renderSwimHistory() {
+  if (!CONFIG.showSwim) return;
   const sessions = await api.get('/api/swim-sessions');
   const el = document.getElementById('swimHistory');
+  if (!el) return;
   if (!sessions.length) { el.innerHTML = '<div class="wlog-empty">No swim sessions yet</div>'; return; }
   el.innerHTML = sessions.slice(0, 15).map(s => {
     const d = new Date(s.date + 'T12:00:00');
@@ -1811,169 +1611,16 @@ async function renderSwimHistory() {
   }).join('');
 }
 
-// ── MEALS ──
-let todaysMeals = [];
-let favMeals = [];
-
-async function loadMeals() {
-  todaysMeals = await api.get('/api/meals?date=' + TODAY);
-  renderMealList();
-  updateMealTotals();
-}
-
-function renderMealList() {
-  const el = document.getElementById('mealList');
-  if (!todaysMeals.length) { el.innerHTML = '<div class="wlog-empty">No meals logged yet</div>'; return; }
-  el.innerHTML = todaysMeals.map(m =>
-    `<div class="meal-row"><span class="meal-name">${m.name}</span><span class="meal-macros">${m.calories}cal \u00b7 ${m.protein}p \u00b7 ${m.carbs}c \u00b7 ${m.fat}f</span><button class="meal-del" onclick="deleteMeal(${m.id})">\u2715</button></div>`
-  ).join('');
-}
-
-function updateMealTotals() {
-  const totals = todaysMeals.reduce((acc, m) => {
-    acc.cal += m.calories; acc.prot += m.protein; acc.carbs += m.carbs; acc.fat += m.fat;
-    return acc;
-  }, { cal:0, prot:0, carbs:0, fat:0 });
-  document.getElementById('macroCal').innerHTML = `${totals.cal} <span class="goal">/ 1800</span>`;
-  document.getElementById('macroProt').innerHTML = `${totals.prot}<span class="goal">g / 150g</span>`;
-  document.getElementById('macroCarbs').innerHTML = `${totals.carbs}<span class="goal">g</span>`;
-  document.getElementById('macroFat').innerHTML = `${totals.fat}<span class="goal">g</span>`;
-  const calPct = Math.min(totals.cal / 1800 * 100, 100);
-  const protPct = Math.min(totals.prot / 150 * 100, 100);
-  const calBar = document.getElementById('macroCalBar');
-  const protBar = document.getElementById('macroProtBar');
-  calBar.style.width = calPct + '%';
-  calBar.className = 'macro-fill-bar' + (calPct >= 90 ? ' good' : '');
-  protBar.style.width = protPct + '%';
-  protBar.className = 'macro-fill-bar' + (protPct >= 90 ? ' good' : '');
-}
-
-async function addMeal() {
-  const name = document.getElementById('mealName').value.trim();
-  if (!name) return;
-  const cal = parseInt(document.getElementById('mealCal').value) || 0;
-  const prot = parseInt(document.getElementById('mealProt').value) || 0;
-  const carbs = parseInt(document.getElementById('mealCarbs').value) || 0;
-  const fat = parseInt(document.getElementById('mealFat').value) || 0;
-  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name, calories:cal, protein:prot, carbs, fat }) });
-  const { id } = await res.json();
-  todaysMeals.push({ id, date:TODAY, name, calories:cal, protein:prot, carbs, fat });
-  renderMealList();
-  updateMealTotals();
-  document.getElementById('mealName').value = '';
-  document.getElementById('mealCal').value = '';
-  document.getElementById('mealProt').value = '';
-  document.getElementById('mealCarbs').value = '';
-  document.getElementById('mealFat').value = '';
-}
-
-async function deleteMeal(id) {
-  await api.del('/api/meals/' + id);
-  todaysMeals = todaysMeals.filter(m => m.id !== id);
-  renderMealList();
-  updateMealTotals();
-}
-
-async function loadFavMeals() {
-  favMeals = await api.get('/api/favorite-meals');
-  renderFavList();
-}
-
-function renderFavList() {
-  const el = document.getElementById('favList');
-  if (!favMeals.length) { el.innerHTML = '<div class="wlog-empty">No favorites yet</div>'; return; }
-  el.innerHTML = favMeals.map(f =>
-    `<div class="fav-row" onclick="quickAddFav(${f.id})"><span class="meal-name">${f.name}</span><span class="meal-macros">${f.calories}cal \u00b7 ${f.protein}p \u00b7 ${f.carbs}c \u00b7 ${f.fat}f</span><button class="meal-del" onclick="event.stopPropagation();deleteFav(${f.id})">\u2715</button></div>`
-  ).join('');
-}
-
-async function quickAddFav(id) {
-  const f = favMeals.find(m => m.id === id);
-  if (!f) return;
-  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat }) });
-  const { id: newId } = await res.json();
-  todaysMeals.push({ id:newId, date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat });
-  renderMealList();
-  updateMealTotals();
-}
-
-async function saveFav() {
-  const name = document.getElementById('mealName').value.trim();
-  if (!name) return;
-  const cal = parseInt(document.getElementById('mealCal').value) || 0;
-  const prot = parseInt(document.getElementById('mealProt').value) || 0;
-  const carbs = parseInt(document.getElementById('mealCarbs').value) || 0;
-  const fat = parseInt(document.getElementById('mealFat').value) || 0;
-  const res = await fetch('/api/favorite-meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ name, calories:cal, protein:prot, carbs, fat }) });
-  const { id } = await res.json();
-  favMeals.push({ id, name, calories:cal, protein:prot, carbs, fat });
-  renderFavList();
-}
-
-async function deleteFav(id) {
-  await api.del('/api/favorite-meals/' + id);
-  favMeals = favMeals.filter(f => f.id !== id);
-  renderFavList();
-}
-
-// ── FASTING ──
-let todayIntentions = [];
-
-async function loadTodayFast() {
-  const data = await api.get('/api/fasts/' + TODAY);
-  todayIntentions = data.intentions || [];
-  renderIntentions();
-}
-
-function renderIntentions() {
-  const el = document.getElementById('todayIntentions');
-  if (!todayIntentions.length) { el.innerHTML = '<div class="wlog-empty">No intentions yet</div>'; return; }
-  el.innerHTML = todayIntentions.map(i =>
-    `<div class="intention-item"><span class="intention-txt">${i.text}</span><button class="intention-del" onclick="deleteIntention(${i.id})">\u2715</button></div>`
-  ).join('');
-}
-
-async function addIntention() {
-  const inp = document.getElementById('intentionInp');
-  const text = inp.value.trim();
-  if (!text) return;
-  const res = await fetch('/api/fasts/' + TODAY, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ text }) });
-  const { id } = await res.json();
-  todayIntentions.push({ id, text });
-  renderIntentions();
-  inp.value = '';
-}
-
-async function deleteIntention(id) {
-  await api.del('/api/fasts/intentions/' + id);
-  todayIntentions = todayIntentions.filter(i => i.id !== id);
-  renderIntentions();
-}
-
-async function loadFastHistory() {
-  const fasts = await api.get('/api/fasts');
-  const el = document.getElementById('fastHistory');
-  const past = fasts.filter(f => f.date !== TODAY);
-  if (!past.length) { el.innerHTML = '<div class="wlog-empty">No fasts logged yet</div>'; return; }
-  el.innerHTML = past.slice(0, 20).map(f => {
-    const d = new Date(f.date + 'T12:00:00');
-    const lbl = `${DAYS[d.getDay()].slice(0,3)}, ${MONTHS[d.getMonth()]} ${d.getDate()}`;
-    const intents = f.intentions.map(i => i.text).join(' \u00b7 ') || 'No intentions';
-    return `<div class="wlog-row" style="flex-direction:column;align-items:flex-start;gap:4px"><span class="wlog-d">${lbl}</span><div style="font-size:0.75rem;color:var(--g6)">${intents}</div></div>`;
-  }).join('');
-}
-
 // ── QUICK ADD ──
 function toggleQuickAdd() {
   const bg = document.getElementById('qaBg');
   const fab = document.getElementById('fabBtn');
   if (bg.classList.contains('show')) { closeQuickAdd(); }
-  else { bg.classList.add('show'); fab.classList.add('open'); renderQAFavs(); renderQAIntentions(); }
+  else { bg.classList.add('show'); fab.classList.add('open'); }
 }
 function closeQuickAdd() {
   document.getElementById('qaBg').classList.remove('show');
   document.getElementById('fabBtn').classList.remove('open');
-  // Reset to menu
   document.querySelectorAll('.qa-mode').forEach(m => m.classList.remove('active'));
   document.getElementById('qa-menu').classList.add('active');
 }
@@ -1990,106 +1637,50 @@ async function qaSaveWeight() {
   const v = parseFloat(document.getElementById('qaWeightInp').value);
   if (!v || v < 50 || v > 400) return;
   await api.post('/api/weight', { date: TODAY, value: v });
-  document.getElementById('metricWeight').innerHTML = v + ' <span class="unit">lbs</span>';
+  const metricWeightEl = document.getElementById('metricWeight');
+  if (metricWeightEl) metricWeightEl.innerHTML = v + ' <span class="unit">lbs</span>';
   document.getElementById('qaWeightInp').value = '';
   await renderWeight();
   closeQuickAdd();
 }
 
-async function qaAddMeal() {
-  const name = document.getElementById('qaMealName').value.trim();
-  if (!name) return;
-  const cal = parseInt(document.getElementById('qaMealCal').value) || 0;
-  const prot = parseInt(document.getElementById('qaMealProt').value) || 0;
-  const carbs = parseInt(document.getElementById('qaMealCarbs').value) || 0;
-  const fat = parseInt(document.getElementById('qaMealFat').value) || 0;
-  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name, calories:cal, protein:prot, carbs, fat }) });
-  const { id } = await res.json();
-  todaysMeals.push({ id, date:TODAY, name, calories:cal, protein:prot, carbs, fat });
-  renderMealList();
-  updateMealTotals();
-  document.getElementById('qaMealName').value = '';
-  document.getElementById('qaMealCal').value = '';
-  document.getElementById('qaMealProt').value = '';
-  document.getElementById('qaMealCarbs').value = '';
-  document.getElementById('qaMealFat').value = '';
-  closeQuickAdd();
-}
-
-async function qaQuickAddFav(id) {
-  const f = favMeals.find(m => m.id === id);
-  if (!f) return;
-  const res = await fetch('/api/meals', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat }) });
-  const { id: newId } = await res.json();
-  todaysMeals.push({ id:newId, date:TODAY, name:f.name, calories:f.calories, protein:f.protein, carbs:f.carbs, fat:f.fat });
-  renderMealList();
-  updateMealTotals();
-  closeQuickAdd();
-}
-
-function renderQAFavs() {
-  const el = document.getElementById('qaFavList');
-  if (!favMeals.length) { el.innerHTML = '<div class="wlog-empty">No favorites yet</div>'; return; }
-  el.innerHTML = favMeals.map(f =>
-    `<div class="fav-row" onclick="qaQuickAddFav(${f.id})"><span class="meal-name">${f.name}</span><span class="meal-macros">${f.calories}cal \u00b7 ${f.protein}p \u00b7 ${f.carbs}c \u00b7 ${f.fat}f</span></div>`
-  ).join('');
-}
-
 async function qaSaveSwim() {
+  if (!CONFIG.showSwim) return;
   const summary = document.getElementById('qaSwimSummary').value;
-  if (!summary.trim()) return;
-  await api.post('/api/swim-sessions', { date: TODAY, summary, image_keys: swimImageKeys });
-  document.getElementById('swimSummary').value = summary;
+  await api.post('/api/swim-sessions', { date: TODAY, summary, image_keys: [] });
   if (!swimSessionLogged) {
     swimSessionLogged = true;
     swimSessions.add(TODAY);
     updateStreakDisplay();
   }
   document.getElementById('qaSwimSummary').value = '';
-  renderSwimHistory();
+  await renderSwimHistory();
   closeQuickAdd();
-}
-
-async function qaAddIntention() {
-  const inp = document.getElementById('qaIntentionInp');
-  const text = inp.value.trim();
-  if (!text) return;
-  const res = await fetch('/api/fasts/' + TODAY, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ text }) });
-  const { id } = await res.json();
-  todayIntentions.push({ id, text });
-  renderIntentions();
-  inp.value = '';
-  renderQAIntentions();
-}
-
-function renderQAIntentions() {
-  const el = document.getElementById('qaIntentionList');
-  if (!todayIntentions.length) { el.innerHTML = '<div class="wlog-empty" style="padding:12px 0">No intentions yet</div>'; return; }
-  el.innerHTML = todayIntentions.map(i =>
-    `<div class="intention-item"><span class="intention-txt">${i.text}</span></div>`
-  ).join('');
 }
 
 // ── INIT ──
 (async function init() {
   checkNewDay();
-  await Promise.all([
+  const promises = [
     restoreChecklist(),
     restoreWins(),
     renderPRs(),
-    renderWeight(),
-    restoreNotes(),
-    buildTracker(),
-    loadLiftStreak(),
-    loadSwimStreak(),
-    loadSwimSession(),
-    renderSwimHistory(),
-    loadMeals(),
-    loadFavMeals(),
-    loadTodayFast(),
-    loadFastHistory()
-  ]);
-  updateTrackerStats();
+    loadLiftStreak()
+  ];
+  if (CONFIG.weight) {
+    promises.push(renderWeight());
+    promises.push(restoreNotes());
+  }
+  if (CONFIG.showFamily) {
+    promises.push(buildTracker());
+  }
+  if (CONFIG.showSwim) {
+    promises.push(loadSwimStreak());
+    promises.push(loadSwimSession());
+    promises.push(renderSwimHistory());
+  }
+  await Promise.all(promises);
+  if (CONFIG.showFamily) updateTrackerStats();
 })();
 </script>
 </body>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Kohler // Life OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; background:#0a0a0a; color:#f0f0eb; font-family:'DM Sans',sans-serif; }
+.picker {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.picker-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.4rem;
+  letter-spacing:0.06em;
+  margin-bottom:4px;
+}
+.picker-title em { color:#e8270a; font-style:normal; }
+.picker-sub {
+  font-family:'DM Mono',monospace;
+  font-size:0.55rem;
+  letter-spacing:0.15em;
+  color:#555;
+  text-transform:uppercase;
+  margin-bottom:32px;
+}
+.picker-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  width:100%;
+  max-width:340px;
+}
+.picker-card {
+  background:#111;
+  border:1px solid #252525;
+  border-radius:16px;
+  padding:28px 20px;
+  text-align:center;
+  cursor:pointer;
+  text-decoration:none;
+  color:#f0f0eb;
+  transition:all 0.15s;
+}
+.picker-card:active {
+  background:#1a1a1a;
+  border-color:#e8270a;
+}
+.picker-card-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;
+  letter-spacing:0.06em;
+  margin-bottom:4px;
+}
+.picker-card-role {
+  font-family:'DM Mono',monospace;
+  font-size:0.5rem;
+  letter-spacing:0.12em;
+  color:#555;
+  text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+<div class="picker">
+  <div class="picker-title">Kohler <em>Life OS.</em></div>
+  <div class="picker-sub">// Who's checking in?</div>
+  <div class="picker-grid">
+    <a class="picker-card" href="/blake">
+      <div class="picker-card-name">Blake</div>
+      <div class="picker-card-role">Dad</div>
+    </a>
+    <a class="picker-card" href="/jamie">
+      <div class="picker-card-name">Jamie</div>
+      <div class="picker-card-role">Mom</div>
+    </a>
+    <a class="picker-card" href="/bronson">
+      <div class="picker-card-name">Bronson</div>
+      <div class="picker-card-role">Son</div>
+    </a>
+    <a class="picker-card" href="/brisbane">
+      <div class="picker-card-name">Brisbane</div>
+      <div class="picker-card-role">Daughter</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>
