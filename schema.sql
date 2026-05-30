@@ -76,3 +76,23 @@ CREATE TABLE IF NOT EXISTS swim_sessions (
   image_keys TEXT DEFAULT '[]',
   PRIMARY KEY (user, date)
 );
+
+-- Family tasks: configurable tasks per family member
+CREATE TABLE IF NOT EXISTS family_tasks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  member TEXT NOT NULL,           -- 'bronson', 'brisbane', 'jamie'
+  label TEXT NOT NULL,
+  category TEXT NOT NULL DEFAULT 'daily',  -- 'daily', 'homework'
+  day_of_week INTEGER,            -- NULL=every day, 0=Sun,1=Mon..6=Sat
+  paid INTEGER NOT NULL DEFAULT 0,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  active INTEGER NOT NULL DEFAULT 1
+);
+
+-- Family task completions
+CREATE TABLE IF NOT EXISTS family_completions (
+  task_id INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  done INTEGER NOT NULL DEFAULT 1,
+  PRIMARY KEY (task_id, date)
+);
