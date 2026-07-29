@@ -344,6 +344,77 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
 .fam-card-hdr .fc-name { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.06em; flex:1; }
 .fam-card-hdr .fc-tag { font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g5); }
 
+/* ── MEMBER THEMES ── */
+.theme-bronson { --accent:#4a90ff; --accent2:#a855f7; --accent-glow:rgba(74,144,255,0.15); --card-bg:#0a0e1a; --card-border:#1a2444; --hdr-bg:#0d1225; --check-done:#4a90ff; }
+.theme-bronson .member-hdr { background:linear-gradient(135deg,#0a0e1a 0%,#1a1040 100%); border-bottom:2px solid var(--accent); }
+.theme-bronson .member-title { color:var(--accent); text-shadow:0 0 20px rgba(74,144,255,0.4); }
+.theme-bronson .member-sub { color:var(--accent2); }
+.theme-bronson .fm-card { background:var(--card-bg); border-color:var(--card-border); }
+.theme-bronson .fm-card-hdr { background:var(--hdr-bg); border-color:var(--card-border); }
+.theme-bronson .fm-section-lbl { color:var(--accent); }
+.theme-bronson .fm-task.done .fm-check { background:var(--accent); border-color:var(--accent); box-shadow:0 0 8px rgba(74,144,255,0.5); }
+.theme-bronson .fm-task.done .fm-lbl { color:#5566aa; }
+.theme-bronson .fm-paid-badge { background:#1a0a30; color:var(--accent2); border-color:var(--accent2); }
+.theme-bronson .fm-progress-fill { background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+.theme-brisbane { --accent:#e879a8; --accent2:#a78bfa; --accent3:#6ee7b7; --accent-glow:rgba(232,121,168,0.12); --card-bg:#140a12; --card-border:#2a1a28; --hdr-bg:#18101a; --check-done:#e879a8; }
+.theme-brisbane .member-hdr { background:linear-gradient(135deg,#140a12 0%,#1a1028 50%,#0a1a18 100%); border-bottom:2px solid var(--accent); }
+.theme-brisbane .member-title { color:var(--accent); text-shadow:0 0 20px rgba(232,121,168,0.3); }
+.theme-brisbane .member-sub { color:var(--accent2); }
+.theme-brisbane .fm-card { background:var(--card-bg); border-color:var(--card-border); }
+.theme-brisbane .fm-card-hdr { background:var(--hdr-bg); border-color:var(--card-border); }
+.theme-brisbane .fm-section-lbl { color:var(--accent); }
+.theme-brisbane .fm-task.done .fm-check { background:var(--accent); border-color:var(--accent); box-shadow:0 0 8px rgba(232,121,168,0.5); }
+.theme-brisbane .fm-task.done .fm-lbl { color:#8866aa; }
+.theme-brisbane .fm-paid-badge { background:#1a0a20; color:var(--accent2); border-color:var(--accent2); }
+.theme-brisbane .fm-progress-fill { background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3)); }
+.theme-jamie { --accent:#a8b88a; --accent2:#d4a76a; --accent-glow:rgba(168,184,138,0.12); --card-bg:#0e0f0a; --card-border:#222a1a; --hdr-bg:#12140e; --check-done:#a8b88a; }
+.theme-jamie .member-hdr { background:linear-gradient(135deg,#0e0f0a 0%,#1a1a0e 100%); border-bottom:2px solid var(--accent); }
+.theme-jamie .member-title { color:var(--accent); text-shadow:0 0 20px rgba(168,184,138,0.3); }
+.theme-jamie .member-sub { color:var(--accent2); }
+.theme-jamie .fm-card { background:var(--card-bg); border-color:var(--card-border); }
+.theme-jamie .fm-card-hdr { background:var(--hdr-bg); border-color:var(--card-border); }
+.theme-jamie .fm-section-lbl { color:var(--accent); }
+.theme-jamie .fm-task.done .fm-check { background:var(--accent); border-color:var(--accent); box-shadow:0 0 8px rgba(168,184,138,0.5); }
+.theme-jamie .fm-task.done .fm-lbl { color:#667755; }
+.theme-jamie .fm-paid-badge { background:#1a1a0a; color:var(--accent2); border-color:var(--accent2); }
+.theme-jamie .fm-progress-fill { background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+.member-hdr { padding:24px 20px 20px; }
+.member-title { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:0.06em; line-height:1; }
+.member-sub { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; margin-top:4px; }
+.member-stats { display:flex; gap:10px; padding:0 20px; margin-top:12px; }
+.fm-stat { flex:1; background:var(--card-bg,var(--g1)); border:1px solid var(--card-border,var(--g3)); border-radius:12px; padding:14px; text-align:center; }
+.fm-stat-val { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:0.04em; }
+.fm-stat-lbl { font-family:'DM Mono',monospace; font-size:0.48rem; letter-spacing:0.1em; color:var(--g5); text-transform:uppercase; margin-top:2px; }
+.fm-progress { height:6px; background:var(--g3); border-radius:3px; margin:16px 20px 0; overflow:hidden; }
+.fm-progress-fill { height:100%; border-radius:3px; transition:width 0.4s ease; }
+.fm-section { padding:12px 20px 0; }
+.fm-section-lbl { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:10px; }
+.fm-card { border:1px solid var(--g3); border-radius:12px; overflow:hidden; margin-bottom:10px; }
+.fm-task { display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.04); cursor:pointer; transition:background 0.1s; -webkit-tap-highlight-color:transparent; }
+.fm-task:last-child { border-bottom:none; }
+.fm-task:active { background:rgba(255,255,255,0.03); }
+.fm-check { width:22px; height:22px; border:2px solid var(--g4); border-radius:5px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+.fm-task.done .fm-check::after { content:'\2713'; color:white; font-size:12px; font-weight:700; }
+.fm-lbl { font-size:0.88rem; color:var(--g7); font-weight:400; flex:1; }
+.fm-task.done .fm-lbl { text-decoration:line-through; }
+.fm-paid-badge { font-family:'DM Mono',monospace; font-size:0.42rem; letter-spacing:0.08em; padding:2px 6px; border:1px solid var(--g4); border-radius:4px; color:var(--g5); text-transform:uppercase; flex-shrink:0; }
+@media (min-width:768px) {
+  .fm-task { padding:18px 20px; gap:16px; }
+  .fm-check { width:28px; height:28px; border-radius:6px; }
+  .fm-lbl { font-size:1rem; }
+  .fm-paid-badge { font-size:0.5rem; padding:3px 8px; }
+  .member-title { font-size:2.8rem; }
+  .fm-stat-val { font-size:2rem; }
+}
+.admin-toggle { padding:8px 14px; background:var(--g2); border:1px solid var(--g3); border-radius:20px; font-family:'DM Mono',monospace; font-size:0.5rem; letter-spacing:0.1em; color:var(--g5); cursor:pointer; text-transform:uppercase; }
+.admin-panel { display:none; padding:12px 20px 0; }
+.admin-panel.show { display:block; }
+.admin-row { display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+.admin-inp { flex:1; min-width:120px; background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--white); }
+.admin-inp:focus { outline:none; border-color:var(--red); }
+.admin-sel { background:var(--g3); border:1px solid var(--g4); border-radius:6px; padding:10px; font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--white); }
+.admin-btn { padding:10px 16px; background:var(--red); border:none; border-radius:6px; font-family:'Bebas Neue',sans-serif; font-size:0.9rem; letter-spacing:0.06em; color:white; cursor:pointer; }
+
 /* 365 TRACKER */
 .tracker-wrap { padding:0 20px; }
 .t-stats-row { display:flex; gap:10px; margin-bottom:16px; }
@@ -961,17 +1032,65 @@ function renderFamilyPage() {
   }
   const pg = document.getElementById('pg-family');
   pg.style.display = '';
+
+  const MEMBER_THEMES = {
+    bronson: { theme:'theme-bronson', title:'BRONSON', sub:'<i class="ph ph-lightning"></i> Hero Mode Activated', dailyIcon:'ph-shield-star', dailyLabel:'Daily Missions', hwIcon:'ph-book-open', hwLabel:"Today's Homework" },
+    brisbane: { theme:'theme-brisbane', title:'BRISBANE', sub:'<i class="ph ph-paint-brush"></i> Creative Studio', dailyIcon:'ph-star', dailyLabel:'Daily Goals', hwIcon:'ph-pencil-line', hwLabel:"Today's Homework" },
+    jamie: { theme:'theme-jamie', title:'JAMIE', sub:'<i class="ph ph-heart"></i> Her Day, Her Way', dailyIcon:'ph-sun', dailyLabel:'Daily Flow', hwIcon:'', hwLabel:'' }
+  };
+
+  function memberTabHTML(member, mt) {
+    const adminSection = `
+      <div class="admin-panel" id="admin-${member}">
+        <div class="fm-section-lbl">Add Task</div>
+        <div class="admin-row">
+          <input class="admin-inp" id="admin-${member}-label" placeholder="Task label">
+          <select class="admin-sel" id="admin-${member}-cat"><option value="daily">Daily</option><option value="homework">Homework</option></select>
+          <select class="admin-sel" id="admin-${member}-day"><option value="">Every day</option><option value="1">Mon</option><option value="2">Tue</option><option value="3">Wed</option><option value="4">Thu</option><option value="5">Fri</option><option value="6">Sat</option><option value="0">Sun</option></select>
+          <label style="display:flex;align-items:center;gap:4px;color:var(--g6);font-size:0.7rem"><input type="checkbox" id="admin-${member}-paid"> Paid</label>
+          <button class="admin-btn" onclick="addFamilyTask('${member}')">Add</button>
+        </div>
+        <div id="admin-${member}-list" style="margin-top:8px"></div>
+      </div>`;
+
+    return `
+    <div id="fam-${member}" class="fam-view ${mt.theme}">
+      <div class="member-hdr">
+        <div class="member-title">${mt.title}</div>
+        <div class="member-sub">${mt.sub}</div>
+      </div>
+      <div class="member-stats">
+        <div class="fm-stat"><div class="fm-stat-val" id="${member}-done">0</div><div class="fm-stat-lbl">Done</div></div>
+        <div class="fm-stat"><div class="fm-stat-val" id="${member}-total">0</div><div class="fm-stat-lbl">Total</div></div>
+        <div class="fm-stat"><div class="fm-stat-val" id="${member}-paid">0</div><div class="fm-stat-lbl">Paid</div></div>
+      </div>
+      <div class="fm-progress"><div class="fm-progress-fill" id="${member}-bar" style="width:0%"></div></div>
+      <div class="fm-section" id="${member}-daily-section">
+        <div class="fm-section-lbl"><i class="ph ${mt.dailyIcon}"></i> ${mt.dailyLabel}</div>
+        <div class="fm-card"><div id="${member}-daily-tasks"><div class="wlog-empty">Loading...</div></div></div>
+      </div>
+      ${mt.hwIcon ? `<div class="fm-section" id="${member}-homework-section">
+        <div class="fm-section-lbl"><i class="ph ${mt.hwIcon}"></i> ${mt.hwLabel}</div>
+        <div class="fm-card"><div id="${member}-homework-tasks"><div class="wlog-empty">Loading...</div></div></div>
+      </div>` : ''}
+      ${adminSection}
+      <div class="sec-gap"></div>
+    </div>`;
+  }
+
   pg.innerHTML = `
     <div class="pg-hdr">
-      <div class="pg-title">Family <em>OS.</em></div>
-      <div class="pg-sub">// Kohler crew \u00b7 2026</div>
+      <div class="pg-hdr-row">
+        <div><div class="pg-title">Family <em>OS.</em></div><div class="pg-sub">// Kohler crew \u00b7 2026</div></div>
+        <button class="admin-toggle" onclick="toggleAdmin()"><i class="ph ph-gear"></i> Manage</button>
+      </div>
     </div>
     <div class="fam-tabs">
       <div class="fam-tab active" onclick="showFam('fam-goals',this)">Family Goals</div>
       <div class="fam-tab" onclick="showFam('fam-bronson',this)">Bronson</div>
       <div class="fam-tab" onclick="showFam('fam-brisbane',this)">Brisbane</div>
-      <div class="fam-tab" onclick="showFam('fam-jamie',this)">Jamie's OS</div>
-      <div class="fam-tab" onclick="showFam('fam-365',this)">365 Tracker</div>
+      <div class="fam-tab" onclick="showFam('fam-jamie',this)">Jamie</div>
+      <div class="fam-tab" onclick="showFam('fam-365',this)">365</div>
     </div>
 
     <div id="fam-goals" class="fam-view active">
@@ -991,60 +1110,9 @@ function renderFamilyPage() {
       </div>
     </div>
 
-    <div id="fam-bronson" class="fam-view">
-      <div class="fam-card">
-        <div class="fam-card-hdr"><span class="fc-name">Bronson's Day</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 breakfast</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Piano practice</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Typing practice</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Empty dishwasher</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower \u00b7 brush teeth</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
-      </div>
-    </div>
-
-    <div id="fam-brisbane" class="fam-view">
-      <div class="fam-card">
-        <div class="fam-card-hdr"><span class="fc-name">Brisbane's Day</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 breakfast</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Brush teeth + hair</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family scriptures</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Homework done</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Chore of the day</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Clean bedroom</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Exercise / activity</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Shower \u00b7 brush teeth</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family prayers</span></div>
-      </div>
-    </div>
-
-    <div id="fam-jamie" class="fam-view">
-      <div class="fam-card">
-        <div class="fam-card-hdr"><span class="fc-name">Jamie's Day</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Wake up \u00b7 morning routine</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal scripture / prayer</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement / exercise</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Personal goal time</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Priority work / deep focus</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Lunch \u2014 healthy + intentional</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Movement break</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Pick up kids \u00b7 after-school</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Dinner prep</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Family dinner together</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Walk with Blake</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Kids bedtime routine</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Reading / journaling</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Gratitude + reflection</span></div>
-        <div class="task-row" onclick="toggleTask(this)"><div class="task-box"></div><span class="task-lbl">Blake connection \u00b7 lights out 9:30</span></div>
-      </div>
-    </div>
+    ${memberTabHTML('bronson', MEMBER_THEMES.bronson)}
+    ${memberTabHTML('brisbane', MEMBER_THEMES.brisbane)}
+    ${memberTabHTML('jamie', MEMBER_THEMES.jamie)}
 
     <div id="fam-365" class="fam-view">
       <div class="tracker-wrap">
@@ -1760,6 +1828,215 @@ async function qaSaveSwim() {
   closeQuickAdd();
 }
 
+// ── FAMILY TASKS ──
+let familyTasks = { bronson:[], brisbane:[], jamie:[] };
+let familyCompletions = { bronson:{}, brisbane:{}, jamie:{} };
+let adminVisible = false;
+const DOW = now.getDay();
+const DOW_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function toggleAdmin() {
+  adminVisible = !adminVisible;
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.toggle('show', adminVisible));
+  if (adminVisible) ['bronson','brisbane','jamie'].forEach(renderAdminLists);
+}
+
+function getVisibleTasks(member) {
+  return familyTasks[member].filter(t => t.day_of_week === null || t.day_of_week === DOW);
+}
+
+async function loadFamilyMember(member) {
+  const [tasks, completions] = await Promise.all([
+    api.get('/api/family-tasks?member=' + member),
+    api.get('/api/family-completions?member=' + member + '&date=' + TODAY)
+  ]);
+  familyTasks[member] = tasks;
+  const compMap = {};
+  completions.forEach(c => { compMap[c.task_id] = c.done; });
+  familyCompletions[member] = compMap;
+  renderFamilyMember(member);
+}
+
+function renderFamilyMember(member) {
+  const visible = getVisibleTasks(member);
+  const daily = visible.filter(t => t.category === 'daily');
+  const homework = visible.filter(t => t.category === 'homework');
+  const comp = familyCompletions[member];
+
+  const dailyEl = document.getElementById(member + '-daily-tasks');
+  if (dailyEl) {
+    dailyEl.innerHTML = daily.length ? daily.map(t => {
+      const done = comp[t.id] ? 'done' : '';
+      const paid = t.paid ? '<span class="fm-paid-badge">$</span>' : '';
+      return `<div class="fm-task ${done}" onclick="toggleFamilyTask('${member}',${t.id},this)"><div class="fm-check"></div><span class="fm-lbl">${t.label}</span>${paid}</div>`;
+    }).join('') : '<div class="wlog-empty">No tasks for today</div>';
+  }
+
+  const hwEl = document.getElementById(member + '-homework-tasks');
+  if (hwEl) {
+    hwEl.innerHTML = homework.length ? homework.map(t => {
+      const done = comp[t.id] ? 'done' : '';
+      const paid = t.paid ? '<span class="fm-paid-badge">$</span>' : '';
+      return `<div class="fm-task ${done}" onclick="toggleFamilyTask('${member}',${t.id},this)"><div class="fm-check"></div><span class="fm-lbl">${t.label}</span>${paid}</div>`;
+    }).join('') : '<div class="wlog-empty">No homework today</div>';
+  }
+
+  const hwSection = document.getElementById(member + '-homework-section');
+  if (hwSection) hwSection.style.display = homework.length ? '' : 'none';
+
+  const totalDone = visible.filter(t => comp[t.id]).length;
+  const paidDone = visible.filter(t => comp[t.id] && t.paid).length;
+  const pct = visible.length ? Math.round(totalDone / visible.length * 100) : 0;
+  const el = (id) => document.getElementById(id);
+  if (el(member+'-done')) el(member+'-done').textContent = totalDone;
+  if (el(member+'-total')) el(member+'-total').textContent = visible.length;
+  if (el(member+'-paid')) el(member+'-paid').textContent = paidDone;
+  if (el(member+'-bar')) el(member+'-bar').style.width = pct + '%';
+}
+
+async function toggleFamilyTask(member, taskId, el) {
+  const isDone = !el.classList.contains('done');
+  el.classList.toggle('done', isDone);
+  familyCompletions[member][taskId] = isDone ? 1 : 0;
+  renderFamilyMember(member);
+  await api.post('/api/family-completions', { task_id: taskId, date: TODAY, done: isDone ? 1 : 0 });
+}
+
+async function addFamilyTask(member) {
+  const label = document.getElementById('admin-' + member + '-label').value.trim();
+  if (!label) return;
+  const category = document.getElementById('admin-' + member + '-cat').value;
+  const dayVal = document.getElementById('admin-' + member + '-day').value;
+  const paid = document.getElementById('admin-' + member + '-paid').checked ? 1 : 0;
+  const day_of_week = dayVal === '' ? null : parseInt(dayVal);
+  const sort_order = familyTasks[member].length;
+  const res = await fetch('/api/family-tasks', { method:'POST', headers:{'Content-Type':'application/json','X-User':CURRENT_USER}, body:JSON.stringify({ member, label, category, day_of_week, paid, sort_order }) });
+  const { id } = await res.json();
+  familyTasks[member].push({ id, member, label, category, day_of_week, paid, sort_order });
+  document.getElementById('admin-' + member + '-label').value = '';
+  document.getElementById('admin-' + member + '-paid').checked = false;
+  renderFamilyMember(member);
+  renderAdminLists(member);
+}
+
+async function removeFamilyTask(member, taskId) {
+  await api.del('/api/family-tasks/' + taskId);
+  familyTasks[member] = familyTasks[member].filter(t => t.id !== taskId);
+  renderFamilyMember(member);
+  renderAdminLists(member);
+}
+
+async function toggleFamilyTaskPaid(member, taskId) {
+  const task = familyTasks[member].find(t => t.id === taskId);
+  if (!task) return;
+  task.paid = task.paid ? 0 : 1;
+  await fetch('/api/family-tasks/' + taskId, { method:'PUT', headers:{'Content-Type':'application/json','X-User':CURRENT_USER}, body:JSON.stringify({ paid: task.paid }) });
+  renderFamilyMember(member);
+  renderAdminLists(member);
+}
+
+function renderAdminLists(member) {
+  const el = document.getElementById('admin-' + member + '-list');
+  if (!el) return;
+  const tasks = familyTasks[member];
+  if (!tasks.length) { el.innerHTML = '<div class="wlog-empty">No tasks configured</div>'; return; }
+  el.innerHTML = tasks.map(t => {
+    const dayLbl = t.day_of_week !== null ? DOW_NAMES[t.day_of_week] : 'Daily';
+    const paidLbl = t.paid ? '<span style="color:var(--gold)">$</span>' : '';
+    return `<div class="wlog-row" style="font-size:0.75rem">
+      <span style="flex:1">${t.label}</span>
+      <span class="wlog-d">${t.category} \u00b7 ${dayLbl} ${paidLbl}</span>
+      <button class="wlog-del" onclick="toggleFamilyTaskPaid('${member}',${t.id})" title="Toggle paid" style="color:var(--gold)">$</button>
+      <button class="wlog-del" onclick="removeFamilyTask('${member}',${t.id})">\u2715</button>
+    </div>`;
+  }).join('');
+}
+
+async function seedFamilyTasksIfEmpty() {
+  if (!CONFIG.showFamily) return;
+  for (const member of ['bronson','brisbane','jamie']) {
+    const existing = await api.get('/api/family-tasks?member=' + member);
+    if (existing.length > 0) continue;
+    let tasks = [];
+    if (member === 'bronson') {
+      tasks = [
+        { label:'Clean bedroom', category:'daily', day_of_week:null, paid:1 },
+        { label:'Make bed', category:'daily', day_of_week:null, paid:1 },
+        { label:'Open windows', category:'daily', day_of_week:null, paid:0 },
+        { label:'Empty dishwasher', category:'daily', day_of_week:null, paid:1 },
+        { label:'Read 20 min', category:'daily', day_of_week:null, paid:1 },
+        { label:'Homework (3 pages)', category:'daily', day_of_week:null, paid:1 },
+        { label:'Piano practice', category:'daily', day_of_week:null, paid:1 },
+        { label:'Exercise', category:'daily', day_of_week:null, paid:0 },
+        { label:'Spelling & vocab', category:'homework', day_of_week:1, paid:0 },
+        { label:'Math skills', category:'homework', day_of_week:1, paid:0 },
+        { label:'Social studies', category:'homework', day_of_week:1, paid:0 },
+        { label:'Literature comprehension', category:'homework', day_of_week:2, paid:0 },
+        { label:'Ratios & proportions', category:'homework', day_of_week:2, paid:0 },
+        { label:'Science', category:'homework', day_of_week:2, paid:0 },
+        { label:'Research & analysis', category:'homework', day_of_week:3, paid:0 },
+        { label:'Number systems', category:'homework', day_of_week:3, paid:0 },
+        { label:'Technology', category:'homework', day_of_week:3, paid:0 },
+        { label:'Writing', category:'homework', day_of_week:4, paid:0 },
+        { label:'Pronouns & punctuation', category:'homework', day_of_week:4, paid:0 },
+        { label:'Expressions & equations', category:'homework', day_of_week:4, paid:0 },
+        { label:'Metaphor & meaning', category:'homework', day_of_week:5, paid:0 },
+        { label:'Geometry', category:'homework', day_of_week:5, paid:0 },
+        { label:'Stats & probability', category:'homework', day_of_week:5, paid:0 },
+      ];
+    } else if (member === 'brisbane') {
+      tasks = [
+        { label:'Clean bedroom', category:'daily', day_of_week:null, paid:1 },
+        { label:'Make bed', category:'daily', day_of_week:null, paid:1 },
+        { label:'Open windows', category:'daily', day_of_week:null, paid:0 },
+        { label:'Empty dishwasher', category:'daily', day_of_week:null, paid:1 },
+        { label:'Read 20 min', category:'daily', day_of_week:null, paid:1 },
+        { label:'Homework (3 pages)', category:'daily', day_of_week:null, paid:1 },
+        { label:'Piano practice', category:'daily', day_of_week:null, paid:1 },
+        { label:'Exercise', category:'daily', day_of_week:null, paid:0 },
+        { label:'Crochet', category:'daily', day_of_week:1, paid:0 },
+        { label:'Spelling & vocab', category:'homework', day_of_week:1, paid:0 },
+        { label:'Math skills', category:'homework', day_of_week:1, paid:0 },
+        { label:'Social studies', category:'homework', day_of_week:1, paid:0 },
+        { label:'Language arts', category:'homework', day_of_week:2, paid:0 },
+        { label:'Addition & subtraction', category:'homework', day_of_week:2, paid:0 },
+        { label:'Science', category:'homework', day_of_week:2, paid:0 },
+        { label:'Reading', category:'homework', day_of_week:3, paid:0 },
+        { label:'Multiplication & division', category:'homework', day_of_week:3, paid:0 },
+        { label:'Technology', category:'homework', day_of_week:3, paid:0 },
+        { label:'Writing', category:'homework', day_of_week:4, paid:0 },
+        { label:'Fractions & decimals', category:'homework', day_of_week:4, paid:0 },
+        { label:'Geometry & measurement', category:'homework', day_of_week:4, paid:0 },
+        { label:'Reading', category:'homework', day_of_week:5, paid:0 },
+        { label:'Probability & data', category:'homework', day_of_week:5, paid:0 },
+        { label:'Word problems', category:'homework', day_of_week:5, paid:0 },
+      ];
+    } else if (member === 'jamie') {
+      tasks = [
+        { label:'Wake up \u00b7 morning routine', category:'daily', day_of_week:null, paid:0 },
+        { label:'Personal scripture / prayer', category:'daily', day_of_week:null, paid:0 },
+        { label:'Movement / exercise', category:'daily', day_of_week:null, paid:0 },
+        { label:'Personal goal time', category:'daily', day_of_week:null, paid:0 },
+        { label:'Priority work / deep focus', category:'daily', day_of_week:null, paid:0 },
+        { label:'Lunch \u2014 healthy + intentional', category:'daily', day_of_week:null, paid:0 },
+        { label:'Movement break', category:'daily', day_of_week:null, paid:0 },
+        { label:'Pick up kids \u00b7 after-school', category:'daily', day_of_week:null, paid:0 },
+        { label:'Dinner prep', category:'daily', day_of_week:null, paid:0 },
+        { label:'Family dinner together', category:'daily', day_of_week:null, paid:0 },
+        { label:'Walk with Blake', category:'daily', day_of_week:null, paid:0 },
+        { label:'Kids bedtime routine', category:'daily', day_of_week:null, paid:0 },
+        { label:'Reading / journaling', category:'daily', day_of_week:null, paid:0 },
+        { label:'Gratitude + reflection', category:'daily', day_of_week:null, paid:0 },
+        { label:'Blake connection \u00b7 lights out 9:30', category:'daily', day_of_week:null, paid:0 },
+      ];
+    }
+    for (let i = 0; i < tasks.length; i++) {
+      const t = tasks[i];
+      await api.post('/api/family-tasks', { member, label:t.label, category:t.category, day_of_week:t.day_of_week, paid:t.paid, sort_order:i });
+    }
+  }
+}
+
 // ── INIT ──
 (async function init() {
   checkNewDay();
@@ -1781,8 +2058,18 @@ async function qaSaveSwim() {
     promises.push(loadSwimSession());
     promises.push(renderSwimHistory());
   }
+  if (CONFIG.showFamily) {
+    promises.push(seedFamilyTasksIfEmpty());
+  }
   await Promise.all(promises);
-  if (CONFIG.showFamily) updateTrackerStats();
+  if (CONFIG.showFamily) {
+    updateTrackerStats();
+    await Promise.all([
+      loadFamilyMember('bronson'),
+      loadFamilyMember('brisbane'),
+      loadFamilyMember('jamie')
+    ]);
+  }
 })();
 </script>
 </body>
