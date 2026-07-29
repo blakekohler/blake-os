@@ -62,9 +62,11 @@ CREATE TABLE IF NOT EXISTS wins (
 );
 
 -- Lift sessions: dates when user lifted (for streak tracking)
+-- workout_day records which cycle day (push/pull/legs/...) was actually done
 CREATE TABLE IF NOT EXISTS lift_sessions (
   user TEXT NOT NULL,
   date TEXT NOT NULL,
+  workout_day TEXT,
   PRIMARY KEY (user, date)
 );
 

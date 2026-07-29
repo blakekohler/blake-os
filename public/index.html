@@ -621,6 +621,9 @@ html, body { height:100%; background:var(--black); color:var(--white); font-fami
         </div>
         <div class="day-tabs-wrap" id="dayPillsMount"></div>
         <div id="workoutDayHint" style="padding:4px 20px 0;font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;color:var(--g5);text-transform:uppercase"></div>
+        <div style="padding:10px 20px 0">
+          <button class="notes-save" id="copyWorkoutBtn" onclick="copyWorkoutSummary()" style="margin-top:0"><i class="ph ph-copy"></i> Copy for Trainer</button>
+        </div>
         <div id="liftMount"></div>
       </div>
 
@@ -1129,12 +1132,17 @@ function toggleSet(btn) {
   btn.classList.toggle('done');
   const row = btn.closest('.set-row');
   if (row) row.classList.toggle('done');
-  // Log lift session for streak tracking
-  if (btn.classList.contains('done') && !liftSessionLogged) {
-    liftSessionLogged = true;
-    liftSessions.add(TODAY);
-    updateStreakDisplay();
-    api.post('/api/lift-sessions', { date: TODAY });
+  // Log lift session for streak tracking — record which workout day the set belongs to
+  if (btn.classList.contains('done')) {
+    const wdEl = btn.closest('.workout-day');
+    const dayKey = wdEl ? wdEl.id.replace('wd-', '') : null;
+    if (!liftSessionLogged || (dayKey && dayKey !== liftSessionDay)) {
+      liftSessionLogged = true;
+      if (dayKey) liftSessionDay = dayKey;
+      liftSessions.add(TODAY);
+      updateStreakDisplay();
+      api.post('/api/lift-sessions', { date: TODAY, workout_day: dayKey });
+    }
   }
   // Auto-PR detection when marking done
   if (btn.classList.contains('done')) {
@@ -1168,7 +1176,7 @@ function toggleSet(btn) {
       api.post('/api/prs', { exercise, weight: newWt, reps: newRp, date: TODAY, pr_type: prType });
       const badge = document.getElementById('prb-' + exercise);
       if (badge) {
-        if (prType === 'weight') badge.textContent = 'PR: ' + newWt + (newRp?'\u00d7'+newRp:'') + 'lbs';
+        if (prType === 'weight') badge.textContent = 'PR: ' + newWt + (newRp?'\u00d7'+newRp:'') + ' lbs';
         else if (prType === 'reps') badge.textContent = 'PR: ' + newRp;
         else if (prType === 'time') badge.textContent = 'PR: ' + newWt + 's';
         badge.classList.add('has-pr');
@@ -1274,6 +1282,7 @@ async function renderHistory() {
 // ── LIFT STREAK ──
 let liftSessions = new Set();
 let liftSessionLogged = false;
+let liftSessionDay = null; // which workout day (push/pull/...) was logged today
 
 function calcStreakWeekdays(sessions) {
   if (!sessions.size) return 0;
@@ -1315,37 +1324,53 @@ const WORKOUT_NAMES = {};
 Object.keys(CONFIG.workoutDays).forEach(key => { WORKOUT_NAMES[key] = CONFIG.workoutDays[key].name; });
 
 async function loadLiftStreak() {
-  const dates = await api.get('/api/lift-sessions');
-  liftSessions = new Set(dates);
+  const rows = await api.get('/api/lift-sessions');
+  // Rows are {date, workout_day}; tolerate legacy plain-date strings
+  const sessions = rows.map(r => typeof r === 'string' ? { date: r, workout_day: null } : r);
+  liftSessions = new Set(sessions.map(r => r.date));
   liftSessionLogged = liftSessions.has(TODAY);
+  const todayRow = sessions.find(r => r.date === TODAY);
+  liftSessionDay = (todayRow && todayRow.workout_day) || null;
   updateStreakDisplay();
-  autoSelectWorkoutDay(dates);
+  autoSelectWorkoutDay(sessions);
 }
 
-function autoSelectWorkoutDay(dates) {
+// Next workout = the one after the last day actually completed (not a count guess)
+function nextCycleDay(sessions) {
+  const past = sessions
+    .filter(r => r.date !== TODAY && r.workout_day && WORKOUT_CYCLE.includes(r.workout_day))
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (past.length) {
+    const lastIdx = WORKOUT_CYCLE.indexOf(past[past.length - 1].workout_day);
+    return WORKOUT_CYCLE[(lastIdx + 1) % WORKOUT_CYCLE.length];
+  }
+  // No recorded days yet (legacy data) — fall back to count-based rotation
+  const completedCount = sessions.filter(r => r.date !== TODAY).length;
+  return WORKOUT_CYCLE[completedCount % WORKOUT_CYCLE.length];
+}
+
+function autoSelectWorkoutDay(sessions) {
   let dayId, dayName;
   const dow = new Date(TODAY + 'T12:00:00').getDay();
 
-  if (CONFIG.workoutSchedule) {
+  if (liftSessionLogged && liftSessionDay && CONFIG.workoutDays[liftSessionDay]) {
+    // Already worked out today — show what was actually done
+    dayId = liftSessionDay;
+    dayName = WORKOUT_NAMES[dayId];
+  } else if (CONFIG.workoutSchedule) {
     const scheduleType = CONFIG.workoutSchedule[dow];
     if (scheduleType === 'rest') {
       dayId = null;
       dayName = 'Rest Day';
     } else if (scheduleType === 'weights') {
-      const sorted = [...dates].sort();
-      const completedCount = liftSessionLogged ? sorted.length - 1 : sorted.length;
-      const cycleIndex = completedCount % WORKOUT_CYCLE.length;
-      dayId = WORKOUT_CYCLE[cycleIndex];
+      dayId = nextCycleDay(sessions);
       dayName = WORKOUT_NAMES[dayId];
     } else {
       dayId = scheduleType;
       dayName = WORKOUT_NAMES[dayId] || scheduleType;
     }
   } else {
-    const sorted = [...dates].sort();
-    const completedCount = liftSessionLogged ? sorted.length - 1 : sorted.length;
-    const cycleIndex = completedCount % WORKOUT_CYCLE.length;
-    dayId = WORKOUT_CYCLE[cycleIndex];
+    dayId = nextCycleDay(sessions);
     dayName = WORKOUT_NAMES[dayId];
   }
 
@@ -1377,6 +1402,83 @@ function autoSelectWorkoutDay(dates) {
   }
 }
 
+// ── COPY WORKOUT FOR TRAINER ──
+function copyWorkoutSummary() {
+  const wd = document.querySelector('.workout-day.active');
+  if (!wd) return;
+  const dayKey = wd.id.replace('wd-', '');
+  const dayName = WORKOUT_NAMES[dayKey] || dayKey;
+  const lines = [`${dayName} — ${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`, ''];
+
+  wd.querySelectorAll('.ex-card').forEach(card => {
+    const name = card.dataset.exercise;
+    const targetEl = card.querySelector('.ex-card-target');
+    const target = targetEl ? targetEl.textContent : '';
+    const setRows = card.querySelectorAll('.set-row');
+    if (!setRows.length) {
+      // Toggle-only card (no sets)
+      const done = card.querySelector('.set-check.done');
+      lines.push(`- ${name} (${target}): ${done ? 'done' : 'skipped'}`);
+      return;
+    }
+    const sets = [];
+    setRows.forEach(row => {
+      if (!row.classList.contains('done')) return;
+      const inps = row.querySelectorAll('.set-inp');
+      const v1 = inps[0] ? inps[0].value : '';
+      const v2 = inps[1] ? inps[1].value : '';
+      const kind = inps[0] ? inps[0].placeholder : '';
+      if (kind === 'lbs' && v1) sets.push(v2 ? `${v1} lbs × ${v2}` : `${v1} lbs`);
+      else if (kind === 'reps' && v1) sets.push(`${v1} reps`);
+      else if (kind === 'sec' && v1) sets.push(`${v1}s`);
+      else sets.push('done');
+    });
+    if (!sets.length) { lines.push(`- ${name} (${target}): skipped`); return; }
+    const pr = prCache[name];
+    const prFlag = pr && pr.date === TODAY ? ' ⭐ NEW PR' : '';
+    lines.push(`- ${name} (${target}): ${sets.join(', ')}${prFlag}`);
+  });
+
+  const prLines = [];
+  wd.querySelectorAll('.ex-card').forEach(card => {
+    const ex = card.dataset.exercise;
+    const pr = prCache[ex];
+    if (!pr) return;
+    const prType = card.dataset.prType;
+    let val;
+    if (prType === 'reps') val = pr.rp + ' reps';
+    else if (prType === 'time') val = pr.wt + 's';
+    else val = pr.wt + (pr.rp ? '×' + pr.rp : '') + ' lbs';
+    prLines.push(`- ${ex}: ${val} (${pr.date})`);
+  });
+  if (prLines.length) lines.push('', 'Current PRs:', ...prLines);
+
+  const text = lines.join('\n');
+  const btn = document.getElementById('copyWorkoutBtn');
+  const flash = ok => {
+    if (!btn) return;
+    btn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+    setTimeout(() => { btn.innerHTML = '<i class="ph ph-copy"></i> Copy for Trainer'; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => flash(true), () => flash(fallbackCopy(text)));
+  } else {
+    flash(fallbackCopy(text));
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+  return ok;
+}
+
 // ── PR SYSTEM ──
 let prCache={};
 async function renderPRs() {
@@ -1390,7 +1492,7 @@ async function renderPRs() {
       const prType=card?card.dataset.prType:'weight';
       if(prType==='reps') badge.textContent='PR: '+rp;
       else if(prType==='time') badge.textContent='PR: '+wt+'s';
-      else badge.textContent='PR: '+wt+(rp?'\u00d7'+rp:'')+'lbs';
+      else badge.textContent='PR: '+wt+(rp?'\u00d7'+rp:'')+' lbs';
       badge.classList.add('has-pr');
     }
   });
@@ -1406,7 +1508,7 @@ function renderPRLists() {
       let val;
       if(prType==='reps') val=rp+' reps';
       else if(prType==='time') val=wt+'s';
-      else val=wt+(rp?'\u00d7'+rp:'')+'lbs';
+      else val=wt+(rp?'\u00d7'+rp:'')+' lbs';
       return `<div class="pr-row"><span class="pr-ex-name">${ex}</span><span class="pr-val">${val} <span style="font-size:0.5rem;color:var(--g5)">${date}</span></span></div>`;
     }).join('');
   // Update all PR list containers for each workout day
